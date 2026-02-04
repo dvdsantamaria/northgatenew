@@ -394,6 +394,49 @@
       filter: brightness(0);
     }
 
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-bg);
+      color: var(--c-dark);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    }
+
+    .mobile-menu.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-menu-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .mobile-menu-link {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 8vw, 2.5rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-dark);
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
     .scroll-cue {
       display: flex;
       flex-direction: column;
@@ -616,10 +659,21 @@ scaleY(var(--tw-scale-y, 1))
       <a href="#" class="hover:opacity-100 transition-opacity">Projects</a>
       <a href="#" class="hover:opacity-100 transition-opacity">Contact us</a>
     </div>
-    <button class="md:hidden group">
-      <i data-lucide="menu" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+    <button class="md:hidden group" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="sr-only">Toggle menu</span>
+      <i data-lucide="menu" class="w-6 h-6 group-hover:scale-110 transition-transform menu-icon"></i>
+      <i data-lucide="x" class="w-6 h-6 group-hover:scale-110 transition-transform menu-close hidden"></i>
     </button>
   </nav>
+
+  <div class="mobile-menu md:hidden" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <a href="#" class="mobile-menu-link">About</a>
+      <a href="#" class="mobile-menu-link">Services</a>
+      <a href="#" class="mobile-menu-link">Projects</a>
+      <a href="#" class="mobile-menu-link">Contact us</a>
+    </div>
+  </div>
 
   <!-- WRAPPER (White Content) -->
   <div class="wrapper">
@@ -1114,6 +1168,36 @@ and relationships that last well beyond handover.
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
     }
+
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuToggle && mobileMenu) {
+      const menuIcon = menuToggle.querySelector('.menu-icon');
+      const closeIcon = menuToggle.querySelector('.menu-close');
+      const setMenuOpen = (open) => {
+        mobileMenu.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        document.body.classList.toggle('menu-open', open);
+        if (menuIcon && closeIcon) {
+          menuIcon.classList.toggle('hidden', open);
+          closeIcon.classList.toggle('hidden', !open);
+        }
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenuOpen(!mobileMenu.classList.contains('is-open'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuOpen(false);
+      });
+    }
+
     const footerYear = document.getElementById('footer-year');
     if (footerYear) {
       footerYear.textContent = new Date().getFullYear();
