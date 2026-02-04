@@ -312,6 +312,20 @@
         overflow-wrap: anywhere;
       }
 
+      #parallax-grid .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+      }
+
+      #parallax-grid .parallax-col {
+        padding-top: 0;
+        gap: 1.5rem;
+      }
+
+      #parallax-grid .parallax-col.hidden {
+        display: flex !important;
+      }
+
       .card-inner {
         grid-template-columns: 1fr;
         height: auto;
