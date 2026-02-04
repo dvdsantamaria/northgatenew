@@ -308,6 +308,7 @@
     @media (max-width: 1024px) {
       .card-inner {
         grid-template-columns: 1fr;
+        height: auto;
       }
 
       .card-content {
@@ -315,17 +316,19 @@
         border-bottom: 1px solid var(--c-border);
         padding: 2rem;
         order: 2;
-        height: 45%;
+        height: auto;
       }
 
       .card-img-wrap {
-        height: 55%;
+        height: auto;
+        aspect-ratio: 1 / 1;
         order: 1;
       }
 
       .card-item {
-        height: 85vh;
-        top: 5vh;
+        position: relative;
+        height: auto;
+        top: auto;
       }
     }
 
@@ -664,6 +667,7 @@ scaleY(var(--tw-scale-y, 1))
           <span class="text-xs font-mono text-gray-400">01 — Mission Statement</span>
         </div>
         <div class="lg:col-span-8 lg:col-start-5">
+          <span class="text-xs font-mono text-gray-400 mb-4 block lg:hidden">01 — Mission Statement</span>
           <h3
             class="body-font text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.05] tracking-tight max-w-6xl intro-scrub-text text-black">
             Northgate exists to deliver new builds with integrity, clarity, and
