@@ -1,5 +1,5 @@
 .projects-page {
-  padding-top: 120px;
+  padding-top: 80px;
   background: var(--c-bg);
   color: var(--c-dark);
 }
@@ -54,6 +54,15 @@
   display: grid;
   gap: 0;
   scroll-snap-type: y proximity;
+}
+
+.project-group {
+  display: grid;
+  gap: 0;
+}
+
+.project-group + .project-group {
+  margin-top: clamp(2rem, 4vw, 4rem);
 }
 
 .project-row {
@@ -177,7 +186,7 @@
 
 @media (max-width: 1024px) {
   .projects-page {
-    padding-top: 110px;
+    padding-top: 70px;
   }
 
   .project-row {
