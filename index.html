@@ -338,6 +338,20 @@
       }
     }
 
+    @media (max-width: 768px) {
+      #parallax-grid .grid {
+        grid-template-columns: 1fr;
+      }
+
+      #parallax-grid .parallax-col {
+        padding-top: 0;
+      }
+
+      #parallax-grid .parallax-col.hidden {
+        display: flex;
+      }
+    }
+
     /* --- FOOTER REVEAL --- */
     .footer-sticky {
       position: fixed;
