@@ -306,6 +306,12 @@
 
     /* Mobile */
     @media (max-width: 1024px) {
+      #horiz-scroll h2 {
+        font-size: clamp(2rem, 7vw, 3rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+      }
+
       .card-inner {
         grid-template-columns: 1fr;
         height: auto;
