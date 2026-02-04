@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Northgate Building Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="projects.css">
+  <script src="tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="text-sm sm:text-base leading-relaxed">
+  <div class="noise"></div>
+
+  <nav class="site-nav w-full px-6 py-6 md:px-12 md:py-8 flex justify-between items-center z-50 mix-blend-difference text-white mix-blend-exclusion">
+    <a href="index.html" class="flex items-center gap-2" aria-label="Northgate Building Group home">
+      <img src="assets/newlogo.webp" alt="Northgate Building Group" class="nav-logo h-[2.275rem] md:h-[2.73rem] w-auto">
+    </a>
+    <div class="hidden md:flex gap-8 text-xs font-medium tracking-widest uppercase opacity-80">
+      <a href="about.html" class="hover:opacity-100 transition-opacity">About</a>
+      <a href="services.html" class="hover:opacity-100 transition-opacity">Services</a>
+      <a href="projects.html" class="hover:opacity-100 transition-opacity is-active">Projects</a>
+      <a href="contact.html" class="hover:opacity-100 transition-opacity">Contact us</a>
+    </div>
+    <button class="md:hidden group" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="sr-only">Toggle menu</span>
+      <i data-lucide="menu" class="w-6 h-6 group-hover:scale-110 transition-transform menu-icon"></i>
+      <i data-lucide="x" class="w-6 h-6 group-hover:scale-110 transition-transform menu-close hidden"></i>
+    </button>
+  </nav>
+
+  <div class="mobile-menu md:hidden" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <a href="about.html" class="mobile-menu-link">About</a>
+      <a href="services.html" class="mobile-menu-link">Services</a>
+      <a href="projects.html" class="mobile-menu-link is-active">Projects</a>
+      <a href="contact.html" class="mobile-menu-link">Contact us</a>
+    </div>
+  </div>
+
+  <main class="projects-page">
+    <!-- <section class="projects-intro">
+      <div class="projects-intro-inner">
+        <h1 class="display-font projects-title">Projects</h1>
+        <p class="projects-subtitle">A selection of new builds and renovations delivered with clear scope, transparent delivery, and direct builder involvement.</p>
+      </div>
+    </section> -->
+
+    <section class="projects-gallery">
+      <article class="project-row">
+        <div class="project-details">
+          <div class="project-details-inner">
+            <span class="project-index">01 / 03</span>
+            <h2 class="display-font project-name">Malie </h2>
+            <p class="project-meta">Director Jordan O'Driscoll<br>Architect Morriachi Architecture</p>
+            <p class="project-desc">A five level mixed use development comprising eight luxury apartments, two commercial tenancies, and a full basement carpark. Reinforced concrete structure with Dincel and Speed panel facades. Built boundary to boundary with an existing apartment building, this was a complicated and challenging build delivered with precision. Won an MBA award for excellence in construction in the multi dwelling construction category.</p>
+            <div class="project-tags">
+              <span>Value $8.0M</span>
+              <span>Completion 2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-media">
+          <div class="project-media-frame project-carousel" data-carousel>
+            <div class="project-carousel-track">
+              <img src="assets/Projects/malie/gallery0.jpg" alt="Malie exterior view 1">
+              <img src="assets/Projects/malie/gallery1.jpg" alt="Malie exterior view 2">
+              <img src="assets/Projects/malie/gallery2.jpg" alt="Malie exterior view 3">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="project-full-image">
+        <img src="assets/Projects/malie/main.jpg" alt="Malie exterior render">
+      </div>
+
+    
+    </section>
+  </main>
+
+  <script src="projects.js" defer></script>
+</body>
+</html>
