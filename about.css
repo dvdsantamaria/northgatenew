@@ -131,7 +131,7 @@
 .process-icon {
   width: 72px;
   height: 72px;
-  border: 4px dashed #3f6f65;
+  border: 4px dashed #527B72;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -284,6 +284,6 @@
   }
 
   .process-arrow {
-    justify-self: center;
+    display: none;
   }
 }
