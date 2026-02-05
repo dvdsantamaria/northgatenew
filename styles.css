@@ -281,6 +281,17 @@
       filter: brightness(0);
     }
 
+    @media (max-width: 767px) {
+      body.menu-open .site-nav .nav-blend {
+        mix-blend-mode: normal;
+        color: var(--c-dark);
+      }
+
+      body.menu-open .site-nav .nav-logo {
+        filter: brightness(0);
+      }
+    }
+
     .mobile-menu {
       position: fixed;
       inset: 0;
@@ -331,6 +342,11 @@
 
     body.menu-open {
       overflow: hidden;
+    }
+
+    body.menu-open #mobile-menu-toggle {
+      mix-blend-mode: normal;
+      color: var(--c-dark);
     }
 
     .scroll-cue {
