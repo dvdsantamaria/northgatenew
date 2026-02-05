@@ -281,6 +281,8 @@
   .process-row {
     grid-template-columns: 1fr;
     gap: 2rem;
+    border-bottom: none;
+    padding: 2.5rem 0;
   }
 
   .process-arrow {
