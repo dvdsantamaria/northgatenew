@@ -31,36 +31,6 @@ if (menuToggle && mobileMenu) {
   });
 }
 
-const footerYear = document.getElementById('footer-year');
-if (footerYear) {
-  footerYear.textContent = new Date().getFullYear();
-}
-
-document.querySelectorAll('[data-carousel]').forEach((carousel) => {
-  const track = carousel.querySelector('.project-carousel-track');
-  const slides = track ? Array.from(track.children) : [];
-  if (!track || slides.length === 0) return;
-
-  let index = 0;
-  let timer = null;
-
-  const update = () => {
-    track.style.transform = `translateX(-${index * 100}%)`;
-  };
-
-  const goTo = (dir) => {
-    index = (index + dir + slides.length) % slides.length;
-    update();
-  };
-
-  const start = () => {
-    if (timer) clearInterval(timer);
-    timer = setInterval(() => goTo(1), 4000);
-  };
-
-  start();
-});
-
 // Initialize GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,27 +54,7 @@ requestAnimationFrame(raf);
 
 lenis.on('scroll', ScrollTrigger.update);
 
-// Parallax for project-full-image
-document.querySelectorAll('.project-full-image').forEach((wrap) => {
-  const img = wrap.querySelector('img');
-  if (!img) return;
-
-  gsap.fromTo(img,
-    { yPercent: -80 },
-    {
-      yPercent: -20,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: wrap,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-      }
-    }
-  );
-});
-
-// Refresh ScrollTrigger on window events
-window.addEventListener('load', () => ScrollTrigger.refresh());
-window.addEventListener('resize', () => ScrollTrigger.refresh());
-
+const footerYear = document.getElementById('footer-year');
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}

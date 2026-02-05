@@ -61,7 +61,7 @@
   gap: 0;
 }
 
-.project-group + .project-group {
+.project-group+.project-group {
   margin-top: clamp(2rem, 4vw, 4rem);
 }
 
@@ -168,20 +168,27 @@
 
 .project-full-image {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   scroll-snap-align: start;
   overflow: hidden;
   margin-top: 0;
+  position: relative;
 }
 
-.project-row + .project-full-image {
+.project-row+.project-full-image {
   margin-top: 0;
 }
 
 .project-full-image img {
+  position: absolute;
+  top: 50%;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 160%;
+  /* Increased for more range */
   object-fit: cover;
+  transform: translate3d(0, -50%, 0);
+  will-change: transform;
 }
 
 @media (max-width: 1024px) {

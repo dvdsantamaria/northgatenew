@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Northgate Building Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="about.css">
+  <script src="tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+
+<body class="text-sm sm:text-base leading-relaxed">
+  <div class="noise"></div>
+
+  <div class="wrapper">
+    <nav
+      class="site-nav w-full px-6 py-6 md:px-12 md:py-8 flex justify-between items-center z-50 mix-blend-difference text-white mix-blend-exclusion">
+      <a href="index.html" class="flex items-center gap-2" aria-label="Northgate Building Group home">
+        <img src="assets/newlogo.webp" alt="Northgate Building Group"
+          class="nav-logo h-[2.275rem] md:h-[2.73rem] w-auto">
+      </a>
+      <div class="hidden md:flex gap-8 text-xs font-medium tracking-widest uppercase opacity-80">
+        <a href="about.html" class="hover:opacity-100 transition-opacity is-active">About</a>
+        <a href="services.html" class="hover:opacity-100 transition-opacity">Services</a>
+        <a href="projects.html" class="hover:opacity-100 transition-opacity">Projects</a>
+        <a href="contact.html" class="hover:opacity-100 transition-opacity">Contact us</a>
+      </div>
+      <button class="md:hidden group" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Toggle menu</span>
+        <i data-lucide="menu" class="w-6 h-6 group-hover:scale-110 transition-transform menu-icon"></i>
+        <i data-lucide="x" class="w-6 h-6 group-hover:scale-110 transition-transform menu-close hidden"></i>
+      </button>
+    </nav>
+
+    <div class="mobile-menu md:hidden" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <a href="about.html" class="mobile-menu-link is-active">About</a>
+        <a href="services.html" class="mobile-menu-link">Services</a>
+        <a href="projects.html" class="mobile-menu-link">Projects</a>
+        <a href="contact.html" class="mobile-menu-link">Contact us</a>
+      </div>
+    </div>
+    <main class="about-page">
+      <section class="about-hero">
+        <h1 class="display-font about-hero-title">Bringing clarity to planning, care to detail, and confidence to every build.</h1>
+        <div class="about-hero-image">
+          <img src="assets/about.jpg" alt="Project exterior render">
+        </div>
+      </section>
+
+      <section class="about-story">
+        <div class="about-story-grid">
+          <div class="about-story-label">
+            <span class="about-pill">About Us</span>
+          </div>
+          <div class="about-story-copy">
+            <p>Northgate Building Group is a premium residential construction company delivering architecturally
+              designed homes and renovations across Sydney, Newcastle and the Hunter Region.</p>
+            <p>Led by Jordan O'Driscoll and Chris Harrison, Northgate combines high level technical expertise with
+              genuine care and integrity.</p>
+            <p>Together they bring almost four decades of experience across bespoke homes, boutique developments and
+              complex architectural builds, managed with the systems of a larger contractor and the personal touch of a
+              family business.</p>
+            <p>Every Northgate project is driven by one goal: to make building feel clear, calm and collaborative.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-story">
+        <div class="about-story-grid">
+          <div class="about-story-label">
+            <span class="about-pill">Why Us</span>
+          </div>
+          <div class="about-story-copy">
+            <p>Northgate was started to bring back <span class="about-highlight">Integrity</span>, <span
+                class="about-highlight">Clarity</span>, and <span class="about-highlight">Genuine care</span> to
+              residential construction.</p>
+            <p>Too often, homeowners are left feeling uncertain, misinformed, or disconnected from the people actually
+              building their home. We believe the process should feel different.</p>
+            <p>At Northgate, we exist to make building simple, honest, and enjoyable.</p>
+            <p>We take the time to understand what matters most, communicate with transparency, and build with
+              craftsmanship that lasts.</p>
+            <p>Because for us, it is not just about delivering a beautiful home, it is about giving our clients clarity
+              in every decision, confidence in every stage, and care in every detail.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="about-divider"></div>
+      <div class="about-section-label">Our Process</div>
+
+
+      <section class="about-process" aria-label="Our process">
+        <div class="about-process-grid">
+          <div class="process-row">
+            <div class="process-item">
+              <div class="process-icon">1</div>
+              <div class="process-copy">
+                <h3 class="process-title">Initial Conversation</h3>
+                <p class="process-desc">A quick 15 minute phone call to understand your goals.</p>
+              </div>
+            </div>
+            <div class="process-arrow" aria-hidden="true">&rarr;</div>
+            <div class="process-item">
+              <div class="process-icon">2</div>
+              <div class="process-copy">
+                <h3 class="process-title">Discovery Meeting</h3>
+                <p class="process-desc">On-site or Zoom session to explore your vision and review site conditions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-row">
+            <div class="process-item">
+              <div class="process-icon">3</div>
+              <div class="process-copy">
+                <h3 class="process-title">Concept Agreement</h3>
+                <p class="process-desc">Concept design and cost plan prepared with one of our trusted design partners.</p>
+              </div>
+            </div>
+            <div class="process-arrow" aria-hidden="true">&rarr;</div>
+            <div class="process-item">
+              <div class="process-icon">4</div>
+              <div class="process-copy">
+                <h3 class="process-title">Preliminary Agreement</h3>
+                <p class="process-desc">Drawings, reports, and approvals managed (everything required to build).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-row">
+            <div class="process-item">
+              <div class="process-icon">5</div>
+              <div class="process-copy">
+                <h3 class="process-title">Fixed Price Contract</h3>
+                <p class="process-desc">All inclusions and exclusions clearly listed. Transparent pricing with no hidden surprises.</p>
+              </div>
+            </div>
+            <div class="process-arrow" aria-hidden="true">&rarr;</div>
+            <div class="process-item">
+              <div class="process-icon">6</div>
+              <div class="process-copy">
+                <h3 class="process-title">Construction Phase</h3>
+                <p class="process-desc">Your home built with award winning craftsmanship and care.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer-sticky">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/northern-beaches.jpg"
+        class="w-full h-full object-cover opacity-20 pointer-events-none grayscale">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 text-center w-full max-w-4xl px-6">
+      <a href="mailto:hello@oblique.com" class="block group">
+        <h2
+          class="display-font text-[8vw] md:text-[6vw] leading-[0.9] font-semibold tracking-tighter text-white group-hover:text-gray-300 transition-colors duration-500">
+          Book a <br>discovery call
+        </h2>
+        <div
+          class="h-[1px] w-0 group-hover:w-full bg-white/50 mx-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] mt-4">
+        </div>
+      </a>
+
+      <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-10 mt-20 text-left border-t border-white/10 pt-10">
+        <div class="flex flex-col gap-3 md:col-span-2">
+          <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
+            Socials
+          </span>
+          <a href="https://www.instagram.com/northgatebuildinggroup/" target="_blank"
+            class="text-xs text-gray-400 hover:text-white transition-colors">
+            Instagram
+          </a>
+        </div>
+        <div class="flex flex-col gap-3 md:col-span-4">
+          <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
+            Licensing
+          </span>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Licence Numbers — 480186C<br>BUP4254326 (Class 2 licence)
+            <span class="block">ABN — 44686085834</span>
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 md:col-span-3">
+          <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
+            Contact
+          </span>
+          <a href="tel:+61433810935" class="text-xs text-gray-400 hover:text-white transition-colors">
+            0433 810 935
+          </a>
+          <a href="mailto:enquiries@northgatebuilding.com.au"
+            class="text-xs text-gray-400 hover:text-white transition-colors">
+            enquiries@northgatebuilding.com.au
+          </a>
+        </div>
+        <div class="flex flex-col justify-between md:col-span-3">
+          <div class="text-[10px] text-gray-600 uppercase tracking-widest">
+            © <span id="footer-year">2025</span> <br>Northgate Building Group
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="about.js" defer></script>
+</body>
+
+</html>
