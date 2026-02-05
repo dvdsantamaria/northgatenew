@@ -257,6 +257,8 @@
       font-size: 0.65rem;
       letter-spacing: 0.14em;
       font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
       mix-blend-mode: normal;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     }
@@ -266,6 +268,16 @@
       color: #fff;
       box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28);
       transform: translateY(-1px);
+    }
+
+    @media (min-width: 1024px) {
+      .site-nav .nav-cta {
+        font-size: 0.78rem;
+      }
+    }
+
+    .nav-logo {
+      flex-shrink: 0;
     }
 
     .site-nav.nav-solid {
