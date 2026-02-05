@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Northgate Building Group</title>
+  <title>Contact | Northgate Building Group</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="projects.css">
+  <link rel="stylesheet" href="contact.css">
   <script src="tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -32,8 +32,8 @@
         <div class="nav-blend flex items-center gap-8 text-xs font-medium tracking-widest uppercase opacity-80">
           <a href="about.html" class="hover:opacity-100 transition-opacity">About</a>
           <a href="services.html" class="hover:opacity-100 transition-opacity">Services</a>
-          <a href="projects.html" class="hover:opacity-100 transition-opacity is-active">Projects</a>
-          <a href="contact.html" class="hover:opacity-100 transition-opacity">Contact us</a>
+          <a href="projects.html" class="hover:opacity-100 transition-opacity">Projects</a>
+          <a href="contact.html" class="hover:opacity-100 transition-opacity is-active">Contact us</a>
         </div>
         <a href="contact.html" class="nav-cta normal-case">Book a Call</a>
       </div>
@@ -48,88 +48,68 @@
       <div class="mobile-menu-inner">
         <a href="about.html" class="mobile-menu-link">About</a>
         <a href="services.html" class="mobile-menu-link">Services</a>
-        <a href="projects.html" class="mobile-menu-link is-active">Projects</a>
-        <a href="contact.html" class="mobile-menu-link">Contact us</a>
+        <a href="projects.html" class="mobile-menu-link">Projects</a>
+        <a href="contact.html" class="mobile-menu-link is-active">Contact us</a>
       </div>
     </div>
 
-    <main class="projects-page">
-      <!-- <section class="projects-intro">
-        <div class="projects-intro-inner">
-          <h1 class="display-font projects-title">Projects</h1>
-          <p class="projects-subtitle">A selection of new builds and renovations delivered with clear scope, transparent delivery, and direct builder involvement.</p>
-        </div>
-      </section> -->
-
-      <section class="projects-gallery">
-        <div class="project-group">
-          <article class="project-row">
-            <div class="project-details">
-              <div class="project-details-inner">
-                <span class="project-index">01 / 03</span>
-                <h2 class="display-font project-name">Malie</h2>
-                <p class="project-meta">Director Jordan O'Driscoll<br>Architect Morriachi Architecture</p>
-                <p class="project-desc">A five level mixed use development comprising eight luxury apartments, two
-                  commercial tenancies, and a full basement carpark. Reinforced concrete structure with Dincel and Speed
-                  panel facades. Built boundary to boundary with an existing apartment building, this was a complicated
-                  and challenging build delivered with precision. Won an MBA award for excellence in construction in the
-                  multi dwelling construction category.</p>
-                <div class="project-tags">
-                  <span>Value $8.0M</span>
-                  <span>Completion 2025</span>
-                  <span>New build</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-media">
-              <div class="project-media-frame project-carousel" data-carousel>
-                <div class="project-carousel-track">
-                  <img src="assets/Projects/malie/gallery0.jpg" alt="Malie exterior view 1">
-                  <img src="assets/Projects/malie/gallery1.jpg" alt="Malie exterior view 2">
-                  <img src="assets/Projects/malie/gallery2.jpg" alt="Malie exterior view 3">
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div class="project-full-image">
-            <img src="assets/Projects/malie/main.jpg" alt="Malie exterior render">
-          </div>
-        </div>
-
-        <div class="project-group">
-          <article class="project-row">
-            <div class="project-details">
-              <div class="project-details-inner">
-                <span class="project-index">02 / 03</span>
-                <h2 class="display-font project-name">Arthur Street</h2>
-                <p class="project-meta">Design and Construct Interiors<br>Furniture and Styling<br>Landscaping</p>
-                <p class="project-desc">A comprehensive renovation and extension transforming a traditional terrace into
-                  a contemporary family home. The project delivered 4 bedrooms, 3 bathrooms, open-plan living and dining
-                  areas, and 2-car parking, with detailed joinery and premium finishes throughout.</p>
-                <div class="project-tags">
-                  <span>Value $1.5M</span>
-                  <span>Renovation</span>
-
-                </div>
-              </div>
-            </div>
-            <div class="project-media">
-              <div class="project-media-frame project-carousel" data-carousel>
-                <div class="project-carousel-track">
-                  <img src="assets/Projects/arthur/gallery0.jpg" alt="Arthur Street view 1">
-                  <img src="assets/Projects/arthur/gallery1.jpg" alt="Arthur Street view 2">
-                  <img src="assets/Projects/arthur/gallery2.jpg" alt="Arthur Street view 3">
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div class="project-full-image">
-            <img src="assets/Projects/arthur/main.jpg" alt="Arthur Street exterior render">
-          </div>
-        </div>
+    <main class="contact-page">
+      <section class="contact-hero">
+        <span class="contact-kicker">Contact</span>
+        <h1 class="display-font contact-title">Tell us about your next build.</h1>
+        <p class="contact-subtitle">A short intro is enough. We will come back with clear next steps.</p>
       </section>
+
+      <form class="contact-form" action="#" method="post">
+        <div class="contact-row">
+          <div class="contact-row-title">Details</div>
+          <div class="contact-row-fields">
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="contact-name">Full name</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="form-field">
+                <label for="contact-phone">Phone</label>
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+              <div class="form-field">
+                <label for="contact-service">Service</label>
+                <select id="contact-service" name="service">
+                  <option value="" selected>Select a service</option>
+                  <option value="new-build">New build</option>
+                  <option value="renovation">Renovation</option>
+                  <option value="extension">Project Management</option>
+                  <option value="not-sure">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-row-title">Message</div>
+          <div class="contact-row-fields">
+            <div class="form-field">
+              <label for="contact-message">Project overview</label>
+              <textarea id="contact-message" name="message" rows="5"
+                placeholder="Location, timeline, budget range, and anything else we should know."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row contact-row-actions">
+          <div class="contact-row-title"></div>
+          <div class="contact-row-fields">
+            <button class="contact-button" type="submit">Submit enquiry</button>
+            <!-- <p class="contact-note">We respond within two business days.</p> -->
+          </div>
+        </div>
+      </form>
     </main>
   </div>
 
@@ -191,7 +171,7 @@
     </div>
   </footer>
 
-  <script src="projects.js" defer></script>
+  <script src="contact.js" defer></script>
 </body>
 
 </html>
