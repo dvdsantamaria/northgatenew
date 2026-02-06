@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# If you have a sitemap, add its absolute URL here, e.g.
+# Sitemap: https://example.com/sitemap.xml
