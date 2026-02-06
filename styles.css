@@ -417,9 +417,10 @@
     }
 
     .scrub-word {
-      opacity: 0.15;
-      transition: opacity 0.1s;
-      will-change: opacity, color;
+      opacity: 1;
+      color: #4B5563;
+      transition: color 0.1s;
+      will-change: color;
     }
 
     .card-inner {
