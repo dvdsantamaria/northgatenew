@@ -94,6 +94,16 @@
   position: relative;
 }
 
+.project-carousel {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.project-carousel:active {
+  cursor: grabbing;
+}
+
 .project-media-frame img {
   width: 100%;
   height: 100%;

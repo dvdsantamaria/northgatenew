@@ -93,6 +93,63 @@
   object-position: 50% 65%;
 }
 
+<<<<<<< ours
+.team-onsite {
+  padding: 4.5rem 1.5rem 5rem;
+  background: var(--c-bg);
+  display: grid;
+  gap: 1.75rem;
+}
+
+.team-onsite-header {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 720px;
+}
+
+.team-onsite-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.team-carousel {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--c-bg);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.team-carousel:active {
+  cursor: grabbing;
+}
+
+.team-carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.team-carousel-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+=======
+>>>>>>> theirs
 .site-nav a.is-active {
   opacity: 1;
   position: relative;

@@ -43,6 +43,10 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
 
   let index = 0;
   let timer = null;
+  let isPointerDown = false;
+  let startX = 0;
+  let startY = 0;
+  let hasSwiped = false;
 
   const update = () => {
     track.style.transform = `translateX(-${index * 100}%)`;
@@ -57,6 +61,55 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     if (timer) clearInterval(timer);
     timer = setInterval(() => goTo(1), 4000);
   };
+
+  const stop = () => {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  };
+
+  const onPointerDown = (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    isPointerDown = true;
+    hasSwiped = false;
+    startX = event.clientX;
+    startY = event.clientY;
+    stop();
+    if (carousel.setPointerCapture) {
+      carousel.setPointerCapture(event.pointerId);
+    }
+  };
+
+  const onPointerMove = (event) => {
+    if (!isPointerDown || hasSwiped) return;
+    const deltaX = event.clientX - startX;
+    const deltaY = event.clientY - startY;
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      goTo(deltaX < 0 ? 1 : -1);
+      hasSwiped = true;
+    }
+  };
+
+  const onPointerUp = (event) => {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+    if (carousel.releasePointerCapture) {
+      carousel.releasePointerCapture(event.pointerId);
+    }
+    start();
+  };
+
+  slides.forEach((slide) => {
+    slide.draggable = false;
+  });
+
+  carousel.addEventListener('pointerdown', onPointerDown);
+  carousel.addEventListener('pointermove', onPointerMove);
+  carousel.addEventListener('pointerup', onPointerUp);
+  carousel.addEventListener('pointerleave', onPointerUp);
+  carousel.addEventListener('pointercancel', onPointerUp);
+  carousel.addEventListener('dragstart', (event) => event.preventDefault());
 
   start();
 });
@@ -107,4 +160,3 @@ document.querySelectorAll('.project-full-image').forEach((wrap) => {
 // Refresh ScrollTrigger on window events
 window.addEventListener('load', () => ScrollTrigger.refresh());
 window.addEventListener('resize', () => ScrollTrigger.refresh());
-
