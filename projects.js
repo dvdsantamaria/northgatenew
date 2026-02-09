@@ -39,6 +39,8 @@ if (footerYear) {
 document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const track = carousel.querySelector('.project-carousel-track');
   const slides = track ? Array.from(track.children) : [];
+  const prevButton = carousel.querySelector('.carousel-arrow.prev');
+  const nextButton = carousel.querySelector('.carousel-arrow.next');
   if (!track || slides.length === 0) return;
 
   let index = 0;
@@ -103,6 +105,36 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   slides.forEach((slide) => {
     slide.draggable = false;
   });
+
+  if (slides.length < 2) {
+    carousel.classList.add('is-single');
+    if (prevButton) prevButton.disabled = true;
+    if (nextButton) nextButton.disabled = true;
+    update();
+    return;
+  }
+
+  const onArrowPointerDown = (event) => {
+    event.stopPropagation();
+  };
+
+  if (prevButton) {
+    prevButton.addEventListener('pointerdown', onArrowPointerDown);
+    prevButton.addEventListener('click', () => {
+      stop();
+      goTo(-1);
+      start();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('pointerdown', onArrowPointerDown);
+    nextButton.addEventListener('click', () => {
+      stop();
+      goTo(1);
+      start();
+    });
+  }
 
   carousel.addEventListener('pointerdown', onPointerDown);
   carousel.addEventListener('pointermove', onPointerMove);

@@ -121,6 +121,59 @@
   flex: 0 0 100%;
 }
 
+.project-carousel .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  display: grid;
+  place-items: center;
+  opacity: 0.3;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.project-carousel .carousel-arrow::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  display: block;
+}
+
+.project-carousel .carousel-arrow.prev {
+  left: 12px;
+}
+
+.project-carousel .carousel-arrow.prev::before {
+  transform: rotate(-135deg);
+}
+
+.project-carousel .carousel-arrow.next {
+  right: 12px;
+}
+
+.project-carousel:hover .carousel-arrow,
+.project-carousel:focus-within .carousel-arrow {
+  opacity: 0.75;
+}
+
+.project-carousel .carousel-arrow:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.project-carousel.is-single .carousel-arrow {
+  display: none;
+}
+
 .project-details {
   display: flex;
   align-items: center;
