@@ -214,6 +214,11 @@
       align-items: center;
     }
 
+    /* Toggle this to show/hide the footer download CTA site-wide. */
+    #footer-download-cta {
+      display: none;
+    }
+
     
     .display-font {
       font-family: var(--font-display);

@@ -31,14 +31,13 @@
 }
 
 .team-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: start;
+  display: flow-root;
 }
 
 .team-photo {
-  width: 100%;
+  float: left;
+  width: clamp(220px, 46%, 340px);
+  margin: 0 clamp(1.25rem, 2vw, 2rem) 1rem 0;
   border-radius: 0;
   overflow: hidden;
   background: #f1f1f3;
@@ -54,13 +53,13 @@
 }
 
 .team-details {
-  display: grid;
-  gap: 1.75rem;
+  display: block;
 }
 
 .team-heading {
   display: grid;
   gap: 0.45rem;
+  margin-bottom: 1.75rem;
 }
 
 .team-name {
@@ -80,8 +79,7 @@
 }
 
 .team-bio {
-  display: grid;
-  gap: 1rem;
+  display: block;
   margin: 0;
   color: rgba(0, 0, 0, 0.72);
   line-height: 1.7;
@@ -89,6 +87,10 @@
 
 .team-bio p {
   margin: 0;
+}
+
+.team-bio p + p {
+  margin-top: 1rem;
 }
 
 .about-carousel {
@@ -339,10 +341,6 @@
     grid-template-columns: 1fr;
   }
 
-  .team-card {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .about-story-grid {
     grid-template-columns: 1fr;
   }
@@ -397,6 +395,9 @@
   }
 
   .team-photo {
+    float: none;
+    width: 100%;
+    margin: 0 0 1.25rem 0;
     aspect-ratio: 1 / 1;
   }
 
