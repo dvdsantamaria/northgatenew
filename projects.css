@@ -229,6 +229,39 @@
   color: rgba(0, 0, 0, 0.55);
 }
 
+.project-tags-award-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-group#verda .project-details-inner {
+  width: 100%;
+}
+
+.project-group#verda .project-tags-award-row {
+  width: 100%;
+}
+
+.project-award {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.project-award img {
+  display: block;
+  width: 88px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .project-tags-award-row {
+    flex-wrap: wrap;
+  }
+}
+
 .project-full-image {
   width: 100%;
   height: 65vh;

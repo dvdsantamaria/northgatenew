@@ -188,6 +188,51 @@
   font-size: 2rem;
 }
 
+.about-why .about-story-grid {
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.about-why-copy {
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.about-why-title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(2.35rem, 5.3vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.about-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.about-why-item {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.about-why-item h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.15vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.about-why-item p {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.58);
+  font-size: clamp(1.05rem, 1.45vw, 1.9rem);
+  line-height: 1.45;
+}
+
 .about-highlight {
   color: var(--c-dark);
   font-weight: 600;
@@ -345,6 +390,10 @@
     grid-template-columns: 1fr;
   }
 
+  .about-why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .about-divider {
     margin: 2rem 1.5rem 0;
   }
@@ -384,6 +433,23 @@
 
   .about-carousel {
     padding: 2.5rem 6vw 6rem;
+  }
+
+  .about-why-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-why-title {
+    font-size: clamp(2.1rem, 12vw, 3.35rem);
+  }
+
+  .about-why-item h3 {
+    font-size: clamp(1.45rem, 8vw, 1.95rem);
+  }
+
+  .about-why-item p {
+    font-size: clamp(1rem, 5vw, 1.35rem);
   }
 
   .team-name {
