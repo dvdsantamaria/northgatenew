@@ -302,6 +302,7 @@
     @media (max-width: 767px) {
       .hero-copy {
         width: min(90vw, 22rem);
+        bottom: 12.5rem;
       }
 
       #hero .hero-copy h2 {
@@ -328,6 +329,7 @@
         text-align: center;
         align-items: center;
         gap: 0.35rem;
+        bottom: 2.5rem;
       }
     }
 
