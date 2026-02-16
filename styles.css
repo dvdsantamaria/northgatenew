@@ -268,11 +268,67 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     }
 
+    .site-nav .nav-cta {
+      display: inline-flex;
+      max-width: 0;
+      padding: 0;
+      margin-left: 0;
+      opacity: 0;
+      transform: translateX(12px);
+      pointer-events: none;
+      overflow: hidden;
+      transition: max-width 0.45s var(--ease-out), padding 0.45s var(--ease-out),
+        transform 0.45s var(--ease-out), opacity 0.25s var(--ease-out) 0.18s,
+        margin-left 0.45s var(--ease-out);
+    }
+
     .nav-cta:hover {
       background: #466c65;
       color: #fff;
       box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28);
       transform: translateY(-1px);
+    }
+
+    .hero-cta,
+    .hero-cta:hover {
+      background: #527B72;
+      color: #fff;
+      box-shadow: none;
+      transform: none;
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    @media (max-width: 767px) {
+      .hero-copy {
+        width: min(90vw, 22rem);
+      }
+
+      #hero .hero-copy h2 {
+        font-size: clamp(2.1rem, 9vw, 2.6rem);
+        line-height: 1.02;
+      }
+
+      #hero .hero-copy p {
+        font-size: 0.95rem;
+      }
+
+      .hero-cta {
+        min-width: 80vw;
+        padding: 0.9rem 2.6rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        justify-content: center;
+      }
+
+      #hero .hero-meta {
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        text-align: center;
+        align-items: center;
+        gap: 0.35rem;
+      }
     }
 
     @media (min-width: 1024px) {
@@ -296,6 +352,19 @@
 
     .site-nav.nav-solid .nav-logo {
       filter: brightness(0);
+    }
+
+    .site-nav.nav-solid .nav-cta {
+      max-width: 240px;
+      padding: 0.55rem 1.4rem;
+      margin-left: 2rem;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .site-nav .nav-group {
+      gap: 0;
     }
 
     @media (max-width: 767px) {
@@ -353,8 +422,13 @@
     }
 
     .mobile-menu .nav-cta {
+      display: none;
       font-size: 0.75rem;
       padding: 0.7rem 1.8rem;
+    }
+
+    nav.site-nav.nav-solid + .mobile-menu .nav-cta {
+      display: inline-flex;
     }
 
     body.menu-open {
