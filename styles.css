@@ -214,6 +214,33 @@
       align-items: center;
     }
 
+    .footer-logo {
+      height: 3.5rem;
+      width: 8.5rem;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    .footer-logo--white {
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-logo--large {
+      transform: scale(1.2);
+      transform-origin: left top;
+    }
+
+    .footer-logo--masters {
+      transform: scale(1.08);
+    }
+
+    @media (min-width: 768px) {
+      .footer-logo {
+        height: 4rem;
+        width: 9.5rem;
+      }
+    }
+
     /* Toggle this to show/hide the footer download CTA site-wide. */
     #footer-download-cta {
       display: none;
