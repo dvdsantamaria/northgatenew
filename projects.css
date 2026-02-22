@@ -62,7 +62,7 @@
 }
 
 .project-group+.project-group {
-  margin-top: clamp(2rem, 4vw, 4rem);
+  margin-top: var(--space-section-sm);
 }
 
 .project-row {
@@ -179,38 +179,38 @@
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  padding: clamp(3rem, 6vw, 6rem);
+  padding: var(--space-section-md);
 }
 
 .project-index {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: var(--type-eyebrow);
   font-family: var(--font-body);
   text-transform: uppercase;
   letter-spacing: 0.25em;
   color: rgba(0, 0, 0, 0.4);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-block-md);
 }
 
 .project-name {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-block-md);
 }
 
 .project-meta {
-  font-size: 0.75rem;
+  font-size: var(--type-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: rgba(0, 0, 0, 0.4);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-block-md);
   line-height: 1.6;
 }
 
 .project-desc {
   color: rgba(0, 0, 0, 0.55);
-  line-height: 1.7;
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
+  line-height: var(--lh-relaxed);
+  font-size: var(--type-body);
+  margin-bottom: var(--space-block-lg);
 }
 
 .project-tags {
@@ -223,7 +223,7 @@
   padding: 0.5rem 1rem;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.06);
-  font-size: 0.7rem;
+  font-size: var(--type-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: rgba(0, 0, 0, 0.55);
@@ -306,7 +306,7 @@
   .project-details {
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 2.5rem 6vw 3rem;
+    padding: var(--space-section-sm) 6vw var(--space-section-md);
   }
 }
 
@@ -316,7 +316,7 @@
   }
 
   .project-row {
-    padding: 2.5rem 6vw 3rem;
+    padding: var(--space-section-sm) 6vw var(--space-section-md);
     gap: 2rem;
   }
 

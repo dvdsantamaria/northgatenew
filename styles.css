@@ -1,4 +1,4 @@
-:root {
+    :root {
       --c-bg: #F5F5F7;
       
       --c-dark: #0A0A0A;
@@ -7,6 +7,21 @@
       --font-display: 'GravesendSans', 'Open Sans', sans-serif;
       --font-body: 'Open Sans', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --type-body: clamp(1rem, 0.98rem + 0.2vw, 1.1rem);
+      --type-body-lg: clamp(1.05rem, 1rem + 0.35vw, 1.125rem);
+      --type-body-sm: clamp(0.9rem, 0.86rem + 0.2vw, 0.98rem);
+      --type-lead: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+      --type-eyebrow: clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem);
+      --lh-body: 1.6;
+      --lh-relaxed: 1.7;
+      --lh-tight: 1.15;
+      --space-section-xl: clamp(5rem, 8vw, 8.5rem);
+      --space-section-lg: clamp(4rem, 6vw, 6.5rem);
+      --space-section-md: clamp(3rem, 5vw, 5rem);
+      --space-section-sm: clamp(2rem, 3.5vw, 3.5rem);
+      --space-block-lg: clamp(1.5rem, 2.5vw, 2rem);
+      --space-block-md: clamp(1rem, 1.8vw, 1.5rem);
+      --space-block-sm: 0.75rem;
       
     }
 
@@ -22,6 +37,8 @@
       background-color: var(--c-bg);
       color: var(--c-dark);
       font-family: var(--font-body);
+      font-size: var(--type-body);
+      line-height: var(--lh-body);
       margin: 0;
       overflow-x: hidden;
       overflow-y: visible;
@@ -85,6 +102,7 @@
     .stack-section {
       position: relative;
       background: var(--c-bg);
+      padding-bottom: var(--space-section-lg);
     }
 
     .stack-container {
@@ -249,6 +267,52 @@
     
     .display-font {
       font-family: var(--font-display);
+    }
+
+    .type-body {
+      font-size: var(--type-body);
+      line-height: var(--lh-body);
+    }
+
+    .type-body-lg {
+      font-size: var(--type-body-lg);
+      line-height: var(--lh-body);
+    }
+
+    .type-body-sm {
+      font-size: var(--type-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .type-lead {
+      font-size: var(--type-lead);
+      line-height: var(--lh-relaxed);
+    }
+
+    .type-eyebrow {
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .section-pad-xl {
+      padding-top: var(--space-section-xl);
+      padding-bottom: var(--space-section-xl);
+    }
+
+    .section-pad-lg {
+      padding-top: var(--space-section-lg);
+      padding-bottom: var(--space-section-lg);
+    }
+
+    .section-pad-md {
+      padding-top: var(--space-section-md);
+      padding-bottom: var(--space-section-md);
+    }
+
+    .section-pad-sm {
+      padding-top: var(--space-section-sm);
+      padding-bottom: var(--space-section-sm);
     }
 
     h1,

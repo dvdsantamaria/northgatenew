@@ -1,7 +1,7 @@
 .contact-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10rem 6vw 12rem;
+  padding: calc(var(--space-section-xl) + 2rem) 6vw var(--space-section-xl);
 }
 
 .site-nav a.is-active {
@@ -30,8 +30,8 @@
 
 .contact-kicker {
   display: inline-block;
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 1rem;
@@ -45,21 +45,21 @@
 }
 
 .contact-subtitle {
-  font-size: 1rem;
+  font-size: var(--type-body);
   color: rgba(0, 0, 0, 0.7);
   max-width: 560px;
 }
 
 .contact-form {
-  margin-top: 4rem;
+  margin-top: var(--space-section-sm);
   border-top: 1px dashed rgba(0, 0, 0, 0.25);
 }
 
 .contact-row {
   display: grid;
   grid-template-columns: minmax(160px, 1fr) 2.2fr;
-  gap: 2.5rem;
-  padding: 3rem 0;
+  gap: var(--space-block-lg);
+  padding: var(--space-section-sm) 0;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
 }
 
@@ -68,21 +68,21 @@
 }
 
 .contact-row-title {
-  font-size: clamp(1.8rem, 3vw, 3.2rem);
-  line-height: 1.05;
+  font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.2rem);
+  line-height: var(--lh-tight);
   letter-spacing: -0.01em;
 }
 
 .contact-row-fields {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: var(--space-block-md);
 }
 
 .field-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.75rem 2.5rem;
+  gap: var(--space-block-md) var(--space-block-lg);
 }
 
 .form-field {
@@ -92,8 +92,8 @@
 }
 
 .form-field label {
-  font-size: 0.65rem;
-  letter-spacing: 0.32em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.55);
 }
@@ -105,7 +105,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding: 0.6rem 0;
   background: transparent;
-  font-size: 1rem;
+  font-size: var(--type-body);
   font-family: var(--font-body);
   color: var(--c-dark);
   transition: border-color 0.2s ease;
@@ -137,7 +137,7 @@
   padding: 0.9rem 2.5rem;
   border: 1px solid var(--c-dark);
   background: transparent;
-  font-size: 0.7rem;
+  font-size: var(--type-eyebrow);
   letter-spacing: 0.35em;
   text-transform: uppercase;
   font-weight: 600;
@@ -150,13 +150,13 @@
 }
 
 .contact-note {
-  font-size: 0.85rem;
+  font-size: var(--type-body-sm);
   color: rgba(0, 0, 0, 0.55);
 }
 
 @media (max-width: 900px) {
   .contact-page {
-    padding-top: 9rem;
+    padding-top: calc(var(--space-section-xl) + 1rem);
   }
 
   .contact-row {
@@ -172,7 +172,7 @@
 
 @media (max-width: 600px) {
   .contact-page {
-    padding: 8rem 7vw 10rem;
+    padding: calc(var(--space-section-xl) + 1rem) 7vw var(--space-section-xl);
   }
 
   .contact-title {
@@ -202,7 +202,7 @@
   padding: 0.95rem 1.8rem;
   border-radius: 18px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
-  font-size: 1rem;
+  font-size: var(--type-body);
   letter-spacing: -0.01em;
   line-height: 1.2;
   max-width: 420px;

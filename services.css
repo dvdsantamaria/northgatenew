@@ -22,7 +22,7 @@
 }
 
 .service-panel {
-  padding: 5rem 1.5rem;
+  padding: var(--space-section-md) 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -42,7 +42,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 640px);
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: var(--space-block-lg);
   align-items: center;
 }
 
@@ -52,8 +52,8 @@
 
 .service-label {
   display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.45);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -66,11 +66,11 @@
 }
 
 .service-desc {
-  margin-top: 1.5rem;
+  margin-top: var(--space-block-md);
   max-width: 640px;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: var(--type-body);
+  line-height: var(--lh-relaxed);
 }
 
 .service-image {
@@ -93,9 +93,8 @@
   object-position: 50% 65%;
 }
 
-<<<<<<< ours
 .team-onsite {
-  padding: 4.5rem 1.5rem 5rem;
+  padding: var(--space-section-md) 1.5rem var(--space-section-lg);
   background: var(--c-bg);
   display: grid;
   gap: 1.75rem;
@@ -103,14 +102,14 @@
 
 .team-onsite-header {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--space-block-sm);
   max-width: 720px;
 }
 
 .team-onsite-pill {
   display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.45);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -147,9 +146,6 @@
   user-select: none;
   -webkit-user-drag: none;
 }
-
-=======
->>>>>>> theirs
 .site-nav a.is-active {
   opacity: 1;
   position: relative;
@@ -202,7 +198,7 @@
   }
 
   .service-panel {
-    padding: 3.5rem 6vw;
+    padding: var(--space-section-sm) 6vw;
   }
 
   .service-inner {

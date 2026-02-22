@@ -11,7 +11,7 @@
 
 
 .about-hero {
-  padding: 3.5rem 1.5rem 2.5rem;
+  padding: var(--space-section-md) 1.5rem var(--space-section-sm);
   display: grid;
   gap: 3rem;
 }
@@ -27,7 +27,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(2rem, 4vw, 4rem);
   align-items: start;
-  margin: clamp(4.5rem, 9vw, 7.5rem) 0;
+  margin: var(--space-section-md) 0;
 }
 
 .team-card {
@@ -64,7 +64,7 @@
 
 .team-name {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-family: var(--font-display);
@@ -72,8 +72,8 @@
 
 .team-role {
   margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.45);
 }
@@ -82,7 +82,8 @@
   display: block;
   margin: 0;
   color: rgba(0, 0, 0, 0.72);
-  line-height: 1.7;
+  font-size: var(--type-body);
+  line-height: var(--lh-relaxed);
 }
 
 .team-bio p {
@@ -90,11 +91,11 @@
 }
 
 .team-bio p + p {
-  margin-top: 1rem;
+  margin-top: var(--space-block-sm);
 }
 
 .about-carousel {
-  padding: 7.5rem 1.5rem 7rem;
+  padding: var(--space-section-lg) 1.5rem var(--space-section-lg);
   display: grid;
   gap: 1.75rem;
   background: var(--c-bg);
@@ -149,7 +150,7 @@
 }
 
 .about-story {
-  padding: 1.5rem 1.5rem 3rem;
+  padding: var(--space-section-sm) 1.5rem var(--space-section-md);
 }
 
 .about-story-grid {
@@ -163,8 +164,8 @@
   display: block;
   position: relative;
   padding-top: 1rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.45);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -182,10 +183,10 @@
 
 .about-story-copy {
   display: grid;
-  gap: 1.25rem;
+  gap: var(--space-block-md);
   color: #000;
-  line-height: 1.8;
-  font-size: 2rem;
+  line-height: var(--lh-relaxed);
+  font-size: var(--type-body-lg);
 }
 
 .about-why .about-story-grid {
@@ -194,9 +195,9 @@
 }
 
 .about-why-copy {
-  gap: clamp(3.5rem, 6vw, 5.5rem);
-  font-size: 1rem;
-  line-height: 1.5;
+  gap: var(--space-section-md);
+  font-size: var(--type-body);
+  line-height: var(--lh-body);
 }
 
 .about-why-title {
@@ -210,7 +211,7 @@
 .about-why-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 3.5rem);
+  gap: var(--space-block-lg);
 }
 
 .about-why-item {
@@ -221,16 +222,16 @@
 
 .about-why-item h3 {
   margin: 0;
-  font-size: clamp(1.5rem, 2.15vw, 2.2rem);
-  line-height: 1.15;
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.6rem);
+  line-height: var(--lh-tight);
   letter-spacing: -0.01em;
 }
 
 .about-why-item p {
   margin: 0;
   color: rgba(0, 0, 0, 0.58);
-  font-size: clamp(1.05rem, 1.45vw, 1.9rem);
-  line-height: 1.45;
+  font-size: var(--type-body);
+  line-height: var(--lh-body);
 }
 
 .about-highlight {
@@ -242,19 +243,19 @@
   width: auto;
   height: 1px;
   background: rgba(0, 0, 0, 0.08);
-  margin: 2rem 1.5rem 0;
+  margin: var(--space-section-sm) 1.5rem 0;
 }
 
 .about-section-label {
-  padding: 2rem 1.5rem 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.32em;
+  padding: var(--space-section-sm) 1.5rem 0;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.45);
 }
 
 .about-process {
-  padding: 2.25rem 1.5rem 6.5rem;
+  padding: var(--space-section-sm) 1.5rem var(--space-section-lg);
 }
 
 .about-process-grid {
@@ -262,15 +263,15 @@
   max-width: none;
   margin: 0 auto;
   display: grid;
-  gap: 1.75rem;
+  gap: var(--space-block-lg);
 }
 
 .process-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: clamp(2rem, 4vw, 4rem);
-  padding: 3rem 0;
+  gap: var(--space-block-lg);
+  padding: var(--space-block-lg) 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -308,7 +309,7 @@
 
 .process-title {
   margin: 0 0 0.4rem;
-  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
   font-family: var(--font-display);
   letter-spacing: 0.02em;
 }
@@ -316,8 +317,8 @@
 .process-desc {
   margin: 0;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: var(--type-body-sm);
+  line-height: var(--lh-body);
 }
 
 .process-arrow {
@@ -395,12 +396,12 @@
   }
 
   .about-divider {
-    margin: 2rem 1.5rem 0;
+    margin: var(--space-section-sm) 1.5rem 0;
   }
 
   .process-row {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 2rem;
+    gap: var(--space-block-lg);
   }
 }
 
@@ -428,16 +429,16 @@
 
 @media (max-width: 640px) {
   .about-hero {
-    padding: 3rem 6vw 2rem;
+    padding: var(--space-section-sm) 6vw var(--space-section-sm);
   }
 
   .about-carousel {
-    padding: 2.5rem 6vw 6rem;
+    padding: var(--space-section-md) 6vw var(--space-section-lg);
   }
 
   .about-why-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-block-lg);
   }
 
   .about-why-title {
@@ -445,15 +446,15 @@
   }
 
   .about-why-item h3 {
-    font-size: clamp(1.45rem, 8vw, 1.95rem);
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
   }
 
   .about-why-item p {
-    font-size: clamp(1rem, 5vw, 1.35rem);
+    font-size: var(--type-body);
   }
 
   .team-name {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 
   .team-role {
@@ -468,22 +469,22 @@
   }
 
   .about-section-label {
-    padding: 2rem 6vw 0;
+    padding: var(--space-section-sm) 6vw 0;
   }
 
   .about-process {
-    padding: 1.75rem 6vw 5rem;
+    padding: var(--space-section-sm) 6vw var(--space-section-lg);
   }
 
   .about-cta {
-    padding: 3rem 6vw 4rem;
+    padding: var(--space-section-md) 6vw var(--space-section-lg);
   }
 
   .process-row {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-block-lg);
     border-bottom: none;
-    padding: 2.5rem 0;
+    padding: var(--space-block-lg) 0;
   }
 
   .process-arrow {

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GUI | Northgate Building Group</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --gui-width: 1440px;
+      --gui-pad-x: 80px;
+      --gui-pad-y: 72px;
+      --gui-gap: 72px;
+      --gui-panel-radius: 0px;
+      --gui-border: rgba(0, 0, 0, 0.08);
+      --gui-body: 17px;
+      --gui-body-lg: 18px;
+      --gui-body-sm: 15px;
+      --gui-eyebrow: 11px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: var(--gui-width);
+      margin: 0;
+      background: #e9eaee;
+      color: var(--c-dark);
+      font-family: var(--font-body);
+      font-size: var(--gui-body);
+      line-height: 1.6;
+    }
+
+    .gui-artboard {
+      width: var(--gui-width);
+      margin: 0 auto;
+      padding: 72px 0 96px;
+      display: grid;
+      gap: var(--gui-gap);
+    }
+
+    .gui-page {
+      background: var(--c-bg);
+      border: 1px solid var(--gui-border);
+      padding: var(--gui-pad-y) var(--gui-pad-x);
+      box-shadow: 0 40px 90px rgba(10, 10, 10, 0.08);
+      display: grid;
+      gap: 48px;
+    }
+
+    .gui-header {
+      display: grid;
+      gap: 16px;
+    }
+
+    .gui-kicker {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .gui-title {
+      font-family: var(--font-display);
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .gui-subtitle {
+      max-width: 780px;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0;
+    }
+
+    .gui-section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .gui-divider {
+      height: 1px;
+      background: var(--gui-border);
+      width: 100%;
+    }
+
+    .gui-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .gui-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .gui-token {
+      background: #fff;
+      border: 1px solid var(--gui-border);
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .gui-token-label {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .gui-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--gui-body-sm);
+    }
+
+    .gui-table th,
+    .gui-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--gui-border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .gui-table th {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: 600;
+    }
+
+    .gui-table code {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.55);
+      white-space: nowrap;
+    }
+
+    .gui-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid var(--gui-border);
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.6);
+      background: #fff;
+    }
+
+    .gui-component {
+      display: grid;
+      gap: 24px;
+    }
+
+    .gui-component-row {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .gui-panel {
+      background: #fff;
+      border: 1px solid var(--gui-border);
+      padding: 56px;
+    }
+
+    .gui-spec {
+      background: #fff;
+      border: 1px solid var(--gui-border);
+      padding: 20px 22px;
+      display: grid;
+      gap: 10px;
+      font-size: var(--gui-body-sm);
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .gui-spec strong {
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.9);
+    }
+
+    .gui-service {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .gui-service-label {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .gui-service-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 18px 0 20px;
+    }
+
+    .gui-service-desc {
+      font-size: var(--gui-body);
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0;
+      max-width: 320px;
+    }
+
+    .gui-service-image {
+      width: 100%;
+      height: 360px;
+      background: #f1f1f3;
+      overflow: hidden;
+      border: 1px solid var(--gui-border);
+    }
+
+    .gui-service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gui-project {
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .gui-project-title {
+      font-family: var(--font-display);
+      font-size: 40px;
+      line-height: 1.05;
+      margin: 12px 0 12px;
+    }
+
+    .gui-project-meta {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+      margin-bottom: 16px;
+    }
+
+    .gui-project-desc {
+      font-size: var(--gui-body);
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0 0 20px;
+    }
+
+    .gui-tag-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gui-tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    .gui-project-image {
+      width: 100%;
+      height: 360px;
+      background: #f1f1f3;
+      overflow: hidden;
+      border: 1px solid var(--gui-border);
+    }
+
+    .gui-project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gui-button-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .gui-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #527B72;
+      color: #fff;
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .gui-cta-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      color: rgba(0, 0, 0, 0.6);
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    .gui-form {
+      display: grid;
+      gap: 24px;
+    }
+
+    .gui-form-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 28px;
+      padding: 24px 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
+    }
+
+    .gui-form-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .gui-form-field {
+      display: grid;
+      gap: 10px;
+    }
+
+    .gui-form-field label {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    .gui-form-field input,
+    .gui-form-field textarea {
+      border: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      padding: 6px 0;
+      background: transparent;
+      font-size: var(--gui-body);
+      font-family: var(--font-body);
+    }
+
+    .gui-form-field textarea {
+      min-height: 120px;
+      resize: none;
+    }
+
+    .gui-footer-title {
+      font-family: var(--font-display);
+      font-size: 52px;
+      line-height: 0.95;
+      margin: 0;
+    }
+
+    .gui-type-sample {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .gui-type-sample-body {
+      font-size: var(--gui-body);
+      margin: 0;
+    }
+
+    .gui-type-sample-eyebrow {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .gui-spacing-bar {
+      height: 18px;
+      background: rgba(0, 0, 0, 0.08);
+      border-radius: 999px;
+    }
+
+    .gui-spacing-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .gui-spacing-item {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .gui-fonts {
+      display: grid;
+      gap: 12px;
+      font-size: var(--gui-body-sm);
+      color: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="gui-artboard">
+    <section class="gui-page">
+      <div class="gui-header">
+        <span class="gui-kicker">Northgate Building Group</span>
+        <h1 class="gui-title">GUI — Design Guide</h1>
+        <p class="gui-subtitle">
+          Fixed artboard for web typography, spacing, and component standards. Layout is intentionally non-responsive to
+          represent stable design decisions.
+        </p>
+      </div>
+      <div class="gui-divider"></div>
+      <div class="gui-grid-2">
+        <div class="gui-token">
+          <div class="gui-token-label">Fonts</div>
+          <p class="gui-type-sample">GravesendSans Medium</p>
+          <p class="gui-type-sample-body">Open Sans 400/500/600</p>
+          <div class="gui-fonts">
+            <div>Display: GravesendSans, 500</div>
+            <div>Body: Open Sans, 400-600</div>
+            <div>Color tokens: `--c-bg`, `--c-dark`, `--c-card`</div>
+          </div>
+        </div>
+        <div class="gui-token">
+          <div class="gui-token-label">Type Range</div>
+          <p class="gui-type-sample-body">Body scale is 16-18px with 1.6-1.7 line-height.</p>
+          <p class="gui-type-sample-body">Eyebrow scale is 10-12px with wide tracking.</p>
+          <p class="gui-type-sample-body">Display scale ranges 38-88px depending on component.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gui-page">
+      <h2 class="gui-section-title">Typography Scale</h2>
+      <table class="gui-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Font</th>
+            <th>Size</th>
+            <th>Line</th>
+            <th>Tracking</th>
+            <th>Usage</th>
+            <th>CSS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Display XXL</td>
+            <td>GravesendSans</td>
+            <td>38-88px</td>
+            <td>0.95</td>
+            <td>-0.02em</td>
+            <td>Service titles, hero statements</td>
+            <td><code>clamp(2.4rem, 6vw, 5.5rem)</code></td>
+          </tr>
+          <tr>
+            <td>Display XL</td>
+            <td>GravesendSans</td>
+            <td>38-67px</td>
+            <td>1.05</td>
+            <td>-0.02em</td>
+            <td>About hero, section banners</td>
+            <td><code>clamp(2.4rem, 5vw, 4.2rem)</code></td>
+          </tr>
+          <tr>
+            <td>Section Title</td>
+            <td>GravesendSans</td>
+            <td>36-48px</td>
+            <td>1.1</td>
+            <td>-0.01em</td>
+            <td>Recent Projects, Kind Words, Process</td>
+            <td><code>text-4xl / text-5xl</code></td>
+          </tr>
+          <tr>
+            <td>Lead</td>
+            <td>Open Sans</td>
+            <td>19.2-24px</td>
+            <td>1.7</td>
+            <td>0</td>
+            <td>Intro statements</td>
+            <td><code>clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)</code></td>
+          </tr>
+          <tr>
+            <td>Body Large</td>
+            <td>Open Sans</td>
+            <td>16.8-18px</td>
+            <td>1.6</td>
+            <td>0</td>
+            <td>About story, lead copy</td>
+            <td><code>clamp(1.05rem, 1rem + 0.35vw, 1.125rem)</code></td>
+          </tr>
+          <tr>
+            <td>Body</td>
+            <td>Open Sans</td>
+            <td>16-17.6px</td>
+            <td>1.6</td>
+            <td>0</td>
+            <td>Default paragraphs, descriptions</td>
+            <td><code>clamp(1rem, 0.98rem + 0.2vw, 1.1rem)</code></td>
+          </tr>
+          <tr>
+            <td>Body Small</td>
+            <td>Open Sans</td>
+            <td>14.4-15.7px</td>
+            <td>1.6</td>
+            <td>0</td>
+            <td>Captions, helper text</td>
+            <td><code>clamp(0.9rem, 0.86rem + 0.2vw, 0.98rem)</code></td>
+          </tr>
+          <tr>
+            <td>Eyebrow</td>
+            <td>Open Sans</td>
+            <td>10.4-11.5px</td>
+            <td>1.4</td>
+            <td>0.28-0.4em</td>
+            <td>Labels, counters, metadata</td>
+            <td><code>clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="gui-page">
+      <h2 class="gui-section-title">Spacing Scale</h2>
+      <div class="gui-grid-2">
+        <div class="gui-token">
+          <div class="gui-token-label">Section Spacing</div>
+          <div class="gui-spacing-stack">
+            <div class="gui-spacing-item">
+              <div>
+                <strong>XL</strong> 80-136px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+            <div class="gui-spacing-item">
+              <div>
+                <strong>LG</strong> 64-104px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+            <div class="gui-spacing-item">
+              <div>
+                <strong>MD</strong> 48-80px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+            <div class="gui-spacing-item">
+              <div>
+                <strong>SM</strong> 32-56px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gui-token">
+          <div class="gui-token-label">Block Spacing</div>
+          <div class="gui-spacing-stack">
+            <div class="gui-spacing-item">
+              <div>
+                <strong>LG</strong> 24-32px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+            <div class="gui-spacing-item">
+              <div>
+                <strong>MD</strong> 16-24px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+            <div class="gui-spacing-item">
+              <div>
+                <strong>SM</strong> 12px
+              </div>
+              <div class="gui-spacing-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gui-page">
+      <div class="gui-component">
+        <div class="gui-badge">Service Panel</div>
+        <div class="gui-component-row">
+          <div class="gui-panel">
+            <div class="gui-service">
+              <div>
+                <div class="gui-service-label">01 — SERVICES</div>
+                <div class="gui-service-title">NEW BUILDS</div>
+                <p class="gui-service-desc">
+                  One-of-a-kind homes designed and built with care, precision, and transparency.
+                </p>
+              </div>
+              <div class="gui-service-image">
+                <img decoding="async" loading="lazy" src="assets/services/new-builds.webp" alt="Service panel">
+              </div>
+            </div>
+          </div>
+          <aside class="gui-spec">
+            <div><strong>Title</strong> 72px / 0.95 / -0.02em</div>
+            <div><strong>Label</strong> 11px / 0.4em</div>
+            <div><strong>Body</strong> 17px / 1.6</div>
+            <div><strong>Panel</strong> 56px padding</div>
+            <div><strong>Image</strong> 360px height</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="gui-page">
+      <div class="gui-component">
+        <div class="gui-badge">Project Row</div>
+        <div class="gui-component-row">
+          <div class="gui-panel">
+            <div class="gui-project">
+              <div>
+                <div class="gui-project-meta">01 / 12</div>
+                <div class="gui-project-title">Verda</div>
+                <div class="gui-project-meta">Design and Construct</div>
+                <p class="gui-project-desc">
+                  Four high-end coastal townhouses delivered across three levels with refined coastal detailing.
+                </p>
+                <div class="gui-tag-row">
+                  <span class="gui-tag">New Build</span>
+                  <span class="gui-tag">Value $5.5M</span>
+                </div>
+              </div>
+              <div class="gui-project-image">
+                <img decoding="async" loading="lazy" src="assets/Projects/verda/gallery0.webp" alt="Project row">
+              </div>
+            </div>
+          </div>
+          <aside class="gui-spec">
+            <div><strong>Title</strong> 40px / 1.05</div>
+            <div><strong>Meta</strong> 11px / 0.28em</div>
+            <div><strong>Body</strong> 17px / 1.6</div>
+            <div><strong>Image</strong> 360px height</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="gui-page">
+      <div class="gui-component">
+        <div class="gui-badge">CTA + Buttons</div>
+        <div class="gui-component-row">
+          <div class="gui-panel">
+            <div class="gui-button-row">
+              <span class="gui-cta-primary">Schedule a consultation</span>
+              <span class="gui-cta-outline">See services</span>
+            </div>
+            <div style="height: 28px;"></div>
+            <h3 class="gui-footer-title">Book a<br>discovery call</h3>
+          </div>
+          <aside class="gui-spec">
+            <div><strong>CTA</strong> 11px / 0.18em</div>
+            <div><strong>Footer</strong> 52px / 0.95</div>
+            <div><strong>Padding</strong> 56px</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="gui-page">
+      <div class="gui-component">
+        <div class="gui-badge">Contact Form</div>
+        <div class="gui-component-row">
+          <div class="gui-panel">
+            <div class="gui-form">
+              <div class="gui-form-row">
+                <div class="gui-form-title">Details</div>
+                <div class="gui-form-field">
+                  <label>Full name</label>
+                  <input type="text" value="Jordan O'Driscoll">
+                  <label>Email</label>
+                  <input type="email" value="hello@northgate.com">
+                </div>
+              </div>
+              <div class="gui-form-row" style="border-bottom: none;">
+                <div class="gui-form-title">Message</div>
+                <div class="gui-form-field">
+                  <label>Project overview</label>
+                  <textarea>Location, timeline, budget range.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="gui-spec">
+            <div><strong>Title</strong> 24px / 1.1</div>
+            <div><strong>Label</strong> 11px / 0.28em</div>
+            <div><strong>Body</strong> 17px / 1.6</div>
+            <div><strong>Row</strong> 24px vertical padding</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

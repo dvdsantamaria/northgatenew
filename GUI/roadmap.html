@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint, Milestone and Demos Plan</title>
+  <link rel="icon" href="favicon-512.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f4f7;
+      --bg-top: #f7f8fb;
+      --bg-bot: #f2f3f6;
+      --line: #d9dde6;
+      --card: #fbfcfe;
+      --card-border: #eceef3;
+      --text: #111827;
+      --muted: #717a8a;
+      --badge-text: #9aa2b1;
+      --demo: #f7d86b;
+      --milestone-bg: #1b1f26;
+      --milestone-border: #2a2f38;
+      --milestone-accent: #f05bff;
+      --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+      --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04);
+      --radius-card: 26px;
+      --radius-badge: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 42%, var(--bg-bot) 100%);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(600px 380px at 12% 0%, rgba(244, 201, 52, 0.18), transparent 60%),
+        radial-gradient(720px 460px at 92% 18%, rgba(125, 162, 255, 0.14), transparent 62%),
+        radial-gradient(520px 420px at 72% 98%, rgba(189, 210, 255, 0.16), transparent 62%);
+      filter: blur(0.2px);
+      opacity: 0.9;
+    }
+
+    .wrap {
+      width: min(990px, 100% - 56px);
+      margin: 22px auto 46px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-header {
+      margin: 4px 0 60px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: #7b8393;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+      border: 1px solid #eceef3;
+      border-radius: 14px;
+      padding: 6px;
+    }
+
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    h1 {
+      margin: 0 0 38px;
+      font-size: clamp(19px, 2vw, 28px);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 20px;
+      padding: 4px 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 39px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, rgba(206, 210, 220, 0.95), rgba(197, 203, 216, 0.75));
+    }
+
+    .row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .sprint-id {
+      width: 74px;
+      min-height: 74px;
+      border-radius: var(--radius-badge);
+      border: 1px solid rgba(236, 238, 243, 0.9);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      color: var(--badge-text);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .card {
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-card);
+      background: var(--card);
+      padding: 30px 30px 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .focus {
+      margin: 0;
+      font-size: clamp(19px, 1.89vw, 32px);
+      letter-spacing: -0.028em;
+      line-height: 1.06;
+      font-weight: 800;
+      max-width: 900px;
+    }
+
+    .demo {
+      border-radius: 999px;
+      padding: 6px 10px;
+      line-height: 1;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+    }
+
+    .demo.muted {
+      background: #eceff4;
+      color: #6d7484;
+      border-color: #e4e7ee;
+    }
+
+    .demo.active {
+      background: #fff3c8;
+      color: #7a5a00;
+      border-color: #f3d37a;
+      box-shadow: none;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--card-border);
+      margin: 6px 0 16px;
+    }
+
+    .label {
+      margin: 0 0 10px;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #6f7686;
+      letter-spacing: 0.11em;
+    }
+
+    .deliverable {
+      margin: 0;
+      color: #3d4655;
+      font-size: clamp(13px, 1.05vw, 22px);
+      line-height: 1.28;
+      letter-spacing: -0.01em;
+      font-weight: 500;
+    }
+
+    .deliverable.is-source {
+      display: none;
+    }
+
+    .deliverables-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .deliverables-list li {
+      margin: 0;
+      position: relative;
+      padding-left: 34px;
+      color: #3d4655;
+      font-size: clamp(13px, 1.05vw, 22px);
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+
+    .deliverables-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      color: #22c55e;
+      font-size: 21px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .row.milestone {
+      align-items: center;
+    }
+
+    .milestone-dot {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+    }
+
+    .milestone-dot span {
+      width: 17px;
+      height: 17px;
+      border-radius: 999px;
+      background: #0a0c10;
+      border: 3px solid var(--milestone-accent);
+      box-shadow: none;
+      display: block;
+    }
+
+    .milestone-card {
+      border-radius: var(--radius-card);
+      border: 1px solid var(--milestone-border);
+      background: var(--milestone-bg);
+      color: #f3f4f6;
+      padding: 24px 28px;
+      min-height: 132px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: none;
+    }
+
+    .milestone-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid #303641;
+      background: rgba(255, 255, 255, 0.06);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: none;
+    }
+
+    .milestone-icon svg {
+      width: 27px;
+      height: 27px;
+      fill: var(--milestone-accent);
+    }
+
+    .milestone-code {
+      margin: 0 0 8px;
+      color: var(--milestone-accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .milestone-title {
+      margin: 0;
+      color: #f8fafc;
+      font-size: clamp(20px, 1.89vw, 31px);
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      font-weight: 800;
+    }
+
+    .page-footer {
+      margin: 56px auto 32px;
+      width: min(990px, 100% - 56px);
+      color: #4b5563;
+      font-size: 12px;
+    }
+
+    .footer-top {
+      background: #f2f3f5;
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .footer-locations {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      color: #3b3f46;
+      font-weight: 600;
+    }
+
+    .footer-locations span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-flag {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      object-fit: cover;
+      display: inline-block;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .footer-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #2f333a;
+      font-weight: 700;
+      text-decoration: none;
+      padding-left: 14px;
+      border-left: 1px solid #d6d9df;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 10px;
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .wrap {
+        width: min(990px, 100% - 24px);
+        margin-top: 16px;
+      }
+
+      .brand-header {
+        margin-bottom: 48px;
+      }
+
+      .brand-logo img {
+        height: 28px;
+      }
+
+      .brand-subtitle {
+        font-size: 10px;
+      }
+
+      .brand-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+
+      h1 {
+        margin-bottom: 14px;
+      }
+
+      .timeline::before {
+        left: 28px;
+      }
+
+      .row {
+        grid-template-columns: 56px 1fr;
+        gap: 10px;
+      }
+
+      .sprint-id,
+      .milestone-dot {
+        width: 52px;
+        min-height: 52px;
+        border-radius: 15px;
+      }
+
+      .sprint-id {
+        font-size: 21px;
+      }
+
+      .milestone-dot span {
+        width: 14px;
+        height: 14px;
+        border-width: 2px;
+      }
+
+      .card {
+        border-radius: 18px;
+        padding: 16px 14px 14px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+
+      .demo {
+        font-size: 11px;
+        padding: 5px 8px;
+        border-radius: 999px;
+      }
+
+      .label {
+        margin-bottom: 8px;
+      }
+
+      .deliverable,
+      .deliverables-list li {
+        font-size: clamp(11px, 2.66vw, 13px);
+      }
+
+      .deliverables-list {
+        gap: 8px;
+      }
+
+      .deliverables-list li {
+        padding-left: 24px;
+      }
+
+      .deliverables-list li::before {
+        font-size: 14px;
+      }
+
+      .milestone-card {
+        border-radius: 18px;
+        min-height: 96px;
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .milestone-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+      }
+
+      .milestone-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .milestone-code {
+        font-size: 8px;
+        margin-bottom: 4px;
+      }
+
+      .page-footer {
+        width: min(990px, 100% - 24px);
+        margin: 20px auto 28px;
+        font-size: 10px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-contact {
+        padding-left: 0;
+        border-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="brand-header">
+      <div class="brand-row">
+        <div class="brand-logo" aria-label="Doopux">
+          <img src="logocolor.png" alt="Doopux logo">
+        </div>
+        <div class="brand-right">
+          <p class="brand-subtitle">Idea to Project</p>
+          <div class="brand-icon" aria-hidden="true">
+            <img src="icons_0004_Layer-4.png" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+    <h1>Sprint, Milestone and Demos Plan</h1>
+    <section class="timeline">
+      <article class="row">
+        <div class="sprint-id">S0</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Foundation &amp; Seed Data</h2>
+            <span class="demo muted">Hardening</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Repository setup, Tech stack configuration, Database migrations, Authentication, Seed script with dummy data, Staging deployment</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S1</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">UI Shell &amp; Company Settings</h2>
+            <span class="demo active">Demo 0 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Complete navigation, Company settings UI (read-only), Dashboard shell, Branding preview</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S2</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Pricing Catalogue</h2>
+            <span class="demo active">Demo 1 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Catalogue UI with full CRUD, Fence types, Gates, Extras &mdash; all connected to the backend</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 4h12a1 1 0 0 1 .88 1.48L19.4 8l1.48 2.52A1 1 0 0 1 20 12H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M0</p>
+            <p class="milestone-title">"Company Configured"</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S3</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Quote Builder &amp; Dashboard</h2>
+            <span class="demo active">Demo 1.5 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Multi-segment quote builder, Scope diagram upload, Draft with watermark, Dashboard with search and filters</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S4</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Send &amp; Customer Link</h2>
+            <span class="demo active">Demo 2 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Send quote functionality, Email delivery, Unique customer link, Customer view (read-only)</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 4h12a1 1 0 0 1 .88 1.48L19.4 8l1.48 2.52A1 1 0 0 1 20 12H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M1</p>
+            <p class="milestone-title">"Quote Creation &amp; Delivery"</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S5</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Accept/Decline &amp; PDF Export</h2>
+            <span class="demo active">Demo 3 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Customer acceptance flow, Confirmation checkbox, Dashboard updates, PDF export with branding, Scope diagram, QR code</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 4h12a1 1 0 0 1 .88 1.48L19.4 8l1.48 2.52A1 1 0 0 1 20 12H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M2</p>
+            <p class="milestone-title">"Complete Customer Journey"</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S6</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Lifecycle, Versioning &amp; Materials</h2>
+            <span class="demo active">Demo 4 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Quote expiry and auto-expiration, Versioning (edit creates v2), Materials list generation with edits and CSV export, Admin access via 4-digit code</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 4h12a1 1 0 0 1 .88 1.48L19.4 8l1.48 2.52A1 1 0 0 1 20 12H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M3</p>
+            <p class="milestone-title">"MVP Feature Complete"</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S7</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Beta Preparation</h2>
+            <span class="demo muted">Security</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Edge case handling, Error states, Mobile QA (customer view), Rate limiting, Empty and loading states</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S8</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Beta Testing</h2>
+            <span class="demo active">Beta · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Real-world usage with actual customer data, Feedback collection, Bug fixes</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 4h12a1 1 0 0 1 .88 1.48L19.4 8l1.48 2.52A1 1 0 0 1 20 12H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M4</p>
+            <p class="milestone-title">"Production Ready"</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S9</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Role-Based Access Control</h2>
+            <span class="demo muted">Setup</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Admin/Estimator/Viewer roles, Permission enforcement, Role assignment UI</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="sprint-id">S10</div>
+        <div class="card">
+          <div class="top">
+            <h2 class="focus">Full Audit Logging</h2>
+            <span class="demo active">Demo 5 · TBD</span>
+          </div>
+          <hr class="divider">
+          <p class="label">Deliverables</p>
+          <p class="deliverable">Complete action logging, Audit history UI, Filters by user/action/date</p>
+        </div>
+      </article>
+
+      <article class="row milestone">
+        <div class="milestone-dot"><span></span></div>
+        <div class="milestone-card">
+          <div class="milestone-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 2a1 1 0 0 1 1 1v18a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1Zm3 2h9a1 1 0 0 1 .8 1.6L16.5 7l1.3 1.4a1 1 0 0 1-.7 1.7H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm0 8h9a1 1 0 0 1 .8 1.6L16.5 15l1.3 1.4a1 1 0 0 1-.7 1.7H8a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="milestone-code">Milestone M5</p>
+            <p class="milestone-title">"Enterprise Ready"</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="page-footer">
+    <div class="footer-top">
+      <div class="footer-locations">
+        <span><img class="footer-flag" src="australia.png" alt="Australia flag">HQ North Sydney, NSW, Australia.</span>
+        <span><img class="footer-flag" src="germany.png" alt="Germany flag">Berlin, Germany.</span>
+        <span><img class="footer-flag" src="argentina.png" alt="Argentina flag">Buenos Aires, Argentina.</span>
+      </div>
+      <a class="footer-contact" href="mailto:hello@doopux.com">Get in touch</a>
+    </div>
+    <div class="footer-bottom">Copyright © 2026</div>
+  </footer>
+  <script>
+    (function () {
+      var nodes = document.querySelectorAll(".deliverable");
+      nodes.forEach(function (node) {
+        var raw = node.textContent.replace(/\s+/g, " ").trim();
+        if (!raw) {
+          return;
+        }
+
+        var parts = raw
+          .split(/\s*,\s*/)
+          .map(function (item) { return item.trim(); })
+          .filter(Boolean);
+
+        if (!parts.length) {
+          return;
+        }
+
+        var list = document.createElement("ul");
+        list.className = "deliverables-list";
+
+        parts.forEach(function (part) {
+          var li = document.createElement("li");
+          li.textContent = part;
+          list.appendChild(li);
+        });
+
+        node.insertAdjacentElement("afterend", list);
+        node.classList.add("is-source");
+        node.setAttribute("aria-hidden", "true");
+      });
+    })();
+  </script>
+</body>
+</html>
