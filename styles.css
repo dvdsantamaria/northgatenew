@@ -332,15 +332,6 @@
         bottom: 12.5rem;
       }
 
-      #hero .hero-copy h2 {
-        font-size: clamp(2.1rem, 9vw, 2.6rem);
-        line-height: 1.02;
-      }
-
-      #hero .hero-copy p {
-        font-size: 0.95rem;
-      }
-
       .hero-cta {
         min-width: 80vw;
         padding: 0.9rem 2.6rem;
@@ -350,13 +341,13 @@
       }
 
       #hero .hero-meta {
-        left: 50% !important;
+        left: 1.5rem !important;
         right: auto !important;
-        transform: translateX(-50%) !important;
-        text-align: center;
-        align-items: center;
+        transform: none !important;
+        text-align: left;
+        align-items: flex-start;
         gap: 0.35rem;
-        bottom: 2.5rem;
+        bottom: 7rem;
       }
     }
 
