@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GUI | Northgate Building Group</title>
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <title>Design System Spec</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <style>
     :root {
-      --gui-width: 1440px;
-      --gui-pad-x: 80px;
-      --gui-pad-y: 72px;
-      --gui-gap: 72px;
-      --gui-panel-radius: 0px;
-      --gui-border: rgba(0, 0, 0, 0.08);
-      --gui-body: 17px;
-      --gui-body-lg: 18px;
-      --gui-body-sm: 15px;
+      --gui-max-width: 1600px;
+      --gui-pad-x: clamp(24px, 5vw, 80px);
+      --gui-pad-y: clamp(48px, 6vw, 88px);
+      --gui-gap: clamp(40px, 5vw, 80px);
+      --gui-panel-radius: 20px;
+      --gui-border: rgba(0, 0, 0, 0.06);
+      --gui-body: clamp(16px, 1.2vw, 18px);
+      --gui-body-lg: clamp(17px, 1.3vw, 20px);
+      --gui-body-sm: clamp(14px, 1vw, 15px);
       --gui-eyebrow: 11px;
+      --gui-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --c-bg: #ffffff;
+      --c-dark: #0f172a;
+      --c-gray-100: #f8fafc;
+      --c-gray-200: #f1f5f9;
+      --c-brand: #527B72;
     }
 
     * {
@@ -29,19 +33,91 @@
     }
 
     body {
-      min-width: var(--gui-width);
       margin: 0;
-      background: #e9eaee;
+      background: var(--c-gray-200); /* Elegant neutral technical gray */
       color: var(--c-dark);
-      font-family: var(--font-body);
+      font-family: "Open Sans", sans-serif;
       font-size: var(--gui-body);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Layout Containers */
+    .roadmap-wrap {
+      max-width: var(--gui-max-width);
+      width: 100%;
+      margin: 22px auto 46px;
+      padding: 0 var(--gui-pad-x);
+      position: relative;
+      z-index: 2;
+      font-family: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    .brand-header {
+      margin: 12px 0 60px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 21px;
+      flex-wrap: wrap; /* Responsive wrap */
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+      font-size: clamp(13px, 1vw, 16px);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: #64748b;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      width: clamp(48px, 5vw, 60px);
+      height: clamp(48px, 5vw, 60px);
+      display: grid;
+      place-items: center;
+      background: var(--c-bg);
+      border: 1px solid var(--gui-border);
+      border-radius: 14px;
+      padding: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .gui-artboard {
-      width: var(--gui-width);
+      max-width: var(--gui-max-width);
+      width: 100%;
       margin: 0 auto;
-      padding: 72px 0 96px;
+      padding: clamp(40px, 5vw, 72px) clamp(16px, 3vw, 40px) 96px;
       display: grid;
       gap: var(--gui-gap);
     }
@@ -50,9 +126,10 @@
       background: var(--c-bg);
       border: 1px solid var(--gui-border);
       padding: var(--gui-pad-y) var(--gui-pad-x);
-      box-shadow: 0 40px 90px rgba(10, 10, 10, 0.08);
+      border-radius: var(--gui-panel-radius);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0,0,0,0.02);
       display: grid;
-      gap: 48px;
+      gap: clamp(32px, 4vw, 48px);
     }
 
     .gui-header {
@@ -64,12 +141,13 @@
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.45);
+      color: #94a3b8;
+      font-weight: 600;
     }
 
     .gui-title {
-      font-family: var(--font-display);
-      font-size: 56px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
       line-height: 1.05;
       letter-spacing: -0.02em;
       margin: 0;
@@ -77,93 +155,158 @@
 
     .gui-subtitle {
       max-width: 780px;
-      color: rgba(0, 0, 0, 0.6);
+      color: #475569;
+      font-size: var(--gui-body-lg);
       margin: 0;
     }
 
     .gui-section-title {
-      font-family: var(--font-display);
-      font-size: 28px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(24px, 3vw, 32px);
       line-height: 1.2;
       margin: 0;
+      color: var(--c-dark);
     }
 
     .gui-divider {
       height: 1px;
-      background: var(--gui-border);
+      background: var(--c-gray-200);
       width: 100%;
     }
 
+    /* Grids */
     .gui-grid-2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1fr;
+      gap: clamp(24px, 4vw, 40px);
       align-items: start;
+    }
+    @media (min-width: 900px) {
+      .gui-grid-2 { grid-template-columns: 1fr 1fr; }
     }
 
     .gui-grid-3 {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 32px;
+      grid-template-columns: 1fr;
+      gap: clamp(24px, 3vw, 32px);
       align-items: start;
     }
+    @media (min-width: 768px) {
+      .gui-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .gui-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
 
+    /* Token Cards */
     .gui-token {
-      background: #fff;
+      background: var(--c-gray-100);
       border: 1px solid var(--gui-border);
-      padding: 24px;
+      border-radius: 12px;
+      padding: clamp(20px, 3vw, 32px);
       display: grid;
-      gap: 12px;
+      gap: 16px;
+    }
+
+    .gui-token-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: #64748b;
+      font-size: var(--gui-body-sm);
+    }
+    
+    .gui-token-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gui-token-list li::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #cbd5e1;
     }
 
     .gui-token-label {
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.5);
+      color: #94a3b8;
+      font-weight: 700;
+    }
+
+    /* Responsive Table Wrap */
+    .gui-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--gui-border);
+      border-radius: 12px;
+      background: var(--c-bg);
     }
 
     .gui-table {
       width: 100%;
       border-collapse: collapse;
       font-size: var(--gui-body-sm);
+      min-width: 800px; /* Force minimum width to scroll on mobile */
     }
 
     .gui-table th,
     .gui-table td {
-      padding: 12px 10px;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--gui-border);
       text-align: left;
-      vertical-align: top;
+      vertical-align: middle;
     }
 
     .gui-table th {
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.6);
-      font-weight: 600;
+      color: #64748b;
+      font-weight: 700;
+      background: var(--c-gray-100);
+    }
+    
+    .gui-table tr:last-child td {
+      border-bottom: none;
     }
 
     .gui-table code {
-      font-size: 12px;
-      color: rgba(0, 0, 0, 0.55);
+      font-family: var(--gui-mono);
+      font-size: 13px;
+      color: #64748b;
+      background: var(--c-gray-100);
+      padding: 4px 8px;
+      border-radius: 4px;
       white-space: nowrap;
+      border: 1px solid var(--gui-border);
     }
 
+    /* Badges */
     .gui-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 8px 16px;
       border: 1px solid var(--gui-border);
+      border-radius: 999px;
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.6);
-      background: #fff;
+      color: #475569;
+      background: var(--c-gray-100);
+      font-weight: 600;
+      justify-self: start;
     }
 
+    /* Components */
     .gui-component {
       display: grid;
       gap: 24px;
@@ -171,65 +314,151 @@
 
     .gui-component-row {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 32px;
+      grid-template-columns: 1fr;
+      gap: clamp(24px, 4vw, 32px);
       align-items: start;
+    }
+    @media (min-width: 1100px) {
+      .gui-component-row {
+        grid-template-columns: 1fr 340px;
+      }
     }
 
     .gui-panel {
-      background: #fff;
+      background: var(--c-bg);
       border: 1px solid var(--gui-border);
-      padding: 56px;
+      border-radius: 16px;
+      padding: clamp(32px, 5vw, 56px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      overflow: hidden;
     }
 
     .gui-spec {
-      background: #fff;
+      background: var(--c-gray-100);
       border: 1px solid var(--gui-border);
-      padding: 20px 22px;
+      border-radius: 12px;
+      padding: 24px 28px;
       display: grid;
-      gap: 10px;
-      font-size: var(--gui-body-sm);
-      color: rgba(0, 0, 0, 0.7);
+      gap: 12px;
+      font-family: var(--gui-mono);
+      font-size: 13px;
+      color: #475569;
     }
 
     .gui-spec strong {
       font-weight: 600;
-      color: rgba(0, 0, 0, 0.9);
+      color: var(--c-dark);
+      font-family: "Open Sans", sans-serif;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      width: 70px;
     }
 
+    /* Specific Modules */
     .gui-service {
       display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 48px;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 4vw, 48px);
       align-items: center;
+    }
+    @media (min-width: 768px) {
+      .gui-service { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px) {
+      .gui-service { grid-template-columns: 380px 1fr; }
     }
 
     .gui-service-label {
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.45);
+      color: #94a3b8;
+      font-weight: 700;
     }
 
     .gui-service-title {
-      font-family: var(--font-display);
-      font-size: 72px;
-      line-height: 0.95;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1;
       letter-spacing: -0.02em;
       margin: 18px 0 20px;
     }
 
     .gui-service-desc {
       font-size: var(--gui-body);
-      color: rgba(0, 0, 0, 0.6);
+      color: #475569;
       margin: 0;
-      max-width: 320px;
+      max-width: 100%;
+    }
+
+    .gui-viewport-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 2vw, 24px);
+    }
+    @media (min-width: 768px) {
+      .gui-viewport-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .gui-viewport-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .gui-viewport-card {
+      border: 1px solid var(--gui-border);
+      border-radius: 12px;
+      background: var(--c-gray-100);
+      padding: clamp(20px, 3vw, 32px);
+      display: grid;
+      gap: 16px;
+      transition: transform 0.3s ease;
+    }
+    .gui-viewport-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+    }
+
+    .gui-viewport-label {
+      font-size: var(--gui-eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .gui-viewport-title {
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .gui-viewport-metrics {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      font-size: var(--gui-body-sm);
+      color: #475569;
+    }
+
+    .gui-viewport-metrics code {
+      font-family: var(--gui-mono);
+      font-size: 12px;
+      color: #334155;
+      background: var(--c-bg);
+      padding: 2px 6px;
+      border: 1px solid var(--gui-border);
+      border-radius: 4px;
     }
 
     .gui-service-image {
       width: 100%;
-      height: 360px;
-      background: #f1f1f3;
+      height: clamp(280px, 30vw, 360px);
+      background: var(--c-gray-200);
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--gui-border);
     }
@@ -239,18 +468,28 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.5s ease;
+    }
+    .gui-service-image:hover img {
+      transform: scale(1.05);
     }
 
     .gui-project {
       display: grid;
-      grid-template-columns: 1fr 520px;
-      gap: 48px;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 4vw, 48px);
       align-items: center;
+    }
+    @media (min-width: 768px) {
+      .gui-project { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px) {
+      .gui-project { grid-template-columns: 1fr 520px; }
     }
 
     .gui-project-title {
-      font-family: var(--font-display);
-      font-size: 40px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
       line-height: 1.05;
       margin: 12px 0 12px;
     }
@@ -259,14 +498,15 @@
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.45);
+      color: #64748b;
       margin-bottom: 16px;
+      font-weight: 700;
     }
 
     .gui-project-desc {
       font-size: var(--gui-body);
-      color: rgba(0, 0, 0, 0.6);
-      margin: 0 0 20px;
+      color: #475569;
+      margin: 0 0 24px;
     }
 
     .gui-tag-row {
@@ -278,17 +518,19 @@
     .gui-tag {
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.06);
+      background: var(--c-gray-200);
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.55);
+      color: #475569;
+      font-weight: 600;
     }
 
     .gui-project-image {
       width: 100%;
-      height: 360px;
-      background: #f1f1f3;
+      height: clamp(280px, 30vw, 360px);
+      background: var(--c-gray-200);
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--gui-border);
     }
@@ -298,6 +540,85 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    .gui-process-panel {
+      background: #0f172a;
+      color: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: clamp(32px, 5vw, 56px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .gui-process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 5vw, 48px);
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .gui-process-grid { grid-template-columns: 280px 1fr; }
+    }
+
+    .gui-process-label {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .gui-process-title {
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(36px, 5vw, 48px);
+      line-height: 0.95;
+      margin: 16px 0 0;
+    }
+
+    .gui-process-accordion {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .gui-process-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 20px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .gui-process-item:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .gui-process-toggle {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: clamp(18px, 2vw, 20px);
+      font-weight: 500;
+      color: #f8fafc;
+    }
+
+    .gui-process-index {
+      font-size: var(--gui-eyebrow);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .gui-process-panel-text {
+      margin-top: 12px;
+      font-size: var(--gui-body-sm);
+      line-height: 1.6;
+      color: #94a3b8;
+      max-width: 420px;
+    }
+
+    .gui-process-item.is-collapsed .gui-process-panel-text {
+      display: none;
     }
 
     .gui-button-row {
@@ -311,26 +632,41 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 22px;
+      padding: 14px 28px;
       border-radius: 999px;
-      background: #527B72;
+      background: var(--c-brand);
       color: #fff;
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .gui-cta-primary:hover {
+      background: #3e5f58;
+      transform: translateY(-1px);
     }
 
     .gui-cta-outline {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 18px;
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      color: rgba(0, 0, 0, 0.6);
+      padding: 12px 24px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      color: #475569;
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      font-weight: 700;
       background: transparent;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .gui-cta-outline:hover {
+      background: #f1f5f9;
+      color: #0f172a;
     }
 
     .gui-form {
@@ -340,57 +676,71 @@
 
     .gui-form-row {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 28px;
+      grid-template-columns: 1fr;
+      gap: 24px;
       padding: 24px 0;
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    @media (min-width: 768px) {
+      .gui-form-row { grid-template-columns: 200px 1fr; gap: 32px; }
     }
 
     .gui-form-title {
-      font-family: var(--font-display);
-      font-size: 24px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(20px, 3vw, 24px);
       line-height: 1.1;
+      color: var(--c-dark);
     }
 
     .gui-form-field {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .gui-form-field label {
       font-size: var(--gui-eyebrow);
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.55);
+      color: #64748b;
+      font-weight: 700;
     }
 
     .gui-form-field input,
     .gui-form-field textarea {
       border: none;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-      padding: 6px 0;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 8px 0;
       background: transparent;
       font-size: var(--gui-body);
       font-family: var(--font-body);
+      color: var(--c-dark);
+      transition: border-color 0.2s;
+    }
+    .gui-form-field input:focus,
+    .gui-form-field textarea:focus {
+      outline: none;
+      border-bottom-color: var(--c-brand);
     }
 
     .gui-form-field textarea {
       min-height: 120px;
-      resize: none;
+      resize: vertical;
     }
 
     .gui-footer-title {
-      font-family: var(--font-display);
-      font-size: 52px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
       line-height: 0.95;
       margin: 0;
+      color: var(--c-dark);
     }
 
     .gui-type-sample {
-      font-family: var(--font-display);
-      font-size: 36px;
+      font-family: "GravesendSans", "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(28px, 4vw, 36px);
       line-height: 1.1;
       margin: 0;
+      color: var(--c-dark);
     }
 
     .gui-type-sample-body {
@@ -403,333 +753,318 @@
       letter-spacing: 0.32em;
       text-transform: uppercase;
       margin: 0;
+      color: #64748b;
     }
 
+    /* Spacing Visualizers */
     .gui-spacing-bar {
-      height: 18px;
-      background: rgba(0, 0, 0, 0.08);
-      border-radius: 999px;
+      height: 24px;
+      background: var(--c-gray-200);
+      border-radius: 6px;
+      border: 1px dotted rgba(0,0,0,0.15);
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.02) 4px, rgba(0,0,0,0.02) 8px);
+    }
+    .gui-spacing-bar.primary {
+      background-color: #e0e7ff;
+      border-color: #818cf8;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(129,140,248,0.2) 4px, rgba(129,140,248,0.2) 8px);
     }
 
     .gui-spacing-stack {
       display: grid;
       gap: 16px;
+      background: var(--c-bg);
+      border: 1px solid var(--gui-border);
+      border-radius: 12px;
+      padding: 24px;
     }
 
     .gui-spacing-item {
       display: grid;
-      grid-template-columns: 1fr 240px;
-      gap: 16px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .gui-spacing-item { grid-template-columns: 120px 1fr; align-items: center; }
+    }
+    
+    .gui-spacing-item strong {
+      display: inline-block;
+      width: 32px;
+      font-weight: 700;
+      color: var(--c-dark);
     }
 
     .gui-fonts {
       display: grid;
       gap: 12px;
       font-size: var(--gui-body-sm);
-      color: rgba(0, 0, 0, 0.6);
+      color: #475569;
+    }
+
+    .page-footer {
+      margin: 56px auto 32px;
+      max-width: var(--gui-max-width);
+      width: 100%;
+      padding: 0 var(--gui-pad-x);
+      color: #64748b;
+      font-size: 13px;
+      font-family: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    .footer-top {
+      background: var(--c-bg);
+      border-radius: 16px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid var(--gui-border);
+    }
+
+    .footer-locations {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .footer-locations span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-flag {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      object-fit: cover;
+      display: inline-block;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .footer-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #0f172a;
+      font-weight: 700;
+      text-decoration: none;
+      padding-left: 20px;
+      border-left: 1px solid #cbd5e1;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 16px;
+      color: #94a3b8;
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
-  <main class="gui-artboard">
-    <section class="gui-page">
-      <div class="gui-header">
-        <span class="gui-kicker">Northgate Building Group</span>
-        <h1 class="gui-title">GUI — Design Guide</h1>
-        <p class="gui-subtitle">
-          Fixed artboard for web typography, spacing, and component standards. Layout is intentionally non-responsive to
-          represent stable design decisions.
-        </p>
-      </div>
-      <div class="gui-divider"></div>
-      <div class="gui-grid-2">
-        <div class="gui-token">
-          <div class="gui-token-label">Fonts</div>
-          <p class="gui-type-sample">GravesendSans Medium</p>
-          <p class="gui-type-sample-body">Open Sans 400/500/600</p>
-          <div class="gui-fonts">
-            <div>Display: GravesendSans, 500</div>
-            <div>Body: Open Sans, 400-600</div>
-            <div>Color tokens: `--c-bg`, `--c-dark`, `--c-card`</div>
+  <div class="roadmap-wrap">
+    <header class="brand-header">
+      <div class="brand-row">
+        <div class="brand-logo" aria-label="Doopux">
+          <img src="logocolor.png" alt="Doopux logo">
+        </div>
+        <div class="brand-right">
+          <p class="brand-subtitle">Website Development</p>
+          <div class="brand-icon" aria-hidden="true">
+            <img src="icons_0001_Layer-7.png" alt="">
           </div>
         </div>
-        <div class="gui-token">
-          <div class="gui-token-label">Type Range</div>
-          <p class="gui-type-sample-body">Body scale is 16-18px with 1.6-1.7 line-height.</p>
-          <p class="gui-type-sample-body">Eyebrow scale is 10-12px with wide tracking.</p>
-          <p class="gui-type-sample-body">Display scale ranges 38-88px depending on component.</p>
-        </div>
       </div>
-    </section>
+    </header>
+  </div>
 
-    <section class="gui-page">
-      <h2 class="gui-section-title">Typography Scale</h2>
-      <table class="gui-table">
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Font</th>
-            <th>Size</th>
-            <th>Line</th>
-            <th>Tracking</th>
-            <th>Usage</th>
-            <th>CSS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Display XXL</td>
-            <td>GravesendSans</td>
-            <td>38-88px</td>
-            <td>0.95</td>
-            <td>-0.02em</td>
-            <td>Service titles, hero statements</td>
-            <td><code>clamp(2.4rem, 6vw, 5.5rem)</code></td>
-          </tr>
-          <tr>
-            <td>Display XL</td>
-            <td>GravesendSans</td>
-            <td>38-67px</td>
-            <td>1.05</td>
-            <td>-0.02em</td>
-            <td>About hero, section banners</td>
-            <td><code>clamp(2.4rem, 5vw, 4.2rem)</code></td>
-          </tr>
-          <tr>
-            <td>Section Title</td>
-            <td>GravesendSans</td>
-            <td>36-48px</td>
-            <td>1.1</td>
-            <td>-0.01em</td>
-            <td>Recent Projects, Kind Words, Process</td>
-            <td><code>text-4xl / text-5xl</code></td>
-          </tr>
-          <tr>
-            <td>Lead</td>
-            <td>Open Sans</td>
-            <td>19.2-24px</td>
-            <td>1.7</td>
-            <td>0</td>
-            <td>Intro statements</td>
-            <td><code>clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)</code></td>
-          </tr>
-          <tr>
-            <td>Body Large</td>
-            <td>Open Sans</td>
-            <td>16.8-18px</td>
-            <td>1.6</td>
-            <td>0</td>
-            <td>About story, lead copy</td>
-            <td><code>clamp(1.05rem, 1rem + 0.35vw, 1.125rem)</code></td>
-          </tr>
-          <tr>
-            <td>Body</td>
-            <td>Open Sans</td>
-            <td>16-17.6px</td>
-            <td>1.6</td>
-            <td>0</td>
-            <td>Default paragraphs, descriptions</td>
-            <td><code>clamp(1rem, 0.98rem + 0.2vw, 1.1rem)</code></td>
-          </tr>
-          <tr>
-            <td>Body Small</td>
-            <td>Open Sans</td>
-            <td>14.4-15.7px</td>
-            <td>1.6</td>
-            <td>0</td>
-            <td>Captions, helper text</td>
-            <td><code>clamp(0.9rem, 0.86rem + 0.2vw, 0.98rem)</code></td>
-          </tr>
-          <tr>
-            <td>Eyebrow</td>
-            <td>Open Sans</td>
-            <td>10.4-11.5px</td>
-            <td>1.4</td>
-            <td>0.28-0.4em</td>
-            <td>Labels, counters, metadata</td>
-            <td><code>clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)</code></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <header class="ds-header">
+    <h1 class="ds-main-title">Design System</h1>
+  </header>
 
-    <section class="gui-page">
-      <h2 class="gui-section-title">Spacing Scale</h2>
-      <div class="gui-grid-2">
-        <div class="gui-token">
-          <div class="gui-token-label">Section Spacing</div>
-          <div class="gui-spacing-stack">
-            <div class="gui-spacing-item">
-              <div>
-                <strong>XL</strong> 80-136px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-            <div class="gui-spacing-item">
-              <div>
-                <strong>LG</strong> 64-104px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-            <div class="gui-spacing-item">
-              <div>
-                <strong>MD</strong> 48-80px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-            <div class="gui-spacing-item">
-              <div>
-                <strong>SM</strong> 32-56px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-          </div>
-        </div>
-        <div class="gui-token">
-          <div class="gui-token-label">Block Spacing</div>
-          <div class="gui-spacing-stack">
-            <div class="gui-spacing-item">
-              <div>
-                <strong>LG</strong> 24-32px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-            <div class="gui-spacing-item">
-              <div>
-                <strong>MD</strong> 16-24px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-            <div class="gui-spacing-item">
-              <div>
-                <strong>SM</strong> 12px
-              </div>
-              <div class="gui-spacing-bar"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <main class="ds-container">
+    <!-- COLUMN 1 -->
+    <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
+      <section class="ds-section">
+        <h2 class="ds-title">Typography</h2>
 
-    <section class="gui-page">
-      <div class="gui-component">
-        <div class="gui-badge">Service Panel</div>
-        <div class="gui-component-row">
-          <div class="gui-panel">
-            <div class="gui-service">
-              <div>
-                <div class="gui-service-label">01 — SERVICES</div>
-                <div class="gui-service-title">NEW BUILDS</div>
-                <p class="gui-service-desc">
-                  One-of-a-kind homes designed and built with care, precision, and transparency.
-                </p>
-              </div>
-              <div class="gui-service-image">
-                <img decoding="async" loading="lazy" src="assets/services/new-builds.webp" alt="Service panel">
-              </div>
-            </div>
-          </div>
-          <aside class="gui-spec">
-            <div><strong>Title</strong> 72px / 0.95 / -0.02em</div>
-            <div><strong>Label</strong> 11px / 0.4em</div>
-            <div><strong>Body</strong> 17px / 1.6</div>
-            <div><strong>Panel</strong> 56px padding</div>
-            <div><strong>Image</strong> 360px height</div>
-          </aside>
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview" style="font-size: clamp(2.4rem, 5vw, 4.2rem);">Headline 1</p>
+          <span class="ds-typo-meta">Display Hero XL · clamp(2.4rem, 5vw, 4.2rem)</span>
         </div>
-      </div>
-    </section>
 
-    <section class="gui-page">
-      <div class="gui-component">
-        <div class="gui-badge">Project Row</div>
-        <div class="gui-component-row">
-          <div class="gui-panel">
-            <div class="gui-project">
-              <div>
-                <div class="gui-project-meta">01 / 12</div>
-                <div class="gui-project-title">Verda</div>
-                <div class="gui-project-meta">Design and Construct</div>
-                <p class="gui-project-desc">
-                  Four high-end coastal townhouses delivered across three levels with refined coastal detailing.
-                </p>
-                <div class="gui-tag-row">
-                  <span class="gui-tag">New Build</span>
-                  <span class="gui-tag">Value $5.5M</span>
-                </div>
-              </div>
-              <div class="gui-project-image">
-                <img decoding="async" loading="lazy" src="assets/Projects/verda/gallery0.webp" alt="Project row">
-              </div>
-            </div>
-          </div>
-          <aside class="gui-spec">
-            <div><strong>Title</strong> 40px / 1.05</div>
-            <div><strong>Meta</strong> 11px / 0.28em</div>
-            <div><strong>Body</strong> 17px / 1.6</div>
-            <div><strong>Image</strong> 360px height</div>
-          </aside>
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview" style="font-size: clamp(2.6rem, 6vw, 5rem);">Headline 2</p>
+          <span class="ds-typo-meta">Display Section XXL · clamp(2.6rem, 6vw, 5rem)</span>
         </div>
-      </div>
-    </section>
 
-    <section class="gui-page">
-      <div class="gui-component">
-        <div class="gui-badge">CTA + Buttons</div>
-        <div class="gui-component-row">
-          <div class="gui-panel">
-            <div class="gui-button-row">
-              <span class="gui-cta-primary">Schedule a consultation</span>
-              <span class="gui-cta-outline">See services</span>
-            </div>
-            <div style="height: 28px;"></div>
-            <h3 class="gui-footer-title">Book a<br>discovery call</h3>
-          </div>
-          <aside class="gui-spec">
-            <div><strong>CTA</strong> 11px / 0.18em</div>
-            <div><strong>Footer</strong> 52px / 0.95</div>
-            <div><strong>Padding</strong> 56px</div>
-          </aside>
+        <div class="ds-typo-item" style="margin-top: 16px;">
+          <p class="ds-typo-preview body"
+            style="font-size: var(--type-lead); font-weight: 500; line-height: var(--lh-relaxed);">.type-lead Paragraph
+          </p>
+          <span class="ds-typo-meta">var(--type-lead) · clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)</span>
         </div>
-      </div>
-    </section>
 
-    <section class="gui-page">
-      <div class="gui-component">
-        <div class="gui-badge">Contact Form</div>
-        <div class="gui-component-row">
-          <div class="gui-panel">
-            <div class="gui-form">
-              <div class="gui-form-row">
-                <div class="gui-form-title">Details</div>
-                <div class="gui-form-field">
-                  <label>Full name</label>
-                  <input type="text" value="Jordan O'Driscoll">
-                  <label>Email</label>
-                  <input type="email" value="hello@northgate.com">
-                </div>
-              </div>
-              <div class="gui-form-row" style="border-bottom: none;">
-                <div class="gui-form-title">Message</div>
-                <div class="gui-form-field">
-                  <label>Project overview</label>
-                  <textarea>Location, timeline, budget range.</textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <aside class="gui-spec">
-            <div><strong>Title</strong> 24px / 1.1</div>
-            <div><strong>Label</strong> 11px / 0.28em</div>
-            <div><strong>Body</strong> 17px / 1.6</div>
-            <div><strong>Row</strong> 24px vertical padding</div>
-          </aside>
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body" style="font-size: var(--type-body-lg); line-height: var(--lh-body);">
+            .type-body-lg</p>
+          <span class="ds-typo-meta">var(--type-body-lg) · clamp(1.05rem, 1rem + 0.35vw, 1.125rem)</span>
         </div>
-      </div>
-    </section>
+
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body" style="font-size: var(--type-body); line-height: var(--lh-body);">.type-body.
+            The design system enforces rules to
+            build robust digital products.</p>
+          <span class="ds-typo-meta">var(--type-body) · clamp(1rem, 0.98rem + 0.2vw, 1.1rem)</span>
+        </div>
+
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body" style="font-size: var(--type-body-sm); line-height: var(--lh-body);">
+            .type-body-sm. Smaller technical or disclaimer text.</p>
+          <span class="ds-typo-meta">var(--type-body-sm) · clamp(0.9rem, 0.86rem + 0.2vw, 0.98rem)</span>
+        </div>
+
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body"
+            style="font-size: var(--type-eyebrow); letter-spacing: 0.32em; text-transform: uppercase;">
+            .type-eyebrow Label</p>
+          <span class="ds-typo-meta">var(--type-eyebrow) · clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)</span>
+        </div>
+      </section>
+
+      <section class="ds-section">
+        <h2 class="ds-title">Buttons</h2>
+        <div class="ds-btn-grid">
+          <button class="nav-cta">Schedule Consultation</button>
+          <span class="ds-label">.nav-cta (Default)</span>
+
+          <button class="nav-cta"
+            style="background: var(--c-brand-hover); box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28); transform: translateY(-1px);">Schedule
+            Consultation</button>
+          <span class="ds-label">.nav-cta (Hover state)</span>
+        </div>
+      </section>
+
+      <section class="ds-section">
+        <h2 class="ds-title">Forms</h2>
+
+        <div class="form-grid" style="display: grid; gap: 32px; width: 100%; max-width: 400px;">
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-name"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Full
+              name</label>
+            <input id="ds-contact-name" type="text" placeholder="John Doe"
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; transition: all 0.3s ease; outline: none;">
+          </div>
+
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-service"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Service</label>
+            <select id="ds-contact-service"
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; appearance: none; cursor: pointer; transition: all 0.3s ease; outline: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\'%230A0A0A\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/></svg>'); background-repeat: no-repeat; background-position-x: 95%; background-position-y: center;">
+              <option value="" selected>Select a service</option>
+              <option value="new-build">New build</option>
+              <option value="renovation">Renovation</option>
+            </select>
+          </div>
+
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-message"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Project
+              overview</label>
+            <textarea id="ds-contact-message" rows="4" placeholder="Location, timeline, budget range..."
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; resize: vertical; min-height: 120px; transition: all 0.3s ease; outline: none;"></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
+      <section class="ds-section">
+        <h2 class="ds-title">Color</h2>
+        <div class="ds-color-grid">
+          <div class="ds-color-item">
+            <div class="ds-color-swatch" style="background: var(--c-brand);"></div>
+            <div class="ds-color-meta"><span>--c-brand</span><span>#527B72</span></div>
+          </div>
+          <div class="ds-color-item">
+            <div class="ds-color-swatch" style="background: var(--c-brand-hover);"></div>
+            <div class="ds-color-meta"><span>--c-brand-hover</span><span>#466C65</span></div>
+          </div>
+          <div class="ds-color-item">
+            <div class="ds-color-swatch" style="background: var(--c-dark);"></div>
+            <div class="ds-color-meta"><span>--c-dark</span><span>#0A0A0A</span></div>
+          </div>
+          <div class="ds-color-item">
+            <div class="ds-color-swatch" style="background: var(--c-card);"></div>
+            <div class="ds-color-meta"><span>--c-card</span><span>#FFFFFF</span></div>
+          </div>
+          <div class="ds-color-item">
+            <div class="ds-color-swatch" style="background: var(--c-bg);"></div>
+            <div class="ds-color-meta"><span>--c-bg</span><span>#F5F5F7</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
+      <section class="ds-section">
+        <h2 class="ds-title">Spacing</h2>
+        <div class="ds-color-grid">
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-block-sm); height: var(--space-block-sm);"></div>
+            <div class="ds-space-meta"><strong>Block SM</strong> <span>0.75rem</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-block-md); height: var(--space-block-md);"></div>
+            <div class="ds-space-meta"><strong>Block MD</strong> <span>clamp(1rem...1.5rem)</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-block-lg); height: var(--space-block-lg);"></div>
+            <div class="ds-space-meta"><strong>Block LG</strong> <span>clamp(1.5rem...2rem)</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-section-sm); height: var(--space-section-sm);"></div>
+            <div class="ds-space-meta"><strong>Section SM</strong> <span>clamp(2rem...3.5rem)</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-section-md); height: var(--space-section-md);"></div>
+            <div class="ds-space-meta"><strong>Section MD</strong> <span>clamp(3rem...5rem)</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-section-lg); height: var(--space-section-lg);"></div>
+            <div class="ds-space-meta"><strong>Section LG</strong> <span>clamp(4rem...6.5rem)</span></div>
+          </div>
+          <div class="ds-space-item">
+            <div class="ds-space-box" style="width: var(--space-section-xl); height: var(--space-section-xl);"></div>
+            <div class="ds-space-meta"><strong>Section XL</strong> <span>clamp(5rem...8.5rem)</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
+
+  <footer class="page-footer">
+    <div class="footer-top">
+      <div class="footer-locations">
+        <span><img class="footer-flag" src="australia.png" alt="Australia flag">HQ North Sydney, NSW, Australia.</span>
+        <span><img class="footer-flag" src="germany.png" alt="Germany flag">Berlin, Germany.</span>
+        <span><img class="footer-flag" src="argentina.png" alt="Argentina flag">Buenos Aires, Argentina.</span>
+      </div>
+      <a class="footer-contact" href="mailto:hello@doopux.com">Get in touch</a>
+    </div>
+    <div class="footer-bottom">Copyright © 2026</div>
+  </footer>
 </body>
 
 </html>

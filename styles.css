@@ -594,3 +594,66 @@
     .perspective-stack {
       perspective: 2000px;
     }
+
+    @media (min-width: 1920px) {
+      :root {
+        --wide-max: 1680px;
+        --wide-pad: clamp(3rem, 4vw, 6rem);
+      }
+
+      body .site-nav {
+        padding-left: var(--wide-pad);
+        padding-right: var(--wide-pad);
+      }
+
+      #hero .hero-meta {
+        left: max(3rem, calc((100vw - var(--wide-max)) / 2));
+      }
+
+      #hero .hero-desktop-copy {
+        right: max(3rem, calc((100vw - var(--wide-max)) / 2));
+      }
+
+      #intro,
+      #parallax-grid,
+      #inverted-section > div {
+        max-width: var(--wide-max);
+        padding-left: var(--wide-pad);
+        padding-right: var(--wide-pad);
+      }
+
+      .stack-container {
+        max-width: min(1360px, calc(var(--wide-max) - 4rem));
+      }
+
+      #horiz-scroll .horiz-panel {
+        padding-left: max(3rem, calc((100vw - var(--wide-max)) / 2));
+        padding-right: max(3rem, calc((100vw - var(--wide-max)) / 2));
+      }
+
+      #horiz-scroll .horiz-copy {
+        max-width: 42ch;
+      }
+
+      #intro .intro-copy {
+        max-width: 52ch;
+      }
+
+      #inverted-section .process-panel-copy {
+        max-width: 40ch;
+      }
+
+      #intro .text-xs.font-mono,
+      #horiz-scroll .text-xs.font-mono,
+      #inverted-section .text-xs.font-mono {
+        font-size: var(--type-eyebrow);
+        letter-spacing: 0.28em;
+      }
+    }
+
+    @media (min-width: 2560px) {
+      :root {
+        --wide-max: 1840px;
+        --wide-pad: clamp(4rem, 4.6vw, 8rem);
+      }
+    }

@@ -324,3 +324,31 @@
     letter-spacing: 0.16em;
   }
 }
+
+@media (min-width: 1920px) {
+  .projects-intro {
+    max-width: var(--wide-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--wide-pad);
+    padding-right: var(--wide-pad);
+  }
+
+  .project-row {
+    max-width: var(--wide-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .project-details {
+    padding: clamp(3rem, 3vw, 4rem);
+  }
+
+  .project-details-inner {
+    max-width: 44ch;
+  }
+
+  .project-desc {
+    max-width: 38ch;
+  }
+}

@@ -491,3 +491,44 @@
     display: none;
   }
 }
+
+@media (min-width: 1920px) {
+  .about-hero,
+  .about-story,
+  .about-carousel,
+  .about-process,
+  .about-cta {
+    padding-left: clamp(4rem, 4.2vw, 6rem);
+    padding-right: clamp(4rem, 4.2vw, 6rem);
+  }
+
+  .about-section-label {
+    padding-left: clamp(4rem, 4.2vw, 6rem);
+    padding-right: clamp(4rem, 4.2vw, 6rem);
+  }
+
+  .about-divider {
+    margin-left: clamp(4rem, 4.2vw, 6rem);
+    margin-right: clamp(4rem, 4.2vw, 6rem);
+  }
+
+  .about-hero-title {
+    max-width: 20ch;
+  }
+
+  .about-story-copy {
+    max-width: 44ch;
+  }
+
+  .about-why-grid {
+    gap: clamp(2rem, 2.2vw, 3rem);
+  }
+
+  .about-why-item p {
+    max-width: 34ch;
+  }
+
+  .process-copy {
+    max-width: 34ch;
+  }
+}
