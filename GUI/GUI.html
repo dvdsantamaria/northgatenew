@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,10 @@
       font-display: swap;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background: var(--ds-bg);
@@ -50,6 +54,7 @@
       max-width: 1440px;
       margin: 0 auto;
     }
+
     .ds-main-title {
       font-family: var(--font-display);
       font-size: clamp(48px, 8vw, 112px);
@@ -58,7 +63,7 @@
       margin: 0;
       color: var(--c-dark);
     }
-    
+
     .ds-container {
       max-width: 1440px;
       margin: 0 auto;
@@ -68,10 +73,27 @@
       gap: 60px 40px;
       align-items: start;
     }
-    @media (min-width: 768px) { .ds-container { grid-template-columns: repeat(2, 1fr); align-items: start; } }
-    @media (min-width: 1100px) { .ds-container { grid-template-columns: repeat(3, 1fr); align-items: start; } }
 
-    .ds-section { display: flex; flex-direction: column; gap: 32px; }
+    @media (min-width: 768px) {
+      .ds-container {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .ds-container {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: start;
+      }
+    }
+
+    .ds-section {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
     .ds-title {
       font-size: 13px;
       text-transform: uppercase;
@@ -84,103 +106,325 @@
     }
 
     /* Typo */
-    .ds-typo-item { display: flex; flex-direction: column; gap: 6px; }
-    .ds-typo-preview { font-family: var(--font-display); color: var(--c-dark); line-height: 1.1; margin: 0; }
-    .ds-typo-preview.body { font-family: var(--font-body); line-height: 1.6; }
-    .ds-typo-meta { font-size: 12px; color: var(--ds-muted); font-family: var(--font-body); }
+    .ds-typo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ds-typo-preview {
+      font-family: var(--font-display);
+      color: var(--c-dark);
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .ds-typo-preview.body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+
+    .ds-typo-meta {
+      font-size: 12px;
+      color: var(--ds-muted);
+      font-family: var(--font-body);
+    }
 
     /* Colors */
-    .ds-color-grid { display: grid; gap: 24px; }
-    .ds-color-item { display: flex; align-items: center; gap: 16px; }
+    .ds-color-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .ds-color-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .ds-color-swatch {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       border: 1px solid var(--c-border);
     }
-    .ds-color-meta { display: flex; flex-direction: column; font-size: 13px; line-height: 1.4; color: var(--ds-text); font-weight: 600; }
-    .ds-color-meta span:last-child { color: var(--ds-muted); font-size: 12px; text-transform: uppercase; font-family: ui-monospace, monospace; font-weight: 400; margin-top:2px;}
+
+    .ds-color-meta {
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--ds-text);
+      font-weight: 600;
+    }
+
+    .ds-color-meta span:last-child {
+      color: var(--ds-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-family: ui-monospace, monospace;
+      font-weight: 400;
+      margin-top: 2px;
+    }
 
     /* Spacing */
-    .ds-space-item { display: flex; align-items: center; gap: 24px; }
-    .ds-space-box { border: 1px solid #cbd5e1; background: #f8fafc; }
-    .ds-space-meta { font-size: 13px; color: var(--ds-text); display: flex; gap: 12px; align-items: center; }
-    .ds-space-meta span:last-child { color: var(--ds-muted); font-size: 12px; }
+    .ds-space-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .ds-space-box {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+    }
+
+    .ds-space-meta {
+      font-size: 13px;
+      color: var(--ds-text);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .ds-space-meta span:last-child {
+      color: var(--ds-muted);
+      font-size: 12px;
+    }
 
     /* Buttons */
-    .ds-btn-grid { display: grid; grid-template-columns: auto 1fr; gap: 24px 32px; align-items: center; justify-content: start; }
+    .ds-btn-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px 32px;
+      align-items: center;
+      justify-content: start;
+    }
+
     .ds-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 24px; border-radius: 999px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-      font-family: var(--font-body); cursor: pointer; transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: all 0.2s;
       width: max-content;
     }
-    .ds-btn-primary { background: var(--c-brand); color: #fff; border: none; }
-    .ds-btn-primary:hover { background: #456860; }
-    .ds-btn-primary.disabled { background: #cbd5e1; color: #f8fafc; cursor: not-allowed; }
-    
-    .ds-btn-alt { background: transparent; color: var(--c-dark); border: 1px solid #cbd5e1; }
-    .ds-btn-alt:hover { border-color: var(--c-dark); background: #f8fafc; }
-    .ds-btn-alt.disabled { color: #cbd5e1; border-color: #e2e8f0; cursor: not-allowed; }
 
-    .ds-label { font-size: 12px; color: var(--ds-text); font-weight: 500;  }
+    .ds-btn-primary {
+      background: var(--c-brand);
+      color: #fff;
+      border: none;
+    }
+
+    .ds-btn-primary:hover {
+      background: #456860;
+    }
+
+    .ds-btn-primary.disabled {
+      background: #cbd5e1;
+      color: #f8fafc;
+      cursor: not-allowed;
+    }
+
+    .ds-btn-alt {
+      background: transparent;
+      color: var(--c-dark);
+      border: 1px solid #cbd5e1;
+    }
+
+    .ds-btn-alt:hover {
+      border-color: var(--c-dark);
+      background: #f8fafc;
+    }
+
+    .ds-btn-alt.disabled {
+      color: #cbd5e1;
+      border-color: #e2e8f0;
+      cursor: not-allowed;
+    }
+
+    .ds-label {
+      font-size: 12px;
+      color: var(--ds-text);
+      font-weight: 500;
+    }
 
     /* Forms */
-    .ds-form-group { display: flex; flex-direction: column; gap: 8px; }
-    .ds-form-label { font-size: 12px; color: var(--c-dark); font-weight: 600; }
-    .ds-input {
-      padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 4px;
-      font-size: 14px; font-family: var(--font-body); width: 100%; max-width: 320px;
-      background: #fff; color: var(--c-dark); outline: none; transition: border-color 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    .ds-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .ds-input:focus, .ds-input.active { border-color: var(--c-brand); box-shadow: 0 0 0 1px var(--c-brand); }
-    .ds-input.error { border-color: #ef4444; background: #fef2f2; }
-    .ds-input.error::placeholder { color: #ef4444; }
-    
-    .ds-inline-message {
-      padding: 12px 16px; border-radius: 6px; font-size: 13px; font-family: var(--font-body);
-      display: flex; align-items: center; gap: 12px; width: 100%; max-width: 320px; border: 1px solid transparent;
-    }
-    .ds-msg-default { background: #f1f5f9; color: #334155; border-color: #e2e8f0; }
-    .ds-msg-info { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
-    .ds-msg-success { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
-    .ds-msg-error { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
 
-    .ds-toggle-row { display: flex; align-items: center; gap: 16px; }
+    .ds-form-label {
+      font-size: 12px;
+      color: var(--c-dark);
+      font-weight: 600;
+    }
+
+    .ds-input {
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: var(--font-body);
+      width: 100%;
+      max-width: 320px;
+      background: #fff;
+      color: var(--c-dark);
+      outline: none;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .ds-input:focus,
+    .ds-input.active {
+      border-color: var(--c-brand);
+      box-shadow: 0 0 0 1px var(--c-brand);
+    }
+
+    .ds-input.error {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .ds-input.error::placeholder {
+      color: #ef4444;
+    }
+
+    .ds-inline-message {
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+      border: 1px solid transparent;
+    }
+
+    .ds-msg-default {
+      background: #f1f5f9;
+      color: #334155;
+      border-color: #e2e8f0;
+    }
+
+    .ds-msg-info {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+    }
+
+    .ds-msg-success {
+      background: #f0fdf4;
+      color: #15803d;
+      border-color: #bbf7d0;
+    }
+
+    .ds-msg-error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    .ds-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .ds-toggle {
-      width: 44px; height: 24px; background: #cbd5e1; border-radius: 12px;
-      position: relative; cursor: pointer; transition: background 0.2s;
+      width: 44px;
+      height: 24px;
+      background: #cbd5e1;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
     }
+
     .ds-toggle::after {
-      content: ''; position: absolute; top: 2px; left: 2px;
-      width: 20px; height: 20px; background: #fff; border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s;
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
     }
-    .ds-toggle.active { background: var(--c-brand); }
-    .ds-toggle.active::after { transform: translateX(20px); }
+
+    .ds-toggle.active {
+      background: var(--c-brand);
+    }
+
+    .ds-toggle.active::after {
+      transform: translateX(20px);
+    }
 
     /* Tabs */
-    .ds-tabs { display: flex; border-bottom: 1px solid var(--ds-border); gap: 24px; margin-bottom: 16px; }
-    .ds-tab { padding: 8px 0; font-size: 14px; color: var(--ds-muted); font-weight: 500; cursor: pointer; position: relative; }
-    .ds-tab.active { color: var(--c-dark); font-weight: 600; }
+    .ds-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--ds-border);
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .ds-tab {
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--ds-muted);
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .ds-tab.active {
+      color: var(--c-dark);
+      font-weight: 600;
+    }
+
     .ds-tab.active::after {
-      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
-      height: 2px; background: var(--c-brand);
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--c-brand);
     }
   </style>
 </head>
+
 <body>
-  <div class="roadmap-wrap" style="max-width: 1440px; margin: 22px auto 46px; padding: 0 40px; position: relative; z-index: 2; font-family: 'Plus Jakarta Sans', 'Avenir Next', 'Segoe UI', sans-serif;">
+  <div class="roadmap-wrap"
+    style="max-width: 1440px; margin: 22px auto 46px; padding: 0 40px; position: relative; z-index: 2; font-family: 'Plus Jakarta Sans', 'Avenir Next', 'Segoe UI', sans-serif;">
     <header class="brand-header" style="margin: 12px 0 60px;">
-      <div class="brand-row" style="display: flex; align-items: center; justify-content: space-between; gap: 21px; flex-wrap: wrap;">
+      <div class="brand-row"
+        style="display: flex; align-items: center; justify-content: space-between; gap: 21px; flex-wrap: wrap;">
         <div class="brand-logo" aria-label="Doopux" style="display: inline-flex; align-items: center; gap: 13px;">
           <img src="logocolor.png" alt="Doopux logo" style="height: 48px; width: auto; display: block;">
         </div>
         <div class="brand-right" style="display: inline-flex; align-items: center; gap: 16px;">
-          <p class="brand-subtitle" style="margin: 0; font-size: clamp(13px, 1vw, 16px); text-transform: uppercase; letter-spacing: 0.28em; color: #64748b; font-weight: 700; white-space: nowrap;">Website Development</p>
-          <div class="brand-icon" aria-hidden="true" style="width: clamp(48px, 5vw, 60px); height: clamp(48px, 5vw, 60px); display: grid; place-items: center; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-            <img src="icons_0001_Layer-7.png" alt="" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <p class="brand-subtitle"
+            style="margin: 0; font-size: clamp(13px, 1vw, 16px); text-transform: uppercase; letter-spacing: 0.28em; color: #64748b; font-weight: 700; white-space: nowrap;">
+            Website Development</p>
+          <div class="brand-icon" aria-hidden="true"
+            style="width: clamp(48px, 5vw, 60px); height: clamp(48px, 5vw, 60px); display: grid; place-items: center; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <img src="icons_0001_Layer-7.png" alt=""
+              style="width: 100%; height: 100%; object-fit: contain; display: block;">
           </div>
         </div>
       </div>
@@ -196,34 +440,41 @@
     <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
       <section class="ds-section">
         <h2 class="ds-title">Typography</h2>
-        
+
         <div class="ds-typo-item">
-          <p class="ds-typo-preview" style="font-size: clamp(2.4rem, 5vw, 4.2rem);">HEADLINE 1</p>
-          <span class="ds-typo-meta">Display Hero XL · clamp(2.4rem, 5vw, 4.2rem)</span>
+          <p class="ds-typo-preview" style="font-size: clamp(2.6rem, 6vw, 5rem);">HEADLINE 1</p>
+          <span class="ds-typo-meta">Display Hero XL · clamp(2.6rem, 6vw, 5rem)</span>
         </div>
-        
+
         <div class="ds-typo-item">
-          <p class="ds-typo-preview" style="font-size: clamp(2.6rem, 6vw, 5rem);">HEADLINE 2</p>
-          <span class="ds-typo-meta">Display Section XXL · clamp(2.6rem, 6vw, 5rem)</span>
+          <p class="ds-typo-preview" style="font-size: clamp(2.4rem, 5vw, 4.2rem);">HEADLINE 2</p>
+          <span class="ds-typo-meta">Display Section XXL · clamp(2.4rem, 5vw, 4.2rem)</span>
         </div>
-        
+
         <div class="ds-typo-item">
-          <p class="ds-typo-preview" style="font-size: var(--type-lead, clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)); line-height: 1.1;">HEADLINE 3</p>
+          <p class="ds-typo-preview"
+            style="font-size: var(--type-lead, clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)); line-height: 1.1;">HEADLINE 3
+          </p>
           <span class="ds-typo-meta">Section Title · var(--type-lead)</span>
         </div>
-        
+
         <div class="ds-typo-item" style="margin-top: 16px;">
-          <p class="ds-typo-preview body" style="font-size: var(--type-body-lg, clamp(1.05rem, 1rem + 0.35vw, 1.125rem)); font-weight: 500;">Lead Paragraph</p>
+          <p class="ds-typo-preview body"
+            style="font-size: var(--type-body-lg, clamp(1.05rem, 1rem + 0.35vw, 1.125rem)); font-weight: 500;">Lead
+            Paragraph</p>
           <span class="ds-typo-meta">Open Sans Medium · var(--type-body-lg)</span>
         </div>
-        
+
         <div class="ds-typo-item">
-          <p class="ds-typo-preview body" style="font-size: var(--type-body, clamp(1rem, 0.98rem + 0.2vw, 1.1rem));">Body Paragraph. The design system enforces rules to build robust digital products.</p>
+          <p class="ds-typo-preview body" style="font-size: var(--type-body, clamp(1rem, 0.98rem + 0.2vw, 1.1rem));">
+            Body Paragraph. The design system enforces rules to build robust digital products.</p>
           <span class="ds-typo-meta">Open Sans Regular · var(--type-body)</span>
         </div>
-        
+
         <div class="ds-typo-item">
-          <p class="ds-typo-preview body" style="font-size: var(--type-eyebrow, clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)); letter-spacing: 0.28em; text-transform: uppercase;">Eyebrow Label</p>
+          <p class="ds-typo-preview body"
+            style="font-size: var(--type-eyebrow, clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)); letter-spacing: 0.28em; text-transform: uppercase;">
+            Eyebrow Label</p>
           <span class="ds-typo-meta">Open Sans Bold · var(--type-eyebrow)</span>
         </div>
       </section>
@@ -231,10 +482,12 @@
       <section class="ds-section">
         <h2 class="ds-title">Buttons</h2>
         <div class="ds-btn-grid">
-          <button class="nav-cta" style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: var(--c-brand); padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; box-shadow: 0 4px 14px rgba(82,123,114, 0.12); border: none;">Primary</button>
+          <button class="nav-cta"
+            style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: var(--c-brand); padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; box-shadow: 0 4px 14px rgba(82,123,114, 0.12); border: none;">Primary</button>
           <span class="ds-label">Default (.nav-cta)</span>
 
-          <button class="nav-cta" style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: #3e5f58; padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28); border: none;">Primary</button>
+          <button class="nav-cta"
+            style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: #3e5f58; padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28); border: none;">Primary</button>
           <span class="ds-label">Hover (.nav-cta)</span>
 
           <button class="ds-btn ds-btn-primary disabled">Primary</button>
@@ -243,7 +496,8 @@
           <button class="ds-btn ds-btn-alt">Alternative</button>
           <span class="ds-label">Default</span>
 
-          <button class="ds-btn ds-btn-alt" style="border-color: var(--c-dark); background: #f8fafc;">Alternative</button>
+          <button class="ds-btn ds-btn-alt"
+            style="border-color: var(--c-dark); background: #f8fafc;">Alternative</button>
           <span class="ds-label">Hover</span>
 
           <button class="ds-btn ds-btn-alt disabled">Alternative</button>
@@ -286,15 +540,21 @@
 
       <section class="ds-section">
         <h2 class="ds-title">Forms (.form-field)</h2>
-        <div class="form-grid" style="display: grid; gap: 32px; width: 100%; max-width: 400px; padding: 24px; background: #fff; border: 1px solid var(--c-border);">
+        <div class="form-grid"
+          style="display: grid; gap: 32px; width: 100%; max-width: 400px; padding: 24px; background: #fff; border: 1px solid var(--c-border);">
           <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
-            <label for="ds-contact-name" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Full name</label>
-            <input id="ds-contact-name" type="text" placeholder="John Doe" style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; transition: all 0.3s ease; outline: none;">
+            <label for="ds-contact-name"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Full
+              name</label>
+            <input id="ds-contact-name" type="text" placeholder="John Doe"
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; transition: all 0.3s ease; outline: none;">
           </div>
 
           <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
-            <label for="ds-contact-service" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Service</label>
-            <select id="ds-contact-service" style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; appearance: none; cursor: pointer; transition: all 0.3s ease; outline: none; background-image: url('data:image/svg+xml;utf8,<svg fill=%22%230A0A0A%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/></svg>'); background-repeat: no-repeat; background-position-x: 95%; background-position-y: center;">
+            <label for="ds-contact-service"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Service</label>
+            <select id="ds-contact-service"
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; appearance: none; cursor: pointer; transition: all 0.3s ease; outline: none; background-image: url('data:image/svg+xml;utf8,<svg fill=%22%230A0A0A%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/></svg>'); background-repeat: no-repeat; background-position-x: 95%; background-position-y: center;">
               <option value="" selected>Select a service</option>
               <option value="new-build">New build</option>
               <option value="renovation">Renovation</option>
@@ -302,46 +562,22 @@
           </div>
 
           <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
-            <label for="ds-contact-message" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Project overview</label>
-            <textarea id="ds-contact-message" rows="4" placeholder="Location, timeline, budget range..." style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; resize: vertical; min-height: 120px; transition: all 0.3s ease; outline: none;"></textarea>
+            <label for="ds-contact-message"
+              style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Project
+              overview</label>
+            <textarea id="ds-contact-message" rows="4" placeholder="Location, timeline, budget range..."
+              style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; resize: vertical; min-height: 120px; transition: all 0.3s ease; outline: none;"></textarea>
           </div>
         </div>
       </section>
-      
-      
+
+
     </div>
 
     <!-- COLUMN 3 -->
     <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
-      
-      <section class="ds-section">
-        <h2 class="ds-title">Site Usage: Components</h2>
-        <p style="font-size: 14px; color: var(--ds-muted); margin-bottom: 24px;">Examples of where tokens apply in actual site blocks.</p>
-        
-        <div style="background: #fff; border: 1px solid var(--c-border); display: flex; flex-direction: column;">
-          
-          <div style="padding: 24px; border-bottom: 1px solid var(--c-border);">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.32em; margin-bottom: 16px; color: var(--ds-muted);">.site-header & .site-nav</div>
-            <header style="display:flex; justify-content:space-between; align-items:center; background:#0B0B0B; padding:16px; border-radius:8px;">
-               <div style="color:#fff; font-size:18px; font-weight:700;">NORTHGATE</div>
-               <nav style="display:flex; gap:16px;">
-                 <a href="#" style="color:#fff; text-decoration:none; font-size:14px; opacity:0.6;">About</a>
-                 <a href="#" style="color:#fff; text-decoration:none; font-size:14px; opacity:1;">Projects</a>
-               </nav>
-            </header>
-          </div>
-          
-          <div style="padding: 24px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.32em; margin-bottom: 16px; color: var(--ds-muted);">Project Feature Card</div>
-            <div style="background: var(--c-gray-100, #F1F1F3); border-radius: 8px; padding: 24px; border: 1px solid var(--c-border);">
-              <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--ds-muted); font-weight: 700; margin-bottom: 8px;">01 — Design & Construct</div>
-              <h3 style="font-family: var(--font-display); font-size: 24px; margin: 0 0 12px;">North Sydney Renovation</h3>
-              <p style="font-size: 14px; color: #475569; margin: 0;">Example usage of spacing tokens, type hierarchy, and borders mapped from styles.css.</p>
-            </div>
-          </div>
 
-        </div>
-      </section>
+
       <section class="ds-section">
         <h2 class="ds-title">Spacing</h2>
         <div class="ds-color-grid">
@@ -372,23 +608,40 @@
         </div>
       </section>
 
-      
-      
-      
+
+
+
 
     </div>
   </main>
-  
-  <footer class="page-footer" style="margin: 56px auto 32px; max-width: 1440px; width: 100%; padding: 0 40px; color: #64748b; font-size: 13px;">
-    <div class="footer-top" style="background: #ffffff; border-radius: 16px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.06);">
-      <div class="footer-locations" style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; color: #334155; font-weight: 600;">
-        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="australia.png" alt="Australia flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">HQ North Sydney, NSW, Australia.</span>
-        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="germany.png" alt="Germany flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Berlin, Germany.</span>
-        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="argentina.png" alt="Argentina flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Buenos Aires, Argentina.</span>
+
+  <footer class="page-footer"
+    style="margin: 56px auto 32px; max-width: 1440px; width: 100%; padding: 0 40px; color: #64748b; font-size: 13px;">
+    <div class="footer-top"
+      style="background: #ffffff; border-radius: 16px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.06);">
+      <div class="footer-locations"
+        style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; color: #334155; font-weight: 600;">
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="australia.png"
+            alt="Australia flag"
+            style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">HQ
+          North Sydney, NSW, Australia.</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="germany.png"
+            alt="Germany flag"
+            style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Berlin,
+          Germany.</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="argentina.png"
+            alt="Argentina flag"
+            style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Buenos
+          Aires, Argentina.</span>
       </div>
-      <a class="footer-contact" href="mailto:hello@doopux.com" style="display: inline-flex; align-items: center; gap: 8px; color: #0f172a; font-weight: 700; text-decoration: none; padding-left: 20px; border-left: 1px solid #cbd5e1;">Get in touch</a>
+      <a class="footer-contact" href="mailto:hello@doopux.com"
+        style="display: inline-flex; align-items: center; gap: 8px; color: #0f172a; font-weight: 700; text-decoration: none; padding-left: 20px; border-left: 1px solid #cbd5e1;">Get
+        in touch</a>
     </div>
-    <div class="footer-bottom" style="text-align: center; margin-top: 16px; color: #94a3b8; font-size: 12px; font-family: 'Plus Jakarta Sans', 'Avenir Next', sans-serif;">Copyright © 2026</div>
+    <div class="footer-bottom"
+      style="text-align: center; margin-top: 16px; color: #94a3b8; font-size: 12px; font-family: 'Plus Jakarta Sans', 'Avenir Next', sans-serif;">
+      Copyright © 2026</div>
   </footer>
 </body>
+
 </html>
