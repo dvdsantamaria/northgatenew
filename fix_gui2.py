@@ -1,0 +1,218 @@
+import re
+
+with open("GUI/GUI.html", "r", encoding="utf-8") as f:
+    html = f.read()
+
+# Replace fonts to use styles.css tokens
+html = html.replace('''  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>''', '''  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>''')
+
+html = html.replace('''      /* Base Tokens from project */
+      --c-brand: #527B72;
+      --c-dark: #0A0A0A;
+      --c-bg: #F5F5F7;
+      --c-card: #FFFFFF;
+      --c-border: rgba(0, 0, 0, 0.08);
+      
+      --font-display: 'GravesendSans', 'Open Sans', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+
+      /* Design System Spec Styles */
+      --ds-bg: #ffffff;
+      --ds-text: #1a1a1a;
+      --ds-muted: #6b7280;
+      --ds-border: #e2e8f0;''', '''      /* Base Tokens from project styles.css */
+      --c-brand: #527B72;
+      --c-dark: #0A0A0A;
+      --c-bg: #F5F5F7;
+      --c-card: #FFFFFF;
+      --c-border: rgba(0, 0, 0, 0.08);
+
+      --font-display: 'GravesendSans', 'Open Sans', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+
+      /* Design System Spec Layout Specific Styles */
+      --ds-bg: #F5F5F7;
+      --ds-text: #1a1a1a;
+      --ds-muted: #6b7280;
+      --ds-border: #e2e8f0;''')
+
+# Update typography
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Typography</h2>.*?</section>', '''<section class="ds-section">
+        <h2 class="ds-title">Typography</h2>
+        
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview" style="font-size: clamp(2.4rem, 5vw, 4.2rem);">HEADLINE 1</p>
+          <span class="ds-typo-meta">Display Hero XL · clamp(2.4rem, 5vw, 4.2rem)</span>
+        </div>
+        
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview" style="font-size: clamp(2.6rem, 6vw, 5rem);">HEADLINE 2</p>
+          <span class="ds-typo-meta">Display Section XXL · clamp(2.6rem, 6vw, 5rem)</span>
+        </div>
+        
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview" style="font-size: var(--type-lead, clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem)); line-height: 1.1;">HEADLINE 3</p>
+          <span class="ds-typo-meta">Section Title · var(--type-lead)</span>
+        </div>
+        
+        <div class="ds-typo-item" style="margin-top: 16px;">
+          <p class="ds-typo-preview body" style="font-size: var(--type-body-lg, clamp(1.05rem, 1rem + 0.35vw, 1.125rem)); font-weight: 500;">Lead Paragraph</p>
+          <span class="ds-typo-meta">Open Sans Medium · var(--type-body-lg)</span>
+        </div>
+        
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body" style="font-size: var(--type-body, clamp(1rem, 0.98rem + 0.2vw, 1.1rem));">Body Paragraph. The design system enforces rules to build robust digital products.</p>
+          <span class="ds-typo-meta">Open Sans Regular · var(--type-body)</span>
+        </div>
+        
+        <div class="ds-typo-item">
+          <p class="ds-typo-preview body" style="font-size: var(--type-eyebrow, clamp(0.65rem, 0.6rem + 0.2vw, 0.72rem)); letter-spacing: 0.28em; text-transform: uppercase;">Eyebrow Label</p>
+          <span class="ds-typo-meta">Open Sans Bold · var(--type-eyebrow)</span>
+        </div>
+      </section>''', html, flags=re.DOTALL)
+
+# Replace Buttons
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Buttons</h2>.*?</section>', '''<section class="ds-section">
+        <h2 class="ds-title">Buttons</h2>
+        <div class="ds-btn-grid">
+          <button class="nav-cta" style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: var(--c-brand); padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; box-shadow: 0 4px 14px rgba(82,123,114, 0.12); border: none;">Primary</button>
+          <span class="ds-label">Default (.nav-cta)</span>
+
+          <button class="nav-cta" style="display: inline-flex; justify-content: center; align-items: center; border-radius: 9999px; background-color: #3e5f58; padding: 0.75rem 2rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: #ffffff; text-transform: uppercase; transition: all 0.3s; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28); border: none;">Primary</button>
+          <span class="ds-label">Hover (.nav-cta)</span>
+
+          <button class="ds-btn ds-btn-primary disabled">Primary</button>
+          <span class="ds-label">Disabled</span>
+
+          <button class="ds-btn ds-btn-alt">Alternative</button>
+          <span class="ds-label">Default</span>
+
+          <button class="ds-btn ds-btn-alt" style="border-color: var(--c-dark); background: #f8fafc;">Alternative</button>
+          <span class="ds-label">Hover</span>
+
+          <button class="ds-btn ds-btn-alt disabled">Alternative</button>
+          <span class="ds-label">Disabled</span>
+        </div>
+      </section>''', html, flags=re.DOTALL)
+
+# Replace Forms to show Site actual Forms instead of tabs/toggles/fake forms
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Forms</h2>.*?</section>', '''<section class="ds-section">
+        <h2 class="ds-title">Forms (.form-field)</h2>
+        <div class="form-grid" style="display: grid; gap: 32px; width: 100%; max-width: 400px; padding: 24px; background: #fff; border: 1px solid var(--c-border);">
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-name" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Full name</label>
+            <input id="ds-contact-name" type="text" placeholder="John Doe" style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; transition: all 0.3s ease; outline: none;">
+          </div>
+
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-service" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Service</label>
+            <select id="ds-contact-service" style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; appearance: none; cursor: pointer; transition: all 0.3s ease; outline: none; background-image: url('data:image/svg+xml;utf8,<svg fill=%22%230A0A0A%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/></svg>'); background-repeat: no-repeat; background-position-x: 95%; background-position-y: center;">
+              <option value="" selected>Select a service</option>
+              <option value="new-build">New build</option>
+              <option value="renovation">Renovation</option>
+            </select>
+          </div>
+
+          <div class="form-field" style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="ds-contact-message" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--c-dark); font-weight: 600;">Project overview</label>
+            <textarea id="ds-contact-message" rows="4" placeholder="Location, timeline, budget range..." style="width: 100%; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; color: var(--c-dark); background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px; resize: vertical; min-height: 120px; transition: all 0.3s ease; outline: none;"></textarea>
+          </div>
+        </div>
+      </section>''', html, flags=re.DOTALL)
+
+# Remove Tabs, Toggles, and Inline Messages completely as requested by the user
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Tabs</h2>.*?</section>', '', html, flags=re.DOTALL)
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Toggles</h2>.*?</section>', '', html, flags=re.DOTALL)
+html = re.sub(r'<section class="ds-section">\s*<h2 class="ds-title">Inline Messages</h2>.*?</section>', '', html, flags=re.DOTALL)
+
+
+# Replace SPACING values
+html = re.sub(r'<div class="ds-space-item">\s*<div class="ds-space-box" style="width: 64px; height: 64px;"></div>\s*<div class="ds-space-meta"><strong>XL</strong> <span>64px</span></div>\s*</div>', '''<div class="ds-space-item">
+            <div class="ds-space-box" style="width: 64px; height: 64px;"></div>
+            <div class="ds-space-meta"><strong>XL</strong> <span>var(--space-section-md) / 64px</span></div>
+          </div>''', html)
+
+html = re.sub(r'<div class="ds-space-item">\s*<div class="ds-space-box" style="width: 96px; height: 96px;"></div>\s*<div class="ds-space-meta"><strong>XXL</strong> <span>96px</span></div>\s*</div>', '''<div class="ds-space-item">
+            <div class="ds-space-box" style="width: 96px; height: 96px;"></div>
+            <div class="ds-space-meta"><strong>XXL</strong> <span>var(--space-section-xl) / 96px</span></div>
+          </div>''', html)
+
+
+# Insert Header & Footer
+html = html.replace('''<body>
+  <header class="ds-header">''', '''<body>
+  <div class="roadmap-wrap" style="max-width: 1440px; margin: 22px auto 46px; padding: 0 40px; position: relative; z-index: 2; font-family: 'Plus Jakarta Sans', 'Avenir Next', 'Segoe UI', sans-serif;">
+    <header class="brand-header" style="margin: 12px 0 60px;">
+      <div class="brand-row" style="display: flex; align-items: center; justify-content: space-between; gap: 21px; flex-wrap: wrap;">
+        <div class="brand-logo" aria-label="Doopux" style="display: inline-flex; align-items: center; gap: 13px;">
+          <img src="logocolor.png" alt="Doopux logo" style="height: 48px; width: auto; display: block;">
+        </div>
+        <div class="brand-right" style="display: inline-flex; align-items: center; gap: 16px;">
+          <p class="brand-subtitle" style="margin: 0; font-size: clamp(13px, 1vw, 16px); text-transform: uppercase; letter-spacing: 0.28em; color: #64748b; font-weight: 700; white-space: nowrap;">Website Development</p>
+          <div class="brand-icon" aria-hidden="true" style="width: clamp(48px, 5vw, 60px); height: clamp(48px, 5vw, 60px); display: grid; place-items: center; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <img src="icons_0001_Layer-7.png" alt="" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <header class="ds-header">''')
+
+html = html.replace('''    </div>
+  </main>
+</body>''', '''    </div>
+  </main>
+  
+  <footer class="page-footer" style="margin: 56px auto 32px; max-width: 1440px; width: 100%; padding: 0 40px; color: #64748b; font-size: 13px;">
+    <div class="footer-top" style="background: #ffffff; border-radius: 16px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.06);">
+      <div class="footer-locations" style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; color: #334155; font-weight: 600;">
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="australia.png" alt="Australia flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">HQ North Sydney, NSW, Australia.</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="germany.png" alt="Germany flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Berlin, Germany.</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><img class="footer-flag" src="argentina.png" alt="Argentina flag" style="width: 18px; height: 12px; border-radius: 2px; object-fit: cover; display: inline-block; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);">Buenos Aires, Argentina.</span>
+      </div>
+      <a class="footer-contact" href="mailto:hello@doopux.com" style="display: inline-flex; align-items: center; gap: 8px; color: #0f172a; font-weight: 700; text-decoration: none; padding-left: 20px; border-left: 1px solid #cbd5e1;">Get in touch</a>
+    </div>
+    <div class="footer-bottom" style="text-align: center; margin-top: 16px; color: #94a3b8; font-size: 12px; font-family: 'Plus Jakarta Sans', 'Avenir Next', sans-serif;">Copyright © 2026</div>
+  </footer>
+</body>''')
+
+# Create a section for real site components in the 3rd column
+html = html.replace('''<!-- COLUMN 3 -->
+    <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">''', '''<!-- COLUMN 3 -->
+    <div class="ds-column" style="display: flex; flex-direction: column; gap: 64px;">
+      
+      <section class="ds-section">
+        <h2 class="ds-title">Site Usage: Components</h2>
+        <p style="font-size: 14px; color: var(--ds-muted); margin-bottom: 24px;">Examples of where tokens apply in actual site blocks.</p>
+        
+        <div style="background: #fff; border: 1px solid var(--c-border); display: flex; flex-direction: column;">
+          
+          <div style="padding: 24px; border-bottom: 1px solid var(--c-border);">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.32em; margin-bottom: 16px; color: var(--ds-muted);">.site-header & .site-nav</div>
+            <header style="display:flex; justify-content:space-between; align-items:center; background:#0B0B0B; padding:16px; border-radius:8px;">
+               <div style="color:#fff; font-size:18px; font-weight:700;">NORTHGATE</div>
+               <nav style="display:flex; gap:16px;">
+                 <a href="#" style="color:#fff; text-decoration:none; font-size:14px; opacity:0.6;">About</a>
+                 <a href="#" style="color:#fff; text-decoration:none; font-size:14px; opacity:1;">Projects</a>
+               </nav>
+            </header>
+          </div>
+          
+          <div style="padding: 24px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.32em; margin-bottom: 16px; color: var(--ds-muted);">Project Feature Card</div>
+            <div style="background: var(--c-gray-100, #F1F1F3); border-radius: 8px; padding: 24px; border: 1px solid var(--c-border);">
+              <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--ds-muted); font-weight: 700; margin-bottom: 8px;">01 \u2014 Design & Construct</div>
+              <h3 style="font-family: var(--font-display); font-size: 24px; margin: 0 0 12px;">North Sydney Renovation</h3>
+              <p style="font-size: 14px; color: #475569; margin: 0;">Example usage of spacing tokens, type hierarchy, and borders mapped from styles.css.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>''')
+
+with open("GUI/GUI.html", "w", encoding="utf-8") as f:
+    f.write(html)
