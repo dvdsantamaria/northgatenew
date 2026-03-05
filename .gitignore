@@ -3,3 +3,7 @@ northgate-seo-ai-execution-plan.md
 
 # Reporting directory (internal reports)
 Reporting/
+
+# Environment variables (API keys)
+.env
+.env.local
