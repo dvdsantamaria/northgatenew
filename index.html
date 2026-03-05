@@ -38,11 +38,43 @@
       rel="stylesheet">
   </noscript>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Critical CSS inline for above-the-fold -->
+  <style>
+    /* Critical: Reset + base layout */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-family:'Open Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    body{min-height:100vh;background:#000;color:#fff;overflow-x:hidden}
+    /* Critical: Hero section */
+    #hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-img-wrap{position:absolute;inset:0}
+    .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.5)}
+    /* Critical: Navigation */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(0,0,0,0.8),transparent)}
+    .nav-logo{height:2rem}
+    .nav-menu-btn{background:none;border:none;color:#fff;cursor:pointer}
+    /* Critical: Hero text */
+    .hero-content{position:relative;z-index:10;text-align:center;padding:0 1.5rem}
+    .hero-title{font-size:clamp(2rem,5vw,4rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1rem}
+    .hero-subtitle{font-size:clamp(0.875rem,2vw,1rem);opacity:0.8;max-width:600px;margin:0 auto 2rem}
+    .hero-cta{display:inline-block;padding:0.75rem 2rem;background:#fff;color:#000;text-decoration:none;font-weight:500;transition:background 0.3s}
+    .hero-cta:hover{background:#e5e5e5}
+    /* Critical: Scroll cue */
+    .scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+    .scroll-cue span{width:1px;height:2rem;background:rgba(255,255,255,0.5);animation:scroll 1.5s infinite}
+    @keyframes scroll{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:1;transform:translateY(0.5rem)}}
+  </style>
 
-  <link rel="stylesheet" href="styles.css">
-  <script src="tailwind-config.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Async load non-critical CSS -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+
+  <!-- Defer main styles -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+  <!-- Tailwind: Load async but needed for layout -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="tailwind-config.js" defer></script>
 
   <script src="https://unpkg.com/lucide@latest" defer></script>
 
