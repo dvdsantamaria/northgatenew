@@ -1,4 +1,4 @@
-// VERSION: paso1_preconnect_font
+// VERSION: paso2_responsive_poster
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -280,6 +280,13 @@ initProcessAccordion();
   var poster = document.querySelector('.hero-poster');
   
   if (!video || !poster) return;
+  
+  // Set responsive poster before any loading happens
+  if (isMobile) {
+    video.setAttribute('poster', video.dataset.posterMobile);
+  } else {
+    video.setAttribute('poster', video.dataset.posterDesktop);
+  }
   
   if (isMobile) {
     // Mobile: Never load video (saves 5MB), keep poster visible
