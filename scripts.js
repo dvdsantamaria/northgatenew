@@ -35,10 +35,13 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
     if (footerYear) {
       footerYear.textContent = new Date().getFullYear();
     }
-    gsap.registerPlugin(ScrollTrigger);
-
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let lenis = null;
+
+    // Only initialize GSAP on desktop (mobile skips for performance)
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
 
     if (typeof Lenis !== 'undefined' && !prefersReducedMotion) {
       lenis = new Lenis({
@@ -60,7 +63,9 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
       }
       requestAnimationFrame(raf);
 
-      gsap.ticker.lagSmoothing(0);
+      if (typeof gsap !== 'undefined') {
+        gsap.ticker.lagSmoothing(0);
+      }
     }
 
     const splitTextToScrub = (el) => {
@@ -72,6 +77,14 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
     };
 
     const initAnimations = () => {
+      // Skip animations on mobile for performance
+      if (typeof gsap === 'undefined') {
+        // Mobile fallback: show content without animations
+        document.querySelectorAll('.hero-title-l, .hero-title-r').forEach(el => {
+          el.style.transform = 'translateY(0)';
+        });
+        return;
+      }
 
       gsap.to('.hero-title-l, .hero-title-r', { y: 0, duration: 1.4, ease: 'power3.out', stagger: 0.1 });
 
@@ -210,12 +223,14 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
     initProcessAccordion();
     initAnimations();
     if (lenis) lenis.start();
-    ScrollTrigger.refresh();
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
     window.addEventListener('load', () => {
-      ScrollTrigger.refresh();
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       if (lenis) {
         lenis.start();
         lenis.scrollTo(0);
       }
     });
-    window.addEventListener('resize', () => ScrollTrigger.refresh());
+    window.addEventListener('resize', () => {
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    });

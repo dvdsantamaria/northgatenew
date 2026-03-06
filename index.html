@@ -42,14 +42,31 @@
   <style>.social-icon{width:1.25rem;height:1.25rem;fill:currentColor}</style>
 
   <link rel="stylesheet" href="styles.css">
+  <!-- Tailwind async load -->
   <script src="tailwind-config.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <!-- GSAP/Lenis: Desktop only (disabled on mobile for performance) -->
+  <script>
+    (function() {
+      var isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile) {
+        // Desktop: Load animation libraries
+        var scripts = [
+          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+          'https://unpkg.com/lenis@1.1.18/dist/lenis.min.js'
+        ];
+        scripts.forEach(function(src) {
+          var s = document.createElement('script');
+          s.src = src;
+          s.defer = true;
+          document.head.appendChild(s);
+        });
+      }
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -178,7 +195,7 @@
 
   <nav class="site-nav fixed top-0 w-full px-6 py-6 md:px-12 md:py-8 flex justify-between items-center z-50">
     <a href="index.html" class="flex items-center gap-2 nav-blend" aria-label="Northgate Building Group home">
-      <img decoding="async" src="assets/newlogo.webp" alt="Northgate Building Group"
+      <img decoding="async" src="assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40"
         class="nav-logo h-[2.275rem] md:h-[2.73rem] w-auto">
     </a>
     <div class="hidden lg:flex items-center gap-8 nav-group">
@@ -217,7 +234,7 @@
       <!-- Hero container -->
       <div class="absolute inset-0 w-full h-full hero-img-wrap">
         <!-- Poster image shows immediately (LCP) - Responsive with srcset -->
-        <img 
+        <img width="1920" height="1080"
           src="assets/hero-poster.webp" 
           srcset="assets/hero-poster-mobile.webp 768w, assets/hero-poster-tablet.webp 1200w, assets/hero-poster.webp 1920w"
           sizes="100vw"
@@ -365,7 +382,7 @@
               </div>
             </div>
             <div class="card-img-wrap">
-              <img decoding="async" loading="lazy" src="assets/verda.webp" class="card-img object-cover w-full h-full"
+              <img decoding="async" loading="lazy" src="assets/verda.webp" class="card-img object-cover w-full h-full" width="800" height="600"
                 alt="Verda, Yamba">
             </div>
           </div>
@@ -401,7 +418,7 @@
               </div>
             </div>
             <div class="card-img-wrap">
-              <img decoding="async" loading="lazy" src="assets/rowley.webp" class="card-img object-cover w-full h-full"
+              <img decoding="async" loading="lazy" src="assets/rowley.webp" class="card-img object-cover w-full h-full" width="800" height="600"
                 alt="Rowley Street">
             </div>
           </div>
@@ -438,7 +455,7 @@
               </div>
             </div>
             <div class="card-img-wrap">
-              <img decoding="async" loading="lazy" src="assets/arthur.webp" class="card-img object-cover w-full h-full"
+              <img decoding="async" loading="lazy" src="assets/arthur.webp" class="card-img object-cover w-full h-full" width="800" height="600"
                 alt="Arthur Street renovation">
             </div>
           </div>
@@ -530,7 +547,7 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 min-h-[120vh]">
         <div class="parallax-col flex flex-col gap-4 md:gap-8 pt-20">
-          <img decoding="async" loading="lazy" src="assets/gallery/8-Rowley-034.webp"
+          <img decoding="async" loading="lazy" src="assets/gallery/8-Rowley-034.webp" width="600" height="400"
             class="w-full aspect-[3/4] object-cover grayscale opacity-90" alt="Project progress detail">
           <div class="p-8 border border-black/5 bg-white flex items-center justify-center text-center aspect-square">
             <p class="text-xs leading-relaxed text-gray-600">
@@ -541,7 +558,7 @@
                   Homeowners</strong></span>
             </p>
           </div>
-          <img decoding="async" loading="lazy" src="assets/gallery/Maxwell-Parade-033.webp"
+          <img decoding="async" loading="lazy" src="assets/gallery/Maxwell-Parade-033.webp" width="600" height="400"
             class="w-full aspect-[4/5] object-cover grayscale opacity-90" alt="Material and finish selection">
 
         </div>
@@ -557,9 +574,9 @@
                   Penthouse in Nelson bay</strong></span>
             </p>
           </div>
-          <img decoding="async" loading="lazy" src="assets/gallery/Northgate_Building_Group_Shoot_3_DSCF4455.webp"
+          <img decoding="async" loading="lazy" src="assets/gallery/Northgate_Building_Group_Shoot_3_DSCF4455.webp" width="600" height="400"
             class="w-full aspect-[3/4] object-cover grayscale opacity-90" alt="Construction milestone">
-          <img decoding="async" loading="lazy" src="assets/gallery/interior.webp"
+          <img decoding="async" loading="lazy" src="assets/gallery/interior.webp" width="600" height="400"
             class="w-full aspect-[4/3] object-cover grayscale opacity-90" alt="Maile Interior">
           <div class="p-8 border border-black/5 bg-white flex items-center justify-center text-center aspect-square">
             <p class="text-xs leading-relaxed text-gray-600">
@@ -571,7 +588,7 @@
           </div>
         </div>
         <div class="parallax-col flex flex-col gap-4 md:gap-8 pt-40 hidden md:flex">
-          <img decoding="async" loading="lazy" src="assets//gallery/pool.webp"
+          <img decoding="async" loading="lazy" src="assets//gallery/pool.webp" width="600" height="400"
             class="w-full aspect-[3/4] object-cover grayscale opacity-90" alt="Pool detail">
           <div class="p-8 border border-black/5 bg-white flex items-center justify-center text-center aspect-[4/5]">
             <p class="text-xs leading-relaxed text-gray-600">
@@ -583,7 +600,7 @@
                   Homeowners</strong></span>
             </p>
           </div>
-          <img decoding="async" loading="lazy" src="assets/Projects/lord/gallery0.webp"
+          <img decoding="async" loading="lazy" src="assets/Projects/lord/gallery0.webp" width="600" height="400"
             class="w-full aspect-[3/4] object-cover grayscale opacity-90" alt="Project detail">
         </div>
       </div>
@@ -683,7 +700,7 @@
 
   <footer class="footer-sticky">
     <div class="absolute inset-0 z-0">
-      <img decoding="async" loading="lazy" src="assets/northern-beaches.webp"
+      <img decoding="async" loading="lazy" src="assets/northern-beaches.webp" width="800" height="600"
         class="w-full h-full object-cover opacity-20 pointer-events-none grayscale">
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
     </div>
@@ -761,10 +778,10 @@
           </div>
         </div>
         <div class="flex items-start">
-          <img src="assets/APB.webp" alt="APB logo" class="footer-logo footer-logo--large">
+          <img src="assets/APB.webp" alt="APB logo" class="footer-logo footer-logo--large" width="120" height="60">
         </div>
         <div class="flex items-start">
-          <img src="assets/masters.avif" alt="Masters Builders logo"
+          <img src="assets/masters.avif" alt="Masters Builders logo" width="120" height="60"
             class="footer-logo footer-logo--white footer-logo--large footer-logo--masters">
         </div>
       </div>
