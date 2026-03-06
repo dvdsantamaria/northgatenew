@@ -1,4 +1,5 @@
-tailwind.config = {
+if (typeof tailwind !== 'undefined') {
+  tailwind.config = {
       theme: {
         extend: {
 
@@ -127,3 +128,4 @@ scaleY(var(--tw-scale-y, 1))
         }
       ]
     };
+}
