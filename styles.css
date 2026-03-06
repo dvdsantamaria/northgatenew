@@ -268,6 +268,13 @@
     .display-font {
       font-family: var(--font-display);
     }
+    
+    /* Mobile: use system font for instant LCP */
+    @media (max-width: 768px) {
+      .hero-mobile-stack .display-font {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    }
 
     .type-body {
       font-size: var(--type-body);
