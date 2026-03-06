@@ -1,6 +1,25 @@
+// Load GSAP/Lenis only on desktop (mobile skips for performance)
+(function() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (!isMobile) {
+    const scripts = [
+      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+      'https://unpkg.com/lenis@1.1.18/dist/lenis.min.js'
+    ];
+    scripts.forEach(function(src) {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = false;
+      s.defer = true;
+      document.head.appendChild(s);
+    });
+  }
+})();
+
 if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
+  window.lucide.createIcons();
+}
 
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
