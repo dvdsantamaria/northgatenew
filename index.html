@@ -229,16 +229,15 @@
         height="1080"
         style="z-index: 1;"
       >
-      <!-- Video: lazy loaded on mobile, normal on desktop -->
+      <!-- Video: desktop only -->
       <video 
         id="hero-video"
-        class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-video"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-video hidden md:block"
         muted 
         loop 
         playsinline
         preload="none"
-        data-poster-mobile="assets/hero-poster-mobile.webp"
-        data-poster-desktop="assets/hero-poster.webp"
+        poster="assets/hero-poster.webp"
         style="z-index: 0; opacity: 0;"
       >
         <source src="assets/hero-min.webm" type="video/webm" />
