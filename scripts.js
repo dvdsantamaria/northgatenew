@@ -1,4 +1,4 @@
-// VERSION: fix_accessibility
+// VERSION: remove_decoding_async
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
