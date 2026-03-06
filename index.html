@@ -216,37 +216,34 @@
     <h1 class="sr-only">New Builds and Renovations in Sydney and Newcastle | Northgate Building Group</h1>
 
     <section class="h-screen relative flex items-center justify-center overflow-hidden" id="hero">
-      <!-- Hero container -->
-      <div class="absolute inset-0 w-full h-full hero-img-wrap">
-        <!-- Poster image shows immediately (LCP) - Responsive with srcset -->
-        <img width="1920" height="1080"
-          src="assets/hero-poster.webp" 
-          srcset="assets/hero-poster-mobile.webp 768w, assets/hero-poster-tablet.webp 1200w, assets/hero-poster.webp 1920w"
-          sizes="100vw"
-          alt="Northgate Building Group - Luxury Home Construction"
-          class="w-full h-full object-cover brightness-[0.5] hero-poster"
-          fetchpriority="high"
-          decoding="async"
-          width="1920"
-          height="1080"
-          style="position: absolute; inset: 0; z-index: 1;"
-        >
-        <!-- Video: lazy loaded on mobile, normal on desktop -->
-        <video 
-          id="hero-video"
-          class="w-full h-full object-cover brightness-[0.5] hero-video"
-          muted 
-          loop 
-          playsinline
-          preload="none"
-          data-poster-mobile="assets/hero-poster-mobile.webp"
-          data-poster-desktop="assets/hero-poster.webp"
-          style="position: absolute; inset: 0; z-index: 0; opacity: 0; transition: opacity 0.5s ease;"
-        >
-          <source src="assets/hero-min.webm" type="video/webm" />
-          <source src="assets/hero-min.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <!-- LCP Image: Direct child for fastest discovery -->
+      <img 
+        src="assets/hero-poster-mobile.webp"
+        srcset="assets/hero-poster-mobile.webp 768w, assets/hero-poster-tablet.webp 1200w, assets/hero-poster.webp 1920w"
+        sizes="100vw"
+        alt="Northgate Building Group - Luxury Home Construction"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-poster"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+        style="z-index: 1;"
+      >
+      <!-- Video: lazy loaded on mobile, normal on desktop -->
+      <video 
+        id="hero-video"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-video"
+        muted 
+        loop 
+        playsinline
+        preload="none"
+        data-poster-mobile="assets/hero-poster-mobile.webp"
+        data-poster-desktop="assets/hero-poster.webp"
+        style="z-index: 0; opacity: 0;"
+      >
+        <source src="assets/hero-min.webm" type="video/webm" />
+        <source src="assets/hero-min.mp4" type="video/mp4" />
+      </video>
 
       <div
         class="absolute bottom-16 md:bottom-12 left-6 md:left-12 text-white mix-blend-exclusion hidden md:flex flex-col gap-1 hero-meta">
