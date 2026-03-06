@@ -24,17 +24,17 @@
   <meta name="twitter:description"
     content="Builder-led delivery for new builds, knockdown rebuilds, renovations and home extensions across Sydney &amp; Newcastle." />
 
+  <!-- Preload critical font FIRST (reduces LCP text delay) -->
+  <link rel="preconnect" href="https://northgatebuilding.com.au">
+  <link rel="preload" href="GravesendSans-Medium.otf" as="font" type="font/otf" crossorigin>
+  
   <!-- Preload hero poster with responsive images -->
   <link rel="preload" as="image" imagesrcset="assets/hero-poster-mobile.webp 768w, assets/hero-poster-tablet.webp 1200w, assets/hero-poster.webp 1920w" imagesizes="100vw" fetchpriority="high" type="image/webp">
   
-  <!-- Preconnect to critical domains -->
-  <link rel="preconnect" href="https://northgatebuilding.com.au">
+  <!-- Preconnect to other domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-  
-  <!-- Preload critical font -->
-  <link rel="preload" href="GravesendSans-Medium.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&amp;display=swap" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
