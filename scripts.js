@@ -1,4 +1,4 @@
-// VERSION: remove_scroll_cue_mobile
+// VERSION: content_visibility
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
