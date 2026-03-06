@@ -1,4 +1,4 @@
-// VERSION: font_optional
+// VERSION: remove_mix_blend_h2
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
