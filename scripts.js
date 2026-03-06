@@ -1,4 +1,4 @@
-// VERSION: 674646e - 20260306_132918
+// VERSION: 35af5c9 - 20260306_133327
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
