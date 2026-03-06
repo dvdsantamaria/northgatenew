@@ -1,4 +1,4 @@
-// VERSION: gtm_end_body
+// VERSION: fix_accessibility
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
