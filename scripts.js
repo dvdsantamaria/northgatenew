@@ -1,4 +1,4 @@
-// VERSION: preload_font_first
+// VERSION: simplify_hero
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
