@@ -30,7 +30,7 @@
       src: url('GravesendSans-Medium.otf') format('opentype');
       font-weight: 500;
       font-style: normal;
-      font-display: swap;
+      font-display: optional;
     }
 
     body {
