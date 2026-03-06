@@ -1,4 +1,4 @@
-// VERSION: smaller_h2_mobile
+// VERSION: font_optional
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
