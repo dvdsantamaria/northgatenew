@@ -214,8 +214,8 @@
     <h1 class="sr-only">New Builds and Renovations in Sydney and Newcastle | Northgate Building Group</h1>
 
     <section class="h-screen relative flex items-center justify-center overflow-hidden" id="hero">
-      <!-- Hero container with content-visibility for performance -->
-      <div class="absolute inset-0 w-full h-full hero-img-wrap" style="contain: paint layout;">
+      <!-- Hero container -->
+      <div class="absolute inset-0 w-full h-full hero-img-wrap">
         <!-- Poster image shows immediately (LCP) - Responsive with srcset -->
         <img 
           src="assets/hero-poster.webp" 
@@ -227,10 +227,11 @@
           decoding="async"
           width="1920"
           height="1080"
-          style="position: absolute; inset: 0; z-index: 1; contain: paint layout;"
+          style="position: absolute; inset: 0; z-index: 1;"
         >
-        <!-- Video loads after page is ready -->
+        <!-- Video: lazy loaded on mobile, normal on desktop -->
         <video 
+          id="hero-video"
           class="w-full h-full object-cover brightness-[0.5] hero-video"
           muted 
           loop 
@@ -775,57 +776,27 @@
 
   <script src="scripts.js" defer></script>
 
-  <!-- Hero Video Lazy Loading - Smart loading based on device/connection -->
-<!-- VERSION: OPTIMIZED-2026-03-05-LCP-FIX -->
+  <!-- Hero Video: Mobile = poster only (5MB saved), Desktop = video -->
   <script>
     (function() {
-      // Check if we should load video
       var isMobile = window.matchMedia('(max-width: 768px)').matches;
-      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      var saveData = connection && connection.saveData;
-      var effectiveType = connection && connection.effectiveType;
+      var video = document.getElementById('hero-video');
+      var poster = document.querySelector('.hero-poster');
       
-      // On mobile with slow connection, don't load video at all (keep poster)
-      var shouldLoadVideo = !saveData && (!isMobile || effectiveType === '4g');
+      if (!video || !poster) return;
       
-      function initHeroVideo() {
-        var video = document.querySelector('.hero-video');
-        var poster = document.querySelector('.hero-poster');
-        
-        if (!video || !poster) return;
-        
-        // If mobile and slow connection, keep poster visible (no video)
-        if (!shouldLoadVideo && isMobile) {
-          console.log('Mobile/slow connection: keeping poster image');
-          return;
-        }
-        
-        // Load video
-        video.load();
-        
-        // When video can play, fade it in
-        video.addEventListener('canplay', function() {
+      if (isMobile) {
+        // Mobile: Never load video (saves 5MB), keep poster visible
+        video.style.display = 'none';
+      } else {
+        // Desktop: Load video after LCP
+        setTimeout(function() {
+          video.load();
           video.play().then(function() {
             video.style.opacity = '1';
             poster.style.opacity = '0';
-            // Hide poster completely after transition
-            setTimeout(function() {
-              poster.style.display = 'none';
-            }, 500);
-          }).catch(function(e) {
-            // Autoplay blocked, keep poster visible
-            console.log('Autoplay prevented:', e);
-          });
-        }, { once: true });
-      }
-      
-      // Delay video loading based on device
-      var delay = isMobile ? 3000 : 1500; // Longer delay on mobile
-      
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(initHeroVideo, { timeout: delay });
-      } else {
-        setTimeout(initHeroVideo, delay);
+          }).catch(function() {});
+        }, 100);
       }
     })();
   </script>
