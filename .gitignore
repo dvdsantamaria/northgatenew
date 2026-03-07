@@ -15,3 +15,11 @@ node_modules/
 
 # Branding strategy documents (confidential)
 branding strategy/
+
+# Planning documents (internal strategy)
+*-plan.md
+*-strategy.md
+*-lessons.md
+*-rules.md
+SEO-PERFORMANCE-LESSONS.md
+IMPLEMENTATION-RULES.md
