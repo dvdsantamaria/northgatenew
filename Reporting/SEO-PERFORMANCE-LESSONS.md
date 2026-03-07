@@ -211,3 +211,31 @@ Cada implementación debe documentar:
 **Last Updated:** March 7, 2026  
 **Maintained by:** AI SEO Assistant  
 **Review Schedule:** Weekly during active implementations
+
+---
+
+## 🆕 NEW FAILURE: March 8, 2026
+
+### Attempt: Enhanced Schema Markup (HomeAndConstructionBusiness)
+
+**Change:** Replaced existing JSON-LD schema with enhanced version including:
+- Added `priceRange`, `geo`, `openingHoursSpecification`
+- Enhanced `areaServed` with State references
+- Added `hasOfferCatalog` with service descriptions
+- Larger JSON-LD payload (~2KB increase)
+
+**Result:**
+- Mobile: 78/100 → 72/100 (-6 points)
+- LCP: 3.2s → 4.1s (+0.9s regression)
+- Desktop: 78/100 (no change, but below 93 target)
+
+**Root Cause:**
+Larger JSON-LD in `<head>` increased HTML size and possibly affected parsing time, contributing to longer LCP.
+
+**Lesson:**
+Even "safe" schema additions can affect performance if they significantly increase HTML payload size. 
+
+**Status:** PROHIBITED - Do not enhance existing schemas with additional properties.
+
+**Alternative:**
+Keep existing minimal schema or add schemas at END of `<body>` instead of `<head>`.
