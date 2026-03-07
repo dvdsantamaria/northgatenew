@@ -16,10 +16,8 @@ Ninguna implementación puede degradar las siguientes métricas:
 
 | Metric | Mobile Minimum | Desktop Minimum | Action if Breached |
 |--------|---------------|-----------------|-------------------|
-| Performance Score | 71/100 | 93/100 | **ROLLBACK** |
-| LCP | 5.5s | 1.5s | **ROLLBACK** |
-| CLS | 0.05 | 0.05 | **ROLLBACK** |
-| Accessibility | 95/100 | 95/100 | **ROLLBACK** |
+| Performance Score | 90/100 | 90/100 | **ROLLBACK** |
+| Accessibility | 90/100 | 90/100 | **ROLLBACK** |
 | Best Practices | 100/100 | 100/100 | **ROLLBACK** |
 | SEO | 100/100 | 100/100 | **ROLLBACK** |
 

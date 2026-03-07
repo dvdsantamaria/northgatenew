@@ -160,6 +160,7 @@
   </noscript>
 
   <!-- GSAP/Lenis loaded conditionally via scripts.js (desktop only) -->
+  <!-- Schema: Enhanced HomeAndConstructionBusiness + Services -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -168,63 +169,87 @@
         "@type": "HomeAndConstructionBusiness",
         "@id": "https://northgatebuilding.com.au/#business",
         "name": "Northgate Building Group",
+        "alternateName": "Northgate",
         "url": "https://northgatebuilding.com.au/",
+        "logo": "https://northgatebuilding.com.au/assets/newlogo.webp",
+        "image": "https://northgatebuilding.com.au/assets/hero-poster.webp",
         "telephone": "+61-433-810-935",
         "email": "enquiries@northgatebuilding.com.au",
+        "priceRange": "$$$$",
+        "description": "Custom homes and renovations across Sydney and Newcastle. Builder-led delivery with transparent pricing and dedicated project teams. $1.5M-$5M+ projects.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "addressCountry": "AU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-33.8688",
+          "longitude": "151.2093"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Sydney",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "New South Wales"
+            }
+          },
+          {
+            "@type": "City",
+            "name": "Newcastle",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "New South Wales"
+            }
+          },
+          {
+            "@type": "City",
+            "name": "Port Stephens"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Building Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom New Homes",
+                "description": "Architecturally designed homes built with clarity and precision"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renovations & Extensions",
+                "description": "Transform your existing home with thoughtful improvements"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Knockdown Rebuilds",
+                "description": "Start fresh on your existing land with a brand new home"
+              }
+            }
+          ]
+        },
         "sameAs": [
           "https://www.instagram.com/northgatebuildinggroup/"
-        ],
-        "areaServed": [
-          { "@type": "Place", "name": "Sydney" },
-          { "@type": "Place", "name": "Newcastle" }
-        ],
-        "serviceType": [
-          "New Builds",
-          "Knockdown rebuilds",
-          "Renovations",
-          "Home extensions",
-          "Builder-led delivery"
-        ],
-        "slogan": "Clarity, Care & Confidence."
-      },
-      {
-        "@type": "Service",
-        "@id": "https://northgatebuilding.com.au/new-builds",
-        "name": "New Builds",
-        "provider": { "@id": "https://northgatebuilding.com.au/#business" },
-        "areaServed": [
-          { "@type": "Place", "name": "Sydney" },
-          { "@type": "Place", "name": "Newcastle" }
-        ]
-      },
-      {
-        "@type": "Service",
-        "@id": "https://northgatebuilding.com.au/knockdown-rebuilds",
-        "name": "Knockdown Rebuilds",
-        "provider": { "@id": "https://northgatebuilding.com.au/#business" },
-        "areaServed": [
-          { "@type": "Place", "name": "Sydney" },
-          { "@type": "Place", "name": "Newcastle" }
-        ]
-      },
-      {
-        "@type": "Service",
-        "@id": "https://northgatebuilding.com.au/renovations",
-        "name": "Renovations",
-        "provider": { "@id": "https://northgatebuilding.com.au/#business" },
-        "areaServed": [
-          { "@type": "Place", "name": "Sydney" },
-          { "@type": "Place", "name": "Newcastle" }
-        ]
-      },
-      {
-        "@type": "Service",
-        "@id": "https://northgatebuilding.com.au/home-extensions",
-        "name": "Home Extensions",
-        "provider": { "@id": "https://northgatebuilding.com.au/#business" },
-        "areaServed": [
-          { "@type": "Place", "name": "Sydney" },
-          { "@type": "Place", "name": "Newcastle" }
         ]
       }
     ]
