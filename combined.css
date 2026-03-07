@@ -756,6 +756,7 @@
       color: #4B5563;
       transition: color 0.1s;
       will-change: color;
+      white-space: normal;
     }
 
     .card-inner {

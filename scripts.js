@@ -85,7 +85,7 @@ function initDesktopAnimations() {
     const text = el.innerText;
     el.innerHTML = text
       .split(' ')
-      .map((word) => `<span class="scrub-word inline-block">${word}&nbsp;</span>`)
+      .map((word) => `<span class="scrub-word">${word} </span>`)
       .join('');
   };
 
