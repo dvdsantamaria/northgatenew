@@ -1,4 +1,4 @@
-// VERSION: content_visibility
+// VERSION: mobile_optimization_v1
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
