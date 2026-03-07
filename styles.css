@@ -27,7 +27,8 @@
 
     @font-face {
       font-family: 'GravesendSans';
-      src: url('GravesendSans-Medium.otf') format('opentype');
+      src: url('GravesendSans-Medium.woff2') format('woff2'),
+        url('GravesendSans-Medium.otf') format('opentype');
       font-weight: 500;
       font-style: normal;
       font-display: optional;

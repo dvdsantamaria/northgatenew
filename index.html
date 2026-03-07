@@ -12,7 +12,7 @@
   <meta name="keywords"
     content="new builds, apartments, knockdown rebuilds, renovations, home extensions, builder-led delivery, home renovations, luxury renovations, architecturally designed renovations, new build renovations, knockdown rebuild builder, builder for home extension, Sydney, Newcastle" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://northgatebuilding.com.au/" />
+  <link rel="canonical" href="https://www.northgatebuilding.com.au/" />
   <meta property="og:title" content="New Builds &amp; Renovations | Northgate Building Group" />
   <meta property="og:description"
     content="We specialise in the design, management, and construction of residential renovations and new builds from Sydney to Newcastle. Transparent process, clear timelines, direct access to builders." />
@@ -28,13 +28,11 @@
   <link rel="preload" as="image" imagesrcset="assets/hero-poster-mobile.webp 768w, assets/hero-poster-tablet.webp 1200w, assets/hero-poster.webp 1920w" imagesizes="100vw" fetchpriority="high" type="image/webp">
   
   <!-- Preconnect to critical domains -->
-  <link rel="preconnect" href="https://northgatebuilding.com.au">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
   
-  <!-- Preload critical font -->
-  <link rel="preload" href="GravesendSans-Medium.otf" as="font" type="font/otf" crossorigin>
+  <!-- Preload critical font (WOFF2) -->
+  <link rel="preload" href="GravesendSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&amp;display=swap" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
@@ -46,10 +44,8 @@
   <!-- SVG Icons instead of Font Awesome (saves 124KB) -->
   <style>.social-icon{width:1.25rem;height:1.25rem;fill:currentColor}</style>
 
+  <link rel="stylesheet" href="tailwind-output.css">
   <link rel="stylesheet" href="styles.css">
-  <script src="tailwind-config.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <!-- GSAP/Lenis loaded conditionally via scripts.js (desktop only) -->
   <script type="application/ld+json">
@@ -163,14 +159,21 @@
   }
   </script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D6BNWWCL93"></script>
+<!-- Google tag (gtag.js) - deferred for performance -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D6BNWWCL93');
+  window.addEventListener('load', function() {
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-D6BNWWCL93';
+    s.async = true;
+    document.head.appendChild(s);
+    s.onload = function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-D6BNWWCL93');
+    };
+  });
 </script>
 </head>
 
@@ -195,8 +198,8 @@
     </div>
     <button class="lg:hidden group nav-blend" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
       <span class="sr-only">Toggle menu</span>
-      <i data-lucide="menu" class="w-6 h-6 group-hover:scale-110 transition-transform menu-icon"></i>
-      <i data-lucide="x" class="w-6 h-6 group-hover:scale-110 transition-transform menu-close hidden"></i>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 group-hover:scale-110 transition-transform menu-icon"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 group-hover:scale-110 transition-transform menu-close hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>
   </nav>
 
@@ -325,7 +328,7 @@
           <a href="projects.html"
             class="group flex items-center gap-2 text-xs font-semibold uppercase tracking-widest hover:opacity-60 transition-opacity">
             View All
-            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -339,7 +342,7 @@
                   <span class="text-xs font-mono text-gray-500">01 / 03</span>
                   <span
                     class="p-2 border border-gray-100 rounded-full hover:bg-gray-50 transition-colors cursor-pointer">
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-800"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gray-800"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
                   </span>
                 </div>
                 <h3 class="display-font text-2xl md:text-3xl font-semibold tracking-tight mt-6">
@@ -378,7 +381,7 @@
                   <span class="text-xs font-mono text-gray-500">02 / 03</span>
                   <span
                     class="p-2 border border-gray-100 rounded-full hover:bg-gray-50 transition-colors cursor-pointer">
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-800"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gray-800"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
                   </span>
                 </div>
                 <h3 class="display-font text-2xl md:text-3xl font-semibold tracking-tight mt-6">
@@ -415,7 +418,7 @@
                   <span class="text-xs font-mono text-gray-500">03 / 03</span>
                   <span
                     class="p-2 border border-gray-100 rounded-full hover:bg-gray-50 transition-colors cursor-pointer">
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-800"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gray-800"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
                   </span>
                 </div>
                 <h3 class="display-font text-2xl md:text-3xl font-semibold tracking-tight mt-6">

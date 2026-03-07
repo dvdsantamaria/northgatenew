@@ -7,3 +7,8 @@ Reporting/
 # Environment variables (API keys)
 .env
 .env.local
+
+# Tailwind build source files (keep output for deployment)
+tailwind-input.css
+tailwind.config.js
+node_modules/

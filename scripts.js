@@ -1,8 +1,8 @@
 // VERSION: content_visibility
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
-(function() {
+(function () {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  
+
   if (isMobile) {
     // Mobile: Skip all animations, just show content
     document.documentElement.classList.add('mobile-animations-disabled');
@@ -11,17 +11,17 @@
     });
     return;
   }
-  
+
   // Desktop: Load animation libraries
   const scripts = [
     'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
     'https://unpkg.com/lenis@1.1.18/dist/lenis.min.js'
   ];
-  
+
   let loaded = 0;
   const totalScripts = scripts.length;
-  
+
   function onScriptLoad() {
     loaded++;
     if (loaded === totalScripts) {
@@ -29,17 +29,17 @@
       initDesktopAnimations();
     }
   }
-  
-  scripts.forEach(function(src) {
+
+  scripts.forEach(function (src) {
     const s = document.createElement('script');
     s.src = src;
     s.onload = onScriptLoad;
     s.onerror = onScriptLoad; // Continue even if one fails
     document.head.appendChild(s);
   });
-  
+
   // Timeout fallback in case scripts hang
-  setTimeout(function() {
+  setTimeout(function () {
     if (loaded < totalScripts) {
       console.log('Animation scripts timeout, continuing...');
       initDesktopAnimations();
@@ -53,9 +53,9 @@ function initDesktopAnimations() {
     console.log('GSAP not available, skipping animations');
     return;
   }
-  
+
   gsap.registerPlugin(ScrollTrigger);
-  
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lenis = null;
 
@@ -201,7 +201,7 @@ function initDesktopAnimations() {
   window.lenis = lenis;
   if (lenis) lenis.start();
   ScrollTrigger.refresh();
-  
+
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
     if (lenis) {
@@ -209,14 +209,12 @@ function initDesktopAnimations() {
       lenis.scrollTo(0);
     }
   });
-  
+
   window.addEventListener('resize', () => ScrollTrigger.refresh());
 }
 
 // Mobile menu and other non-GSAP functionality
-if (window.lucide && typeof window.lucide.createIcons === 'function') {
-  window.lucide.createIcons();
-}
+// Icons are now inline SVGs - no need for Lucide createIcons()
 
 const menuToggle = document.getElementById('mobile-menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -274,32 +272,32 @@ const initProcessAccordion = () => {
 initProcessAccordion();
 
 // Video loading logic (mobile vs desktop)
-(function() {
+(function () {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   var video = document.getElementById('hero-video');
   var poster = document.querySelector('.hero-poster');
-  
+
   if (!video || !poster) return;
-  
+
   // Set responsive poster before any loading happens
   if (isMobile) {
     video.setAttribute('poster', video.dataset.posterMobile);
   } else {
     video.setAttribute('poster', video.dataset.posterDesktop);
   }
-  
+
   if (isMobile) {
     // Mobile: Never load video (saves 5MB), keep poster visible
     video.style.display = 'none';
     poster.style.opacity = '1';
   } else {
     // Desktop: Load video after page is stable
-    setTimeout(function() {
+    setTimeout(function () {
       video.load();
-      video.play().then(function() {
+      video.play().then(function () {
         video.style.opacity = '1';
         poster.style.opacity = '0';
-      }).catch(function(e) {
+      }).catch(function (e) {
         console.log('Video autoplay blocked:', e);
         poster.style.opacity = '1';
       });
