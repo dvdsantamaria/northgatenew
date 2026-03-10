@@ -21,5 +21,17 @@ branding strategy/
 *-strategy.md
 *-lessons.md
 *-rules.md
+*-report.md
+*-report-*.md
+*-summary.md
+*-checklist*.md
+*-explanation.md
 SEO-PERFORMANCE-LESSONS.md
 IMPLEMENTATION-RULES.md
+
+# Strategy folder
+Strategy/
+
+# Schema documentation (internal)
+schema*.md
+breadcrumblist*.md
