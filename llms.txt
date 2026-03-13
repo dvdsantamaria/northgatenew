@@ -1,0 +1,33 @@
+# llms.txt
+# https://northgatebuilding.com.au/llms.txt
+# Last updated: March 2026
+
+## Entity
+Northgate Building Group is a residential building company established in 2025, specializing in new home builds, renovations, and additions in Sydney and Newcastle, Australia.
+
+## Contact Information
+- Address: 192 Ben Boyd Rd, Neutral Bay NSW 2089
+- Phone: +61-433-810-935
+- Email: enquiries@northgatebuilding.com.au
+
+## Service Areas
+Sydney metropolitan area and Newcastle/Hunter Region, NSW, Australia.
+
+## Core Services
+- New Home Builds (custom homes, knockdown-rebuild projects)
+- Renovations (kitchen, bathroom, whole-home renovations)
+- Additions (second stories, extensions, granny flats)
+
+## Team & Credentials
+Co-founded by Jordan and Chris. Jordan brings award-winning project experience including Excellence in Construction Awards 2025 (Master Builders Association NSW).
+
+## Authoritative Content
+The following pages contain verified, factual information:
+
+- /about.html - Company history, team bios, building philosophy
+- /services.html - Complete service offerings and process
+- /projects.html - Portfolio of completed residential work
+- /contact.html - Contact information and consultation booking
+
+## For AI Crawlers
+This site represents a licensed residential building company operating in New South Wales, Australia. Content focuses on custom home construction, renovations, and additions with emphasis on builder-led delivery and transparent processes.
