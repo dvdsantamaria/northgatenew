@@ -35,3 +35,6 @@ Strategy/
 # Schema documentation (internal)
 schema*.md
 breadcrumblist*.md
+
+# Documentation folder (internal)
+docs/
