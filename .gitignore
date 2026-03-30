@@ -38,3 +38,5 @@ breadcrumblist*.md
 
 # Documentation folder (internal)
 docs/
+extract_pdfs.py
+.DS_Store
