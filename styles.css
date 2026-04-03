@@ -272,10 +272,8 @@
     .footer-logo-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(7, 7, 7, 0.45);
-      padding: 0.45rem;
+      justify-content: flex-start;
+      padding: 0;
     }
 
     @media (max-width: 767px) {
@@ -324,12 +322,13 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 1rem 0.95rem;
+        align-items: start;
       }
 
       .footer-socials-section {
-        padding: 0.75rem 0.85rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(7, 7, 7, 0.45);
+        padding: 0;
+        border: none;
+        background: transparent;
       }
 
       .footer-socials-section .social-icon {
@@ -342,10 +341,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.55rem;
         align-items: start;
-      }
-
-      .footer-logo-card {
-        min-height: 4.1rem;
       }
 
       .footer-logos-mobile .footer-logo {
@@ -657,7 +652,7 @@
       }
 
       #hero {
-        --hero-desktop-baseline: 3.2rem;
+        --hero-desktop-baseline: calc(3.2rem + 15px);
       }
 
       #hero .hero-desktop-copy {
@@ -696,7 +691,7 @@
 
     @media (min-width: 1024px) and (max-height: 760px) {
       #hero {
-        --hero-desktop-baseline: 2.2rem;
+        --hero-desktop-baseline: calc(2.2rem + 15px);
       }
     }
 
