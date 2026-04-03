@@ -687,7 +687,7 @@
       }
 
       #hero .hero-copy .hero-cta {
-        min-width: clamp(20.4rem, 34vw, 27.6rem) !important;
+        min-width: clamp(14.3rem, 23.8vw, 19.3rem) !important;
         padding: 0.66rem 1.68rem !important;
         font-size: 0.78rem !important;
         letter-spacing: 0.16em !important;
