@@ -48,6 +48,7 @@
     .site-nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;z-index:50;padding:1.5rem;transition:background .3s}
     .nav-logo{height:2.275rem;width:auto}
     #hero{position:relative;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a1a1a}
+    #hero > div{z-index:10}
     .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .noise{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -810,10 +811,10 @@
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
     </div>
 
-    <div class="relative z-10 text-center w-full max-w-4xl px-6">
+    <div class="relative z-10 text-center w-full max-w-4xl px-6 footer-inner">
       <a href="https://api.leadconnectorhq.com/widget/bookings/jordan-intro-call" class="block group">
         <h2
-          class="display-font text-[8vw] md:text-[6vw] leading-[0.9] font-semibold tracking-tighter text-white group-hover:text-gray-300 transition-colors duration-500">
+          class="display-font text-[8vw] md:text-[6vw] leading-[0.9] font-semibold tracking-tighter text-white group-hover:text-gray-300 transition-colors duration-500 footer-hero-title">
           Book a <br>discovery call
         </h2>
         <div
@@ -822,7 +823,7 @@
       </a>
 
       <div id="footer-download-cta"
-        class="mt-10 md:mt-12 w-full border border-white/10 bg-white/0 backdrop-blur-sm px-5 py-4 md:px-6 md:py-5">
+        class="mt-10 md:mt-12 w-full border border-white/10 bg-white/0 backdrop-blur-sm px-5 py-4 md:px-6 md:py-5 footer-download-cta">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-left">
           <p class="text-base md:text-lg text-white/90 font-semibold tracking-tight"
             style="font-family: 'Open Sans', sans-serif;">
@@ -836,9 +837,9 @@
       </div>
 
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-8 md:gap-12 mt-16 text-left border-t border-white/10 pt-10">
-        <div class="flex flex-col gap-6">
-          <div class="flex flex-col gap-3">
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-8 md:gap-12 mt-16 text-left border-t border-white/10 pt-10 footer-meta-grid">
+        <div class="flex flex-col gap-6 footer-contact-social">
+          <div class="flex flex-col gap-3 footer-contact-section">
             <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
               Contact
             </span>
@@ -851,7 +852,7 @@
               </a>
             </div>
           </div>
-          <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-3 footer-socials-section">
             <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
               Socials
             </span>
@@ -880,7 +881,7 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 footer-licensing-block">
           <span class="text-[11px] uppercase tracking-widest text-gray-500 font-semibold">
             Licensing
           </span>
@@ -890,15 +891,24 @@
             <span>ABN - 44686085834</span>
           </div>
         </div>
-        <div class="flex items-start">
+        <div class="footer-logos-mobile md:hidden">
+          <div class="footer-logo-card">
+            <img src="assets/APB.webp" alt="APB logo" class="footer-logo" width="120" height="60">
+          </div>
+          <div class="footer-logo-card">
+            <img src="assets/masters.avif" alt="Masters Builders logo" width="120" height="60"
+              class="footer-logo footer-logo--white">
+          </div>
+        </div>
+        <div class="hidden md:flex items-start">
           <img src="assets/APB.webp" alt="APB logo" class="footer-logo footer-logo--large" width="120" height="60">
         </div>
-        <div class="flex items-start">
+        <div class="hidden md:flex items-start">
           <img src="assets/masters.avif" alt="Masters Builders logo" width="120" height="60"
             class="footer-logo footer-logo--white footer-logo--large footer-logo--masters">
         </div>
       </div>
-      <div class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest leading-snug text-center">
+      <div class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest leading-snug text-center footer-copyright">
         © 2026. Northgate Building Group
       </div>
     </div>
