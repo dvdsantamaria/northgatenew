@@ -284,6 +284,16 @@
 }
 
 /* Responsive */
+@media (min-width: 768px) {
+  .byb-hero,
+  .byb-intro,
+  .byb-section,
+  .byb-banner {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .byb-page {
     padding-top: 70px;
@@ -296,14 +306,6 @@
   .byb-hero-media {
     order: -1;
     aspect-ratio: 16 / 9;
-  }
-
-  .byb-hero,
-  .byb-intro,
-  .byb-section,
-  .byb-banner {
-    padding-left: 3rem;
-    padding-right: 3rem;
   }
 
   .byb-intro-grid {
@@ -369,6 +371,11 @@
   }
 
   .byb-intro-copy {
-    max-width: 48ch;
+    max-width: 44ch;
+  }
+
+  .byb-grid {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
