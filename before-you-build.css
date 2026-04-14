@@ -19,7 +19,6 @@
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.05;
   max-width: 900px;
-  text-transform: uppercase;
   margin: 0;
 }
 
