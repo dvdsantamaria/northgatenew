@@ -61,6 +61,41 @@ if (typeof Lenis !== 'undefined') {
   }
 }
 
+// Mobile masonry reordering: ensures FAQ order is 1,2,3... on narrow screens
+(function() {
+  const grid = document.querySelector('.byb-grid');
+  if (!grid) return;
+
+  const originalHTML = grid.innerHTML;
+  let isMobileReordered = false;
+
+  function updateLayout() {
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+    if (isMobile && !isMobileReordered) {
+      const cards = Array.from(grid.querySelectorAll('.byb-card'));
+      cards.sort((a, b) => {
+        const aOrder = parseFloat(a.dataset.order || '999');
+        const bOrder = parseFloat(b.dataset.order || '999');
+        return aOrder - bOrder;
+      });
+
+      grid.innerHTML = '';
+      const col = document.createElement('div');
+      col.className = 'byb-col';
+      cards.forEach((card) => col.appendChild(card));
+      grid.appendChild(col);
+      isMobileReordered = true;
+    } else if (!isMobile && isMobileReordered) {
+      grid.innerHTML = originalHTML;
+      isMobileReordered = false;
+    }
+  }
+
+  updateLayout();
+  window.addEventListener('resize', updateLayout);
+})();
+
 // Reveal animations for FAQ cards
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.utils.toArray('.byb-card').forEach((card) => {
