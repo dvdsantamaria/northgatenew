@@ -318,11 +318,59 @@
       <section class="byb-cta">
         <h2 class="display-font byb-cta-title">The 70% Paradox</h2>
         <p class="byb-cta-text">Why most dream homes never get built, and six strategies to ensure yours does. Download our free guide.</p>
-        <a href="assets/new-build-guide.pdf" class="byb-cta-btn" download>Learn more</a>
+        <button type="button" data-lead-open class="byb-cta-btn">Learn more</button>
         <p class="byb-cta-text byb-cta-text--small">Still have questions? <a href="contact.html" class="byb-link">Book a discovery call</a> and we’ll walk you through how Northgate works.</p>
       </section>
     </main>
   </div>
+
+  <!-- Lead Magnet Dialog -->
+  <dialog id="lead-dialog" class="bg-[#f5f0eb] w-full max-w-md rounded-sm shadow-2xl p-0 backdrop:bg-black/80 open:animate-in open:fade-in open:zoom-in-95" style="border: none;">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-black/10">
+      <h3 class="display-font text-lg font-medium tracking-tight text-[#1a1a1a]">Download Free Guide</h3>
+      <button type="button" id="lead-dialog-close" class="text-gray-500 hover:text-black transition-colors" aria-label="Close dialog">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div id="lead-form-state" class="px-6 py-6">
+      <p class="text-sm text-gray-600 mb-6 leading-relaxed">Get our essential guide on planning a new build. Enter your details below and we'll send it to your inbox.</p>
+      <form id="lead-form" class="space-y-4" method="dialog">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="first_name" class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">First Name</label>
+            <input type="text" id="first_name" name="first_name" required class="w-full px-3 py-2.5 bg-white border border-black/10 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-black/30 transition-colors" placeholder="John">
+          </div>
+          <div>
+            <label for="last_name" class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required class="w-full px-3 py-2.5 bg-white border border-black/10 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-black/30 transition-colors" placeholder="Smith">
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-3 py-2.5 bg-white border border-black/10 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-black/30 transition-colors" placeholder="john@example.com">
+        </div>
+        <div>
+          <label for="phone" class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">Phone</label>
+          <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2.5 bg-white border border-black/10 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-black/30 transition-colors" placeholder="0412 345 678">
+        </div>
+        <button type="submit" id="lead-submit-btn" style="display: block; margin: 24px auto 0; width: 50%; padding: 20px 0; background-color: #1a1a1a; color: #fff; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 999px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s ease;">Get the Guide</button>
+        <p id="lead-error" class="text-xs text-red-600 text-center hidden"></p>
+      </form>
+    </div>
+    <div id="lead-success-state" class="px-6 py-8 text-center hidden" style="margin: 30px;">
+      <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </div>
+      <h4 class="display-font text-lg font-medium tracking-tight text-[#1a1a1a] mb-2">Thank You!</h4>
+      <p class="text-sm text-gray-600 mb-6">Your guide is ready for download.</p>
+      <a href="assets/new-build-guide.pdf" download style="display: inline-flex; align-items: center; justify-content: center; width: 50%; margin: 0 auto; padding: 20px 0; background-color: #1a1a1a; color: #fff; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 999px; font-weight: 600; text-decoration: none; transition: all 0.2s ease;">Download now</a>
+      <p class="mt-5 text-xs text-gray-500">We've also sent a copy to your email.</p>
+    </div>
+  </dialog>
 
   <footer class="footer-sticky">
     <div class="absolute inset-0 z-0">
@@ -349,7 +397,7 @@
             style="font-family: 'Open Sans', sans-serif;">
             Planning a New Build? <span class="text-white/50">The Key Things to Consider</span>
           </p>
-          <button type="button"
+          <button type="button" data-lead-open
             class="inline-flex items-center justify-center border border-white/40 text-white text-[11px] uppercase tracking-[0.2em] px-5 py-2.5 hover:border-white transition-colors">
             Download
           </button>
@@ -418,6 +466,101 @@
   </footer>
 
   <script src="before-you-build.js" defer></script>
+
+  <!-- Lead Magnet Dialog Logic -->
+  <script>
+    (function() {
+      const dialog = document.getElementById('lead-dialog');
+      const openBtns = document.querySelectorAll('[data-lead-open]');
+      const closeBtn = document.getElementById('lead-dialog-close');
+      const form = document.getElementById('lead-form');
+      const formState = document.getElementById('lead-form-state');
+      const successState = document.getElementById('lead-success-state');
+      const submitBtn = document.getElementById('lead-submit-btn');
+      const errorMsg = document.getElementById('lead-error');
+
+      const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/GQa8RMpy5GdZ2j3kmZEG/webhook-trigger/rL44hUu3TkJJ5hkRtoM3';
+
+      if (!dialog || !openBtns.length) return;
+
+      openBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          dialog.showModal();
+          setTimeout(() => document.getElementById('first_name')?.focus(), 100);
+        });
+      });
+
+      closeBtn?.addEventListener('click', () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+          dialog.close();
+        }
+      });
+
+      dialog.addEventListener('close', () => {
+        setTimeout(() => {
+          form.reset();
+          formState.classList.remove('hidden');
+          successState.classList.add('hidden');
+          errorMsg.classList.add('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Get the Guide';
+        }, 200);
+      });
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMsg.classList.add('hidden');
+
+        const data = {
+          first_name: document.getElementById('first_name').value.trim(),
+          last_name: document.getElementById('last_name').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          phone: document.getElementById('phone').value.trim()
+        };
+
+        if (!data.first_name || !data.last_name || !data.email || !data.phone) {
+          errorMsg.textContent = 'Please fill in all fields';
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+          errorMsg.textContent = 'Please enter a valid email address';
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        try {
+          const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok || response.status === 0) {
+            formState.classList.add('hidden');
+            successState.classList.remove('hidden');
+            if (window.gtag) {
+              gtag('event', 'lead_magnet_download', { event_category: 'engagement', event_label: 'New Build Guide' });
+            }
+          } else {
+            throw new Error('Submission failed');
+          }
+        } catch (err) {
+          console.log('Webhook response:', err);
+          formState.classList.add('hidden');
+          successState.classList.remove('hidden');
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
