@@ -19,6 +19,7 @@
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.05;
   max-width: 900px;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
