@@ -13,8 +13,6 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 .byb-hero-title {
@@ -49,8 +47,6 @@
 /* Intro */
 .byb-intro {
   padding: var(--space-section-sm) 1.5rem var(--space-section-md);
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 .byb-intro-grid {
@@ -96,8 +92,6 @@
 /* FAQ Grid */
 .byb-section {
   padding: var(--space-section-sm) 1.5rem var(--space-section-lg);
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 .byb-grid {
@@ -304,6 +298,14 @@
     aspect-ratio: 16 / 9;
   }
 
+  .byb-hero,
+  .byb-intro,
+  .byb-section,
+  .byb-banner {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
   .byb-intro-grid {
     grid-template-columns: 1fr;
   }
@@ -322,6 +324,7 @@
     padding: var(--space-section-sm) 6vw var(--space-section-sm);
   }
 
+  .byb-hero,
   .byb-intro,
   .byb-section {
     padding-left: 6vw;
