@@ -20,7 +20,9 @@
 .byb-hero-title {
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.05;
-  margin: 0 0 1.5rem;
+  max-width: 900px;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .byb-hero-lead {
