@@ -467,6 +467,42 @@
 
   <script src="before-you-build.js" defer></script>
 
+  <!-- Header hide on scroll -->
+  <script>
+    (function() {
+      const nav = document.querySelector('.site-nav');
+      if (!nav) return;
+
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function updateNav() {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        if (currentScrollY > 100) {
+          if (scrollDelta > 5) {
+            nav.classList.add('is-hidden');
+          } else if (scrollDelta < -5) {
+            nav.classList.remove('is-hidden');
+          }
+        } else {
+          nav.classList.remove('is-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
   <!-- Lead Magnet Dialog Logic -->
   <script>
     (function() {
