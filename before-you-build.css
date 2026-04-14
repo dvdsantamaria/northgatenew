@@ -51,11 +51,43 @@
   margin: 0 auto;
 }
 
-.byb-intro p {
-  font-size: var(--type-body-lg);
+.byb-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(168px, 252px) 1fr;
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: start;
+}
+
+.byb-pill {
+  display: block;
+  position: relative;
+  padding-top: 1rem;
+  font-size: var(--type-eyebrow);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.byb-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.byb-intro-copy {
+  display: grid;
+  gap: var(--space-block-md);
+  color: #000;
   line-height: var(--lh-relaxed);
-  color: rgba(0, 0, 0, 0.7);
-  max-width: 52ch;
+  font-size: var(--type-body-lg);
+}
+
+.byb-intro-copy p {
   margin: 0;
 }
 
@@ -128,18 +160,6 @@
   line-height: var(--lh-relaxed);
 }
 
-.byb-diagram {
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.byb-diagram svg {
-  width: 70%;
-  height: 70%;
-}
-
 /* CTA */
 .byb-cta {
   padding: var(--space-section-md) 1.5rem var(--space-section-lg);
@@ -199,6 +219,10 @@
     aspect-ratio: 16 / 9;
   }
 
+  .byb-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
   .byb-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -247,7 +271,7 @@
     max-width: 16ch;
   }
 
-  .byb-intro p {
+  .byb-intro-copy {
     max-width: 48ch;
   }
 }
