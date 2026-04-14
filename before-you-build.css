@@ -8,7 +8,7 @@
 
 /* Hero */
 .byb-hero {
-  padding: var(--space-section-md) 1.5rem var(--space-section-sm);
+  padding: var(--space-section-md) 3rem var(--space-section-sm);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 4vw, 4rem);
@@ -46,7 +46,7 @@
 
 /* Intro */
 .byb-intro {
-  padding: var(--space-section-sm) 1.5rem var(--space-section-md);
+  padding: var(--space-section-sm) 3rem var(--space-section-md);
 }
 
 .byb-intro-grid {
@@ -91,7 +91,7 @@
 
 /* FAQ Grid */
 .byb-section {
-  padding: var(--space-section-sm) 1.5rem var(--space-section-lg);
+  padding: var(--space-section-sm) 3rem var(--space-section-lg);
 }
 
 .byb-grid {
@@ -186,7 +186,7 @@
   text-align: center;
   color: #fff;
   overflow: hidden;
-  margin: var(--space-section-sm) 1.5rem var(--space-section-lg);
+  margin: var(--space-section-sm) 3rem var(--space-section-lg);
 }
 
 .byb-banner-media {
@@ -284,16 +284,6 @@
 }
 
 /* Responsive */
-@media (min-width: 768px) {
-  .byb-hero,
-  .byb-intro,
-  .byb-section,
-  .byb-banner {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
 @media (max-width: 1024px) {
   .byb-page {
     padding-top: 70px;
@@ -322,15 +312,16 @@
 }
 
 @media (max-width: 640px) {
-  .byb-hero {
-    padding: var(--space-section-sm) 6vw var(--space-section-sm);
-  }
-
   .byb-hero,
   .byb-intro,
   .byb-section {
     padding-left: 6vw;
     padding-right: 6vw;
+  }
+
+  .byb-hero {
+    padding-top: var(--space-section-sm);
+    padding-bottom: var(--space-section-sm);
   }
 
   .byb-banner {
