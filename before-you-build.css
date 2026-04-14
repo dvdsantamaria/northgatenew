@@ -138,6 +138,26 @@
   display: block;
 }
 
+.byb-media-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.byb-media-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.byb-media-wide {
+  aspect-ratio: 4 / 3;
+}
+
+.byb-media-wide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .byb-faq-num {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: var(--type-eyebrow);
