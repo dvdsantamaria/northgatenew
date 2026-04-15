@@ -61,39 +61,74 @@ if (typeof Lenis !== 'undefined') {
   }
 }
 
-// Mobile masonry reordering: ensures FAQ order is 1,2,3... on narrow screens
+// Universal masonry layout: consecutive order + balanced columns at all breakpoints
 (function() {
   const grid = document.querySelector('.byb-grid');
   if (!grid) return;
 
-  const originalHTML = grid.innerHTML;
-  let isMobileReordered = false;
+  const allCards = Array.from(grid.querySelectorAll('.byb-card')).map(card => ({
+    element: card,
+    order: parseFloat(card.dataset.order || '999')
+  })).sort((a, b) => a.order - b.order).map(item => item.element);
 
-  function updateLayout() {
-    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  let currentCols = 0;
 
-    if (isMobile && !isMobileReordered) {
-      const cards = Array.from(grid.querySelectorAll('.byb-card'));
-      cards.sort((a, b) => {
-        const aOrder = parseFloat(a.dataset.order || '999');
-        const bOrder = parseFloat(b.dataset.order || '999');
-        return aOrder - bOrder;
-      });
+  function layout(force) {
+    let cols = 3;
+    if (window.matchMedia('(max-width: 640px)').matches) cols = 1;
+    else if (window.matchMedia('(max-width: 1024px)').matches) cols = 2;
 
-      grid.innerHTML = '';
+    if (!force && cols === currentCols && grid.children.length > 0) return;
+    currentCols = cols;
+
+    grid.innerHTML = '';
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    grid.style.gap = '1.5rem';
+    grid.style.alignItems = 'start';
+
+    const columns = [];
+    const heights = new Array(cols).fill(0);
+
+    for (let i = 0; i < cols; i++) {
       const col = document.createElement('div');
       col.className = 'byb-col';
-      cards.forEach((card) => col.appendChild(card));
+      col.style.display = 'flex';
+      col.style.flexDirection = 'column';
+      col.style.gap = '1.5rem';
       grid.appendChild(col);
-      isMobileReordered = true;
-    } else if (!isMobile && isMobileReordered) {
-      grid.innerHTML = originalHTML;
-      isMobileReordered = false;
+      columns.push(col);
+    }
+
+    allCards.forEach(card => {
+      const shortestIndex = heights.indexOf(Math.min(...heights));
+      columns[shortestIndex].appendChild(card);
+      heights[shortestIndex] = columns[shortestIndex].scrollHeight;
+    });
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
     }
   }
 
-  updateLayout();
-  window.addEventListener('resize', updateLayout);
+  layout(true);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => layout(true), 150);
+  });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => layout(true), 100);
+  });
+
+  grid.querySelectorAll('img').forEach(img => {
+    if (img.complete) return;
+    img.addEventListener('load', () => {
+      setTimeout(() => layout(true), 50);
+    });
+  });
 })();
 
 // Reveal animations for FAQ cards
