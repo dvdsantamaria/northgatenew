@@ -37,7 +37,7 @@
   justify-content: center;
   padding: 0.65rem 1.8rem;
   border-radius: 999px;
-  background: #527B72;
+  background: #1a1a1a;
   color: #fff;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
@@ -49,9 +49,9 @@
 }
 
 .byb-hero-btn:hover {
-  background: #466c65;
+  background: #000;
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(82, 123, 114, 0.28);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .byb-hero-media {
