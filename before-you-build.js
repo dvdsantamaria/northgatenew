@@ -101,9 +101,21 @@ if (typeof Lenis !== 'undefined') {
     }
 
     allCards.forEach(card => {
-      const shortestIndex = heights.indexOf(Math.min(...heights));
-      columns[shortestIndex].appendChild(card);
-      heights[shortestIndex] = columns[shortestIndex].scrollHeight;
+      const isImage = card.classList.contains('byb-card-media');
+      const best = heights.map((h, i) => {
+        const col = columns[i];
+        const lastIsImage = col.lastElementChild?.classList.contains('byb-card-media');
+        let penalty = 0;
+        if (isImage) {
+          const imageCount = col.querySelectorAll('.byb-card-media').length;
+          penalty += imageCount * 800;
+          if (lastIsImage) penalty += 400;
+        }
+        return { h: h + penalty, i };
+      }).sort((a, b) => a.h - b.h)[0].i;
+
+      columns[best].appendChild(card);
+      heights[best] = columns[best].scrollHeight;
     });
 
     if (typeof ScrollTrigger !== 'undefined') {
