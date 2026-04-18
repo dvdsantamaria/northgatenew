@@ -20,15 +20,16 @@
   line-height: 1.05;
   max-width: 900px;
   letter-spacing: -0.02em;
-  margin: 0 0 1.75rem;
+  margin: 0 0 3rem;
 }
 
 .byb-hero-lead {
   font-size: var(--type-lead);
   line-height: 1.45;
   color: rgba(0, 0, 0, 0.55);
-  max-width: 38ch;
-  margin: 0 0 1.5rem;
+  max-width: 52ch;
+  text-wrap: pretty;
+  margin: 0 0 2.75rem;
 }
 
 .byb-hero-btn {
@@ -37,7 +38,7 @@
   justify-content: center;
   padding: 0.65rem 1.8rem;
   border-radius: 999px;
-  background: #1a1a1a;
+  background: #527B72;
   color: #fff;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
@@ -49,9 +50,9 @@
 }
 
 .byb-hero-btn:hover {
-  background: #000;
+  background: #3d5f57;
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 24px rgba(82, 123, 114, 0.3);
 }
 
 .byb-hero-media {
@@ -74,7 +75,7 @@
 
 .byb-intro-grid {
   display: grid;
-  grid-template-columns: minmax(168px, 252px) 1fr;
+  grid-template-columns: 1fr;
   gap: clamp(2rem, 5vw, 6rem);
   align-items: start;
 }
@@ -317,10 +318,6 @@
   .byb-hero-media {
     order: -1;
     aspect-ratio: 16 / 9;
-  }
-
-  .byb-intro-grid {
-    grid-template-columns: 1fr;
   }
 
   .byb-grid {

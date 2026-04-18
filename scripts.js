@@ -1,4 +1,6 @@
 // VERSION: content_visibility
+let desktopAnimationsInitialized = false;
+
 // Load GSAP/Lenis only on desktop (mobile skips for performance)
 (function () {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -26,7 +28,10 @@
     loaded++;
     if (loaded === totalScripts) {
       // All scripts loaded, initialize animations
-      initDesktopAnimations();
+      if (!desktopAnimationsInitialized) {
+        desktopAnimationsInitialized = true;
+        initDesktopAnimations();
+      }
     }
   }
 
@@ -42,7 +47,10 @@
   setTimeout(function () {
     if (loaded < totalScripts) {
       console.log('Animation scripts timeout, continuing...');
-      initDesktopAnimations();
+      if (!desktopAnimationsInitialized) {
+        desktopAnimationsInitialized = true;
+        initDesktopAnimations();
+      }
     }
   }, 3000);
 })();
@@ -134,7 +142,7 @@ function initDesktopAnimations() {
   const horizSection = document.querySelector('#horiz-scroll');
   if (horizSection) {
     const horizWrap = horizSection.querySelector('.horiz-wrap');
-    const getScrollDistance = () => Math.max(0, horizWrap.scrollWidth - window.innerWidth);
+    const getScrollDistance = () => Math.max(0, horizWrap.scrollWidth - horizSection.clientWidth);
     gsap.to(horizWrap, {
       x: () => -getScrollDistance(),
       ease: 'none',
@@ -143,8 +151,11 @@ function initDesktopAnimations() {
         start: 'top top',
         end: () => `+=${getScrollDistance()}`,
         pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
         scrub: 1,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onRefreshInit: () => gsap.set(horizWrap, { x: 0 })
       }
     });
   }
