@@ -76,14 +76,14 @@
 .byb-intro-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(2rem, 5vw, 6rem);
+  gap: 1.5rem;
   align-items: start;
 }
 
 .byb-pill {
   display: block;
   position: relative;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   font-size: var(--type-eyebrow);
   letter-spacing: 0.28em;
   text-transform: uppercase;
