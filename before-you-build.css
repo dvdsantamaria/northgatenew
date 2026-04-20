@@ -75,15 +75,15 @@
 
 .byb-intro-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: minmax(168px, 252px) 1fr;
+  gap: clamp(2rem, 5vw, 6rem);
   align-items: start;
 }
 
 .byb-pill {
   display: block;
   position: relative;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   font-size: var(--type-eyebrow);
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -320,11 +320,13 @@
     aspect-ratio: 16 / 9;
   }
 
+  .byb-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
   .byb-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-
 }
 
 @media (max-width: 640px) {
