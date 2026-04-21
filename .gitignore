@@ -40,3 +40,7 @@ breadcrumblist*.md
 docs/
 extract_pdfs.py
 .DS_Store
+
+# Backup files
+*.backup.*
+*.backup*
