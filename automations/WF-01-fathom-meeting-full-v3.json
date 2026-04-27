@@ -1,0 +1,267 @@
+{
+  "name": "WF-01 Fathom Meeting to OpenAI Summary + DB + Notify v3",
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Fathom Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fathom-meeting-ended",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "fathom-webhook-001"
+    },
+    {
+      "id": "extract-transcript",
+      "name": "Extract Transcript",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript-text",
+              "name": "transcript",
+              "value": "={{ $json.body.transcript_merged || $json.body.transcript || $json.body.text }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-title",
+              "name": "meetingTitle",
+              "value": "={{ $json.body.meeting_title || $json.body.title || 'Meeting' }}",
+              "type": "string"
+            },
+            {
+              "id": "recording-id",
+              "name": "recordingId",
+              "value": "={{ $json.body.recording_id || $json.body.id }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-date",
+              "name": "meetingDate",
+              "value": "={{ $json.body.meeting_date || $json.body.date || $now.format('YYYY-MM-DD') }}",
+              "type": "string"
+            },
+            {
+              "id": "participants",
+              "name": "participants",
+              "value": "={{ $json.body.participants || $json.body.attendees || 'Unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "duration",
+              "name": "duration",
+              "value": "={{ $json.body.duration || $json.body.duration_seconds || '0' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "call-openai-api",
+      "name": "Call OpenAI API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        650,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a meeting summarizer for Northgate Building Group, a custom home builder in Australia.\\n\\nAnalyze the meeting transcript and return ONLY a valid JSON object (no markdown, no backticks, no explanation before or after) with this exact structure:\\n{\\n  \\\"summary\\\": \\\"3-5 bullet points of key discussion items\\\",\\n  \\\"actionItems\\\": [\\\"task 1 with owner if mentioned\\\"],\\n  \\\"decisions\\\": [\\\"firm decision 1\\\"],\\n  \\\"followUp\\\": [\\\"item needing next steps\\\"],\\n  \\\"projectName\\\": \\\"Best guess of client or project name from the transcript\\\",\\n  \\\"flag\\\": \\\"green|orange|red\\\",\\n  \\\"flagReason\\\": \\\"Brief explanation of why this flag\\\"\\n}\\n\\nFlag rules:\\n- RED: Affects structure, requires council approval, major budget impact, or contractual dispute\\n- ORANGE: Affects critical timeline, requires subcontractor rebooking, or medium budget impact\\n- GREEN: Standard discussion, minor decisions, no immediate risk\\n\\nIf no action items or decisions, use empty arrays [].\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Meeting Title: {{ $('Extract Transcript').item.json.meetingTitle }}\\nDate: {{ $('Extract Transcript').item.json.meetingDate }}\\nParticipants: {{ $('Extract Transcript').item.json.participants }}\\n\\nTranscript:\\n{{ $('Extract Transcript').item.json.transcript }}\"\n    }\n  ],\n  \"temperature\": 0.2,\n  \"max_tokens\": 2500,\n  \"response_format\": {\"type\": \"json_object\"}\n}"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_OPENAI_HEADER_AUTH_ID",
+          "name": "OpenAI API Key"
+        }
+      }
+    },
+    {
+      "id": "parse-openai-response",
+      "name": "Parse OpenAI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const response = $json;\nconst content = response.choices[0].message.content;\nlet parsed;\n\ntry {\n  parsed = JSON.parse(content);\n} catch (e) {\n  const cleaned = content\n    .replace(/```json\\n?/g, '')\n    .replace(/```\\n?/g, '')\n    .trim();\n  parsed = JSON.parse(cleaned);\n}\n\nconst joinArray = (val) => {\n  if (Array.isArray(val)) return val.join('\\n');\n  if (typeof val === 'string') return val;\n  return '';\n};\n\nreturn [{\n  json: {\n    summary: parsed.summary || '',\n    actionItems: joinArray(parsed.actionItems),\n    decisions: joinArray(parsed.decisions),\n    followUp: joinArray(parsed.followUp),\n    projectName: parsed.projectName || '',\n    flag: parsed.flag || 'green',\n    flagReason: parsed.flagReason || ''\n  }\n}];"
+      }
+    },
+    {
+      "id": "respond-webhook",
+      "name": "Respond OK to Fathom",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1050,
+        150
+      ],
+      "parameters": {
+        "options": {},
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\", \"summary_generated\": true, \"title\": \"{{ $('Extract Transcript').item.json.meetingTitle }}\"}"
+      }
+    },
+    {
+      "id": "save-to-airtable",
+      "name": "Save to Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        300
+      ],
+      "parameters": {
+        "application": {
+          "value": "YOUR_AIRTABLE_BASE_ID",
+          "mode": "id"
+        },
+        "table": {
+          "value": "Meetings",
+          "mode": "name"
+        },
+        "operation": "create",
+        "options": {},
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Recording ID": "={{ $('Extract Transcript').item.json.recordingId }}",
+            "Meeting Title": "={{ $('Extract Transcript').item.json.meetingTitle }}",
+            "Date": "={{ $('Extract Transcript').item.json.meetingDate }}",
+            "Participants": "={{ $('Extract Transcript').item.json.participants }}",
+            "Duration (seconds)": "={{ $('Extract Transcript').item.json.duration }}",
+            "Transcript": "={{ $('Extract Transcript').item.json.transcript }}",
+            "Summary": "={{ $('Parse OpenAI Response').item.json.summary }}",
+            "Action Items": "={{ $('Parse OpenAI Response').item.json.actionItems }}",
+            "Decisions": "={{ $('Parse OpenAI Response').item.json.decisions }}",
+            "Follow Up": "={{ $('Parse OpenAI Response').item.json.followUp }}",
+            "Project Name": "={{ $('Parse OpenAI Response').item.json.projectName }}",
+            "Flag": "={{ $('Parse OpenAI Response').item.json.flag }}",
+            "Flag Reason": "={{ $('Parse OpenAI Response').item.json.flagReason }}"
+          }
+        }
+      },
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "YOUR_AIRTABLE_CREDENTIAL_ID",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "id": "email-jordan",
+      "name": "Email Jordan",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        450
+      ],
+      "parameters": {
+        "fromEmail": "automations@northgatebuilding.com.au",
+        "toEmail": "jordan@northgatebuilding.com.au",
+        "subject": "=Meeting Summary: {{ $('Extract Transcript').item.json.meetingTitle }}",
+        "text": "=MEETING SUMMARY\\n================\\n\\nProject: {{ $('Parse OpenAI Response').item.json.projectName || 'Unknown' }}\\nMeeting: {{ $('Extract Transcript').item.json.meetingTitle }}\\nDate: {{ $('Extract Transcript').item.json.meetingDate }}\\nFlag: {{ $('Parse OpenAI Response').item.json.flag.toUpperCase() }} — {{ $('Parse OpenAI Response').item.json.flagReason }}\\n\\nSUMMARY\\n-------\\n{{ $('Parse OpenAI Response').item.json.summary }}\\n\\nACTION ITEMS\\n------------\\n{{ $('Parse OpenAI Response').item.json.actionItems || 'None noted' }}\\n\\nDECISIONS\\n---------\\n{{ $('Parse OpenAI Response').item.json.decisions || 'None noted' }}\\n\\nFOLLOW UP\\n---------\\n{{ $('Parse OpenAI Response').item.json.followUp || 'None noted' }}\\n\\n---\\nThis summary was generated by AI. Please review for accuracy.",
+        "options": {}
+      },
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Fathom Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Transcript": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI API": {
+      "main": [
+        [
+          {
+            "node": "Parse OpenAI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse OpenAI Response": {
+      "main": [
+        [
+          {
+            "node": "Respond OK to Fathom",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save to Airtable",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Jordan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
