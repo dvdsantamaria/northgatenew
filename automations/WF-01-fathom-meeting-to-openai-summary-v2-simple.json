@@ -1,0 +1,192 @@
+{
+  "name": "WF-01 Fathom Meeting to OpenAI Summary v2 (Simple HTTP)",
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Fathom Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fathom-meeting-ended",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "fathom-webhook-001"
+    },
+    {
+      "id": "extract-transcript",
+      "name": "Extract Transcript",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript-text",
+              "name": "transcript",
+              "value": "={{ $json.body.transcript_merged || $json.body.transcript || $json.body.text }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-title",
+              "name": "meetingTitle",
+              "value": "={{ $json.body.meeting_title || $json.body.title || 'Meeting' }}",
+              "type": "string"
+            },
+            {
+              "id": "recording-id",
+              "name": "recordingId",
+              "value": "={{ $json.body.recording_id || $json.body.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "call-openai-api",
+      "name": "Call OpenAI API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        650,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-3.5-turbo-0125\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a meeting summarizer for Northgate Building Group, a custom home builder in Australia.\\n\\nSummarize the meeting transcript into the following format:\\n\\n## Meeting Summary\\n- 3-5 bullet points of key discussion items\\n\\n## Action Items\\n| Task | Owner | Due |\\n\\n## Decisions Made\\n- List any firm decisions or approvals\\n\\n## Follow-up Required\\n- Any items needing next steps\\n\\nKeep it concise, professional, and construction-industry appropriate. If no action items or decisions were made, write 'None noted'.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Meeting Title: {{ $('Extract Transcript').item.json.meetingTitle }}\\n\\nTranscript:\\n{{ $('Extract Transcript').item.json.transcript }}\"\n    }\n  ],\n  \"temperature\": 0.3,\n  \"max_tokens\": 2000\n}"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_OPENAI_HEADER_AUTH_ID",
+          "name": "OpenAI API Key"
+        }
+      }
+    },
+    {
+      "id": "format-output",
+      "name": "Format Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        850,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "final-summary",
+              "name": "summary",
+              "value": "={{ $json.choices[0].message.content }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-title-output",
+              "name": "title",
+              "value": "={{ $('Extract Transcript').item.json.meetingTitle }}",
+              "type": "string"
+            },
+            {
+              "id": "recording-id-output",
+              "name": "recordingId",
+              "value": "={{ $('Extract Transcript').item.json.recordingId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "respond-webhook",
+      "name": "Respond OK to Fathom",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1050,
+        300
+      ],
+      "parameters": {
+        "options": {},
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\", \"summary_generated\": true, \"title\": \"{{ $('Format Output').item.json.title }}\"}"
+      }
+    }
+  ],
+  "connections": {
+    "Fathom Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Transcript": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI API": {
+      "main": [
+        [
+          {
+            "node": "Format Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Output": {
+      "main": [
+        [
+          {
+            "node": "Respond OK to Fathom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
