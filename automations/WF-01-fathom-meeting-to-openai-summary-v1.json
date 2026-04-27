@@ -1,0 +1,186 @@
+{
+  "name": "WF-01 Fathom Meeting to OpenAI Summary v1",
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Fathom Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fathom-meeting-ended",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "fathom-webhook-001"
+    },
+    {
+      "id": "extract-transcript",
+      "name": "Extract Transcript",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript-text",
+              "name": "transcript",
+              "value": "={{ $json.body.transcript_merged || $json.body.transcript || $json.body.text }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-title",
+              "name": "meetingTitle",
+              "value": "={{ $json.body.meeting_title || $json.body.title || 'Meeting' }}",
+              "type": "string"
+            },
+            {
+              "id": "recording-id",
+              "name": "recordingId",
+              "value": "={{ $json.body.recording_id || $json.body.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "openai-summary",
+      "name": "OpenAI Summary",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ],
+      "parameters": {
+        "options": {},
+        "model": "gpt-3.5-turbo-0125"
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "id": "generate-summary",
+      "name": "Generate Summary",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        850,
+        300
+      ],
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a meeting summarizer for Northgate Building Group. Summarize the meeting transcript into:\n\n## Meeting Summary\n- 3-5 bullet points of key discussion items\n\n## Action Items\n| Task | Owner | Due |\n\n## Decisions Made\n- List any decisions\n\nKeep it concise and professional."
+        }
+      }
+    },
+    {
+      "id": "format-output",
+      "name": "Format Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1050,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "final-summary",
+              "name": "summary",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "meeting-title-output",
+              "name": "title",
+              "value": "={{ $('Extract Transcript').item.json.meetingTitle }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "respond-webhook",
+      "name": "Respond OK to Fathom",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        300
+      ],
+      "parameters": {
+        "options": {},
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\", \"summary_generated\": true}"
+      }
+    }
+  ],
+  "connections": {
+    "Fathom Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Transcript": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Format Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Output": {
+      "main": [
+        [
+          {
+            "node": "Respond OK to Fathom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
