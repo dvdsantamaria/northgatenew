@@ -1,0 +1,402 @@
+{
+  "name": "Outlook AI Drafts v2 - DB-Tracked + Rules",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "trigger-1",
+      "name": "Every 30 Mins",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 20,
+        "options": {}
+      },
+      "id": "outlook-get-1",
+      "name": "Get Recent Emails",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "YOUR_OUTLOOK_CRED_ID",
+          "name": "Jordan Outlook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Only keep emails from last 2 hours\nconst now = new Date();\nconst twoHoursAgo = new Date(now.getTime() - 2 * 60 * 60 * 1000);\n\nconst filtered = items.filter(item => {\n  const received = new Date(item.json.receivedDateTime);\n  return received >= twoHoursAgo;\n});\n\nreturn filtered;\n"
+      },
+      "id": "code-filter-1",
+      "name": "Filter Last 2 Hours",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=YOUR_SUPABASE_URL/rest/v1/processed_emails",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "message_id",
+              "value": "=eq.{{ $json.id }}"
+            },
+            {
+              "name": "select",
+              "value": "message_id"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-check-1",
+      "name": "Check DB - Already Processed?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        850,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-empty",
+              "leftValue": "={{ JSON.stringify($json) }}",
+              "rightValue": "[]",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-notprocessed-1",
+      "name": "Not in DB?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Apply business rules to decide action\nconst results = [];\n\nfor (const item of $input.all()) {\n  const email = item.json;\n  const from = (email.from?.emailAddress?.address || '').toLowerCase();\n  const fromName = email.from?.emailAddress?.name || '';\n  const subject = (email.subject || '').toLowerCase();\n  const preview = (email.bodyPreview || '').toLowerCase();\n  \n  let action = 'draft';\n  let reason = 'eligible_for_draft';\n  let category = 'general';\n  \n  // Rule 1: Skip Jordan's own emails\n  if (from === 'jordan@northgatebuilding.com.au') {\n    action = 'skip';\n    reason = 'from_jordan';\n    category = 'internal';\n  }\n  // Rule 2: Skip newsletters and no-reply\n  else if (/(noreply|no-reply|newsletter|donotreply|automated|mailchimp|sendgrid)/i.test(from)) {\n    action = 'skip';\n    reason = 'newsletter_or_noreply';\n    category = 'newsletter';\n  }\n  // Rule 3: Flag replies (need context)\n  else if (subject.startsWith('re:') || subject.startsWith('fw:')) {\n    action = 'flag';\n    reason = 'email_thread_reply_needs_context';\n    category = 'reply';\n  }\n  // Rule 4: Skip very short emails (likely auto-reply)\n  else if (preview.length < 40) {\n    action = 'skip';\n    reason = 'too_short_auto_reply';\n    category = 'auto_reply';\n  }\n  // Rule 5: Categorize known domains\n  else if (from.includes('@northgatebuilding.com.au')) {\n    category = 'internal';\n  }\n  \n  results.push({\n    json: {\n      ...email,\n      rule_result: { action, reason, category, from_email: from, from_name: fromName }\n    }\n  });\n}\n\nreturn results;\n"
+      },
+      "id": "code-rules-1",
+      "name": "Apply Rules",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1250,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-draft",
+              "leftValue": "={{ $json.rule_result.action }}",
+              "rightValue": "draft",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-draft-1",
+      "name": "Should Draft?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1450,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "options": {},
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "content": "You are a professional email assistant for Northgate Building Group, a premium construction company in Sydney. Write concise, polite, and professional email responses. Use Australian English. Never make up facts, prices, or timelines. If the email asks for something specific that requires Jordan's input (e.g., pricing, scheduling), draft a response that acknowledges receipt and says Jordan will follow up shortly."
+            },
+            {
+              "role": "user",
+              "content": "=Email from: {{ $json.from.emailAddress.name }} <{{ $json.from.emailAddress.address }}>\nSubject: {{ $json.subject }}\nBody: {{ $json.bodyPreview }}\n\nDraft a professional reply to this email. Keep it under 150 words."
+            }
+          ]
+        }
+      },
+      "id": "openai-1",
+      "name": "Draft Response",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        1650,
+        100
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CRED_ID",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "subject": "=RE: {{ $('Apply Rules').item.json.subject }}",
+        "body": "={{ $json.choices[0].message.content }}",
+        "bodyContentType": "Text",
+        "toRecipients": "={{ $('Apply Rules').item.json.from.emailAddress.address }}",
+        "options": {}
+      },
+      "id": "outlook-draft-1",
+      "name": "Save Draft in Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1850,
+        100
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "YOUR_OUTLOOK_CRED_ID",
+          "name": "Jordan Outlook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=YOUR_SUPABASE_URL/rest/v1/processed_emails",
+        "sendBody": true,
+        "body": {
+          "message_id": "={{ $('Apply Rules').item.json.id }}",
+          "sender_email": "={{ $('Apply Rules').item.json.from.emailAddress.address }}",
+          "sender_name": "={{ $('Apply Rules').item.json.from.emailAddress.name }}",
+          "subject": "={{ $('Apply Rules').item.json.subject }}",
+          "received_at": "={{ $('Apply Rules').item.json.receivedDateTime }}",
+          "action": "drafted",
+          "reason": "={{ $('Apply Rules').item.json.rule_result.reason }}",
+          "category": "={{ $('Apply Rules').item.json.rule_result.category }}",
+          "draft_id": "={{ $json.id }}",
+          "ai_response": "={{ $('Draft Response').item.json.choices[0].message.content }}"
+        },
+        "options": {}
+      },
+      "id": "http-save-draft-1",
+      "name": "Save Drafted to DB",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2050,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=YOUR_SUPABASE_URL/rest/v1/processed_emails",
+        "sendBody": true,
+        "body": {
+          "message_id": "={{ $json.id }}",
+          "sender_email": "={{ $json.from.emailAddress.address }}",
+          "sender_name": "={{ $json.from.emailAddress.name }}",
+          "subject": "={{ $json.subject }}",
+          "received_at": "={{ $json.receivedDateTime }}",
+          "action": "skipped",
+          "reason": "={{ $json.rule_result.reason }}",
+          "category": "={{ $json.rule_result.category }}"
+        },
+        "options": {}
+      },
+      "id": "http-save-skip-1",
+      "name": "Save Skipped to DB",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems"
+      },
+      "id": "noop-1",
+      "name": "No Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        500
+      ]
+    }
+  ],
+  "connections": {
+    "Every 30 Mins": {
+      "main": [
+        [
+          {
+            "node": "Get Recent Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Recent Emails": {
+      "main": [
+        [
+          {
+            "node": "Filter Last 2 Hours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Last 2 Hours": {
+      "main": [
+        [
+          {
+            "node": "Check DB - Already Processed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check DB - Already Processed?": {
+      "main": [
+        [
+          {
+            "node": "Not in DB?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Not in DB?": {
+      "main": [
+        [
+          {
+            "node": "Apply Rules",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply Rules": {
+      "main": [
+        [
+          {
+            "node": "Should Draft?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Should Draft?": {
+      "main": [
+        [
+          {
+            "node": "Draft Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save Skipped to DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft Response": {
+      "main": [
+        [
+          {
+            "node": "Save Draft in Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Draft in Outlook": {
+      "main": [
+        [
+          {
+            "node": "Save Drafted to DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}
