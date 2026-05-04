@@ -379,7 +379,7 @@
         decoding="async" width="1920" height="1080" style="z-index: 1;">
       <!-- Video: plays on all devices -->
       <video id="hero-video" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-video" muted loop
-        playsinline preload="metadata" data-poster-mobile="assets/hero-poster-mobile.webp"
+        playsinline autoplay preload="auto" data-poster-mobile="assets/hero-poster-mobile.webp"
         data-poster-desktop="assets/hero-poster.webp" style="z-index: 0; opacity: 0;">
         <source src="assets/hero-min.mp4" type="video/mp4" />
         <source src="assets/hero-min.webm" type="video/webm" />
@@ -1021,21 +1021,23 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts.js" defer></script>
 
-  <!-- Hero Video: Load on all devices -->
+  <!-- Hero Video: fade in when playing -->
   <script>
     (function () {
       var video = document.getElementById('hero-video');
       var poster = document.querySelector('.hero-poster');
-
       if (!video || !poster) return;
 
-      video.addEventListener('loadedmetadata', function () {
-        video.play().then(function () {
-          video.style.opacity = '1';
-          poster.style.opacity = '0';
-        }).catch(function () { });
-      });
-      video.load();
+      function showVideo() {
+        video.style.opacity = '1';
+        poster.style.opacity = '0';
+      }
+
+      if (video.readyState >= 2) {
+        showVideo();
+      } else {
+        video.addEventListener('playing', showVideo, { once: true });
+      }
     })();
   </script>
 
