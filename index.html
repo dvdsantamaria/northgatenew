@@ -377,12 +377,12 @@
         sizes="100vw" alt="Northgate Building Group - Luxury Home Construction"
         class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-poster" fetchpriority="high"
         decoding="async" width="1920" height="1080" style="z-index: 1;">
-      <!-- Video: lazy loaded on mobile, normal on desktop -->
+      <!-- Video: plays on all devices -->
       <video id="hero-video" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] hero-video" muted loop
-        playsinline preload="none" data-poster-mobile="assets/hero-poster-mobile.webp"
+        playsinline preload="metadata" data-poster-mobile="assets/hero-poster-mobile.webp"
         data-poster-desktop="assets/hero-poster.webp" style="z-index: 0; opacity: 0;">
-        <source src="assets/hero-min.webm" type="video/webm" />
         <source src="assets/hero-min.mp4" type="video/mp4" />
+        <source src="assets/hero-min.webm" type="video/webm" />
       </video>
 
       <div
@@ -1029,13 +1029,13 @@
 
       if (!video || !poster) return;
 
-      setTimeout(function () {
-        video.load();
+      video.addEventListener('loadedmetadata', function () {
         video.play().then(function () {
           video.style.opacity = '1';
           poster.style.opacity = '0';
         }).catch(function () { });
-      }, 100);
+      });
+      video.load();
     })();
   </script>
 
