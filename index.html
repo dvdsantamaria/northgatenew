@@ -1021,26 +1021,6 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts.js" defer></script>
 
-  <!-- Hero Video: hide poster when playing -->
-  <script>
-    (function () {
-      var video = document.getElementById('hero-video');
-      var poster = document.querySelector('.hero-poster');
-      if (!video || !poster) return;
-
-      function hidePoster() {
-        poster.style.opacity = '0';
-      }
-
-      var playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.then(hidePoster).catch(function () {});
-      }
-
-      if (!video.paused) hidePoster();
-    })();
-  </script>
-
   <!-- Header hide on scroll -->
   <script>
     (function() {

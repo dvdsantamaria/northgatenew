@@ -282,36 +282,24 @@ const initProcessAccordion = () => {
 };
 initProcessAccordion();
 
-// Video loading logic (mobile vs desktop)
+// Video loading logic (all devices)
 (function () {
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
   var video = document.getElementById('hero-video');
   var poster = document.querySelector('.hero-poster');
 
   if (!video || !poster) return;
 
-  // Set responsive poster before any loading happens
-  if (isMobile) {
-    video.setAttribute('poster', video.dataset.posterMobile);
-  } else {
-    video.setAttribute('poster', video.dataset.posterDesktop);
-  }
+  // Set responsive poster based on viewport
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  video.setAttribute('poster', isMobile ? video.dataset.posterMobile : video.dataset.posterDesktop);
 
-  if (isMobile) {
-    // Mobile: Never load video (saves 5MB), keep poster visible
-    video.style.display = 'none';
-    poster.style.opacity = '1';
-  } else {
-    // Desktop: Load video after page is stable
-    setTimeout(function () {
-      video.load();
-      video.play().then(function () {
-        video.style.opacity = '1';
-        poster.style.opacity = '0';
-      }).catch(function (e) {
-        console.log('Video autoplay blocked:', e);
-        poster.style.opacity = '1';
-      });
-    }, 2000);
-  }
+  // Load and play video on all devices
+  setTimeout(function () {
+    video.load();
+    video.play().then(function () {
+      poster.style.opacity = '0';
+    }).catch(function (e) {
+      console.log('Video autoplay blocked:', e);
+    });
+  }, 2000);
 })();
