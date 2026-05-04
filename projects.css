@@ -195,6 +195,7 @@
 .project-name {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: var(--space-block-md);
+  line-height: 1.1;
 }
 
 .project-meta {

@@ -111,9 +111,9 @@
       <div class="nav-blend flex items-center gap-8 text-xs font-medium tracking-widest uppercase opacity-80">
         <a href="index.html" class="hover:opacity-100 transition-opacity">Home</a>
         <a href="about.html" class="hover:opacity-100 transition-opacity is-active">About</a>
-        <a href="before-you-build.html" class="hover:opacity-100 transition-opacity">Before you build</a>
         <a href="services.html" class="hover:opacity-100 transition-opacity">Services</a>
         <a href="projects.html" class="hover:opacity-100 transition-opacity">Projects</a>
+        <a href="before-you-build.html" class="hover:opacity-100 transition-opacity">Before you build</a>
         <a href="contact.html" class="hover:opacity-100 transition-opacity">Contact us</a>
       </div>
       <a href="contact.html" class="nav-cta normal-case">Schedule a consultation</a>
@@ -129,9 +129,9 @@
     <div class="mobile-menu-inner">
       <a href="index.html" class="mobile-menu-link">Home</a>
       <a href="about.html" class="mobile-menu-link is-active">About</a>
-      <a href="before-you-build.html" class="mobile-menu-link">Before you build</a>
       <a href="services.html" class="mobile-menu-link">Services</a>
       <a href="projects.html" class="mobile-menu-link">Projects</a>
+      <a href="before-you-build.html" class="mobile-menu-link">Before you build</a>
       <a href="contact.html" class="mobile-menu-link">Contact us</a>
       <a href="contact.html" class="nav-cta mobile-menu-cta">Schedule a consultation</a>
     </div>
@@ -153,16 +153,8 @@
                 <p class="team-role">Managing Director</p>
               </div>
               <div class="team-bio">
-                <p>Jordan leads Northgate and works closely with clients from the early planning stages through to
-                  delivery.</p>
-                <p>His background spans both commercial and residential construction, with over eight years in each
-                  delivering large, complex projects. That experience shapes how Northgate operates today, with a
-                  strong emphasis on planning, coordination, and setting projects up properly before work begins.</p>
-                <p>Jordan focuses on clear advice, realistic pricing, and careful planning so clients can make
-                  confident decisions early. He is known for being direct, considered, and highly involved, giving
-                  clients confidence that decisions are being made with long-term outcomes in mind.</p>
-                <p>Outside of work, Jordan values time with friends and family and staying active through regular
-                  training, bringing the same discipline, consistency, and focus into how Northgate operates.</p>
+                <p>With almost two decades across both commercial and residential construction, Jordan has worked on projects ranging from $50K renovations through to a $50M business park, with over $250M worth of work delivered across his career. He started out as a residential carpenter, growing into site manager, then project manager, then construction director, backed by an Advanced Diploma of Building and Construction Management. That progression shapes how Northgate operates today, with an emphasis on understanding and planning the details before work begins so there are fewer surprises along the way.</p>
+                <p>Jordan built Northgate around clear communication and consistency. Phones stay on, clients come first, and questions get straight answers without having to chase. The aim is a calmer build where the next step is always clear, and support that continues long past handover day.</p>
               </div>
             </div>
           </article>
@@ -181,11 +173,10 @@
                 <p>He spent over 10 years running a custom residential building company in Sydney, delivering high-end
                   homes and renovations and being deeply involved in every stage of the build. That experience gives
                   Chris a practical, builder-led approach and a strong understanding of what it takes to deliver
-                  quality outcomes on site.</p>
+                  quality outcomes to each of our clients.</p>
                 <p>At Northgate, Chris oversees site operations while also being closely involved in estimating, early
-                  cost planning, and client discussions, helping ensure projects are practical, well considered, and
-                  buildable from day one. Clients value his calm leadership, attention to detail, and steady presence
-                  on site.</p>
+                  cost planning, and client meetings, helping ensure projects are practical, well considered, and
+                  buildable from day one.</p>
                 <p>When he's not on site, Chris is usually out on the ocean or in the water, bringing that same calm,
                   practical mindset and respect for the elements into every build.</p>
               </div>
@@ -438,6 +429,42 @@
   </footer>
 
   <script src="about.js" defer></script>
+
+  <!-- Header hide on scroll -->
+  <script>
+    (function() {
+      const nav = document.querySelector('.site-nav');
+      if (!nav) return;
+
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function updateNav() {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        if (currentScrollY > 100) {
+          if (scrollDelta > 5) {
+            nav.classList.add('is-hidden');
+          } else if (scrollDelta < -5) {
+            nav.classList.remove('is-hidden');
+          }
+        } else {
+          nav.classList.remove('is-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 
 </html>
