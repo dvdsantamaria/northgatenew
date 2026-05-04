@@ -1033,11 +1033,16 @@
         poster.style.opacity = '0';
       }
 
-      if (video.readyState >= 2) {
-        showVideo();
-      } else {
-        video.addEventListener('playing', showVideo, { once: true });
+      // Try to play explicitly (needed for some mobile browsers)
+      var playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.then(showVideo).catch(function () {
+          // Autoplay blocked: show poster, keep video hidden
+        });
       }
+
+      // Fallback: if already playing, show immediately
+      if (!video.paused) showVideo();
     })();
   </script>
 
