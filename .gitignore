@@ -44,3 +44,11 @@ extract_pdfs.py
 # Backup files
 *.backup.*
 *.backup*
+EMAIL-PROPOSAL-JORDAN.md
+SEO-AUTOMATION-RANKING.md
+SETUP-REQUIREMENTS.md
+assets/Projects/penthouse/1_11 Ondine Nelson Bay.mp4
+
+# Playwright MCP temp files
+.playwright-mcp/
+QUOTE-PAGE.html
