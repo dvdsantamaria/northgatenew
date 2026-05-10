@@ -540,7 +540,7 @@
         font-size: clamp(2rem, 10vw, 2.7rem);
         line-height: 1.04;
         letter-spacing: -0.015em;
-        max-width: 12ch;
+        max-width: min(100%, 18ch);
         margin: 0 0 0 auto;
       }
 

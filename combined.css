@@ -538,7 +538,7 @@
         font-size: clamp(2rem, 10vw, 2.7rem);
         line-height: 1.04;
         letter-spacing: -0.015em;
-        max-width: 12ch;
+        max-width: min(100%, 18ch);
         margin: 0 auto;
       }
 
@@ -633,6 +633,9 @@
         bottom: var(--hero-desktop-baseline);
         max-width: min(42vw, 34rem);
         z-index: 6;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
       }
 
       #hero .hero-desktop-copy h2 {
@@ -644,7 +647,8 @@
       #hero .hero-desktop-copy p {
         font-size: clamp(0.9rem, 1vw, 1.15rem);
         max-width: 26rem;
-        margin: 0.65rem 0 0;
+        margin: 0.65rem 0 0 auto;
+        text-align: right;
       }
     }
 
@@ -707,7 +711,8 @@
         font-size: clamp(0.95rem, 1.05vw, 1.15rem) !important;
         line-height: 1.38 !important;
         max-width: 24rem;
-        margin: 0.65rem 0 0;
+        margin: 0.65rem 0 0 auto;
+        text-align: right !important;
       }
 
       #hero .hero-meta {
