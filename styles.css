@@ -648,8 +648,9 @@
 
       #hero .hero-desktop-copy p {
         font-size: clamp(0.9rem, 1vw, 1.15rem);
-        max-width: 26rem;
-        margin: 0.65rem 0 0 auto;
+        width: 100%;
+        max-width: none;
+        margin: 0.65rem 0 0;
         text-align: right;
       }
     }
@@ -712,8 +713,9 @@
       #hero .hero-desktop-copy p {
         font-size: clamp(0.95rem, 1.05vw, 1.15rem) !important;
         line-height: 1.38 !important;
-        max-width: 24rem;
-        margin: 0.65rem 0 0 auto;
+        width: 100%;
+        max-width: none;
+        margin: 0.65rem 0 0;
         text-align: right !important;
       }
 
