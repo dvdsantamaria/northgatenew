@@ -238,6 +238,7 @@
       width: 8.5rem;
       object-fit: contain;
       opacity: 0.85;
+      visibility: hidden;
     }
 
     .footer-logo--white {
