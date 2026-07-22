@@ -515,7 +515,7 @@
     max-width: 20ch;
   }
 
-  .about-story-copy {
+  .about-story:not(.about-why) .about-story-copy {
     max-width: 44ch;
   }
 
