@@ -309,6 +309,9 @@
     .footer-iso-block {
       order: 4;
       min-height: 3.5rem;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 1.75rem);
+      flex-wrap: nowrap;
     }
 
     .footer-iso {
@@ -317,6 +320,16 @@
       height: auto;
       max-width: 100%;
       object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .footer-mba-logo {
+      display: block;
+      width: 7.5rem;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
       opacity: 0.9;
     }
 
@@ -330,8 +343,18 @@
         width: 5.75rem;
       }
 
+      .footer-mba-logo {
+        width: 8.5rem;
+      }
+
       .footer-iso-block {
         justify-content: flex-end;
+      }
+
+      .footer-credential-logos {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
       }
     }
 
@@ -426,6 +449,10 @@
 
       .footer-iso {
         width: 4.75rem;
+      }
+
+      .footer-mba-logo {
+        width: 6.75rem;
       }
 
       .footer-copyright {
@@ -966,21 +993,24 @@
 
     @media (min-width: 1920px) {
       :root {
-        --wide-max: 1680px;
-        --wide-pad: clamp(3rem, 4vw, 6rem);
+        --wide-max: clamp(1680px, calc(25vw + 1200px), 1840px);
+        --wide-pad: clamp(4.8rem, 4vw, 7.5rem);
+        --wide-shell-edge: max(var(--wide-pad), calc((100vw - var(--wide-max)) / 2));
+        --wide-focus-max: min(1360px, calc(var(--wide-max) - 4rem));
+        --hero-wide-gutter: clamp(3rem, 4vw, 7rem);
       }
 
       body .site-nav {
-        padding-left: var(--wide-pad);
-        padding-right: var(--wide-pad);
+        padding-left: var(--hero-wide-gutter);
+        padding-right: var(--hero-wide-gutter);
       }
 
       #hero .hero-meta {
-        left: max(3rem, calc((100vw - var(--wide-max)) / 2));
+        left: var(--hero-wide-gutter);
       }
 
       #hero .hero-desktop-copy {
-        right: max(3rem, calc((100vw - var(--wide-max)) / 2));
+        right: var(--hero-wide-gutter);
       }
 
       #intro,
@@ -991,13 +1021,30 @@
         padding-right: var(--wide-pad);
       }
 
+      .home-section-heading {
+        width: 100%;
+        max-width: var(--wide-max);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--wide-pad);
+        padding-right: var(--wide-pad);
+      }
+
       .stack-container {
-        max-width: min(1360px, calc(var(--wide-max) - 4rem));
+        max-width: var(--wide-focus-max);
+      }
+
+      .stack-container .card-inner {
+        width: 100%;
+      }
+
+      .stack-container .card-item {
+        height: min(80vh, 900px);
       }
 
       #horiz-scroll .horiz-panel {
-        padding-left: max(3rem, calc((100vw - var(--wide-max)) / 2));
-        padding-right: max(3rem, calc((100vw - var(--wide-max)) / 2));
+        padding-left: var(--wide-shell-edge);
+        padding-right: var(--wide-shell-edge);
       }
 
       #horiz-scroll .horiz-copy {
@@ -1018,11 +1065,32 @@
         font-size: var(--type-eyebrow);
         letter-spacing: 0.28em;
       }
-    }
 
-    @media (min-width: 2560px) {
-      :root {
-        --wide-max: 1840px;
-        --wide-pad: clamp(4rem, 4.6vw, 8rem);
+      .footer-inner {
+        max-width: var(--wide-max);
+        padding-left: var(--wide-pad);
+        padding-right: var(--wide-pad);
+      }
+
+      .footer-inner > a,
+      #footer-download-cta {
+        width: 100%;
+        max-width: var(--wide-focus-max);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-hero-title {
+        font-size: clamp(6rem, 5vw, 7.5rem);
+      }
+
+      .footer-meta-grid {
+        width: 100%;
+      }
+
+      .footer-credential-logos {
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(1.25rem, 1.5vw, 1.75rem);
       }
     }
