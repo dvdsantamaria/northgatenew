@@ -316,9 +316,9 @@
       }
 
       .footer-credential-logos {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 1rem;
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(2.5rem, 3vw, 4rem);
       }
     }
 
@@ -1089,6 +1089,6 @@
       .footer-credential-logos {
         flex-direction: row;
         align-items: center;
-        gap: clamp(1.25rem, 1.5vw, 1.75rem);
+        gap: clamp(3rem, 2.5vw, 4rem);
       }
     }
