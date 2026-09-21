@@ -993,3 +993,18 @@ button { cursor: pointer; }
 @media (max-width: 720px) {
   :root { --section-space: 2.5rem; }
 }
+
+/* Mobile hero viewport refinement */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-bottom: clamp(3rem, 6vh, 4rem);
+  }
+
+  .brand img { width: 154px; }
+}
+
+@media (max-width: 380px) {
+  .brand img { width: 150px; }
+}
