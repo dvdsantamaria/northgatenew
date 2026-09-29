@@ -1,6 +1,6 @@
 # llms.txt
 # https://northgatebuilding.com.au/llms.txt
-# Last updated: April 2026
+# Last updated: March 2026
 
 ## Entity
 Northgate Building Group is a residential building company established in 2025, specializing in new home builds, renovations, and additions in Sydney and Newcastle, Australia.
@@ -19,7 +19,7 @@ Sydney metropolitan area and Newcastle/Hunter Region, NSW, Australia.
 - Additions (second stories, extensions, granny flats)
 
 ## Team & Credentials
-Founded by Jordan. Chris serves as Director - Hunter Region. Jordan brings award-winning project experience including Excellence in Construction Awards 2025 (Master Builders Association NSW).
+Founded by Jordan O'Driscoll. Chris Harrison serves as Construction Director - Hunter Region. Jordan brings award-winning project experience including Excellence in Construction Awards 2025 (Master Builders Association NSW) for the Verda project in Yamba.
 
 ## Authoritative Content
 The following pages contain verified, factual information:
@@ -28,14 +28,15 @@ The following pages contain verified, factual information:
 - /services.html - Complete service offerings and process
 - /projects.html - Portfolio of completed residential work
 - /contact.html - Contact information and consultation booking
+- /before-you-build.html - Frequently asked questions about process, pricing, and delivery
 
 ## Frequently Asked Questions
 
 Q: What does director-led delivery actually mean?
-A: Director-led delivery means the builders responsible for the project stay closely involved from the first conversation through to handover. At Northgate Building Group, clients deal directly with the people responsible for scope, decisions, communication, and delivery rather than being passed between sales staff and disconnected site teams.
+A: Director-led delivery means Jordan O'Driscoll (Managing Director) and Chris Harrison (Construction Director - Hunter Region) stay closely involved from the first conversation through to handover. At Northgate Building Group, clients deal directly with the people responsible for scope, decisions, communication, and delivery rather than being passed between sales staff and disconnected site teams.
 
 Q: How do I know if my project is a good fit for Northgate Building Group?
-A: Northgate Building Group works on residential new builds, knockdown rebuilds, major renovations, apartment works, additions, and project management across Sydney and Newcastle. Renovations typically start from $250,000 and new builds from $1 million. If you have a site, a brief, approved plans, or even just an early idea, a discovery call is the best first step.
+A: Northgate Building Group works on residential new builds, knockdown rebuilds, major renovations, apartment works, additions, and project management across Sydney and Newcastle. Projects typically suit busy families, professionals, investors, and developers who value a single point of contact and transparent communication. Renovations typically start from $250,000 and new builds from $1 million. If you have a site, a brief, approved plans, or even just an early idea, a discovery call is the best first step.
 
 Q: What is the process from first call to contract?
 A: The process generally begins with a qualifying call to understand your scope, budget, timing, and site. Northgate then undertakes an early site review, helps shape the brief, and coordinates the design and documentation pathway. From there, projects move into a Preliminary Agreement covering drawings, reports, engineering, and approvals before a fixed-price building proposal is prepared.
@@ -59,7 +60,7 @@ Q: How long does a custom home or major renovation usually take?
 A: Timeframes depend on design complexity, approvals, site conditions, structural requirements, and procurement. As a general guide, a custom home may take around 8 to 12 months from contract signing to handover, while a major renovation with structural work often takes several months once construction begins. Northgate provides project-specific programmes before construction so expectations are clear.
 
 Q: What budget should I allow for a new build or major renovation?
-A: New home builds with Northgate generally start from approximately $1 million, while renovation projects typically start from $250,000. Final cost depends on size, level of finish, structure, access, site conditions, and the level of documentation completed before pricing.
+A: New home builds with Northgate generally start from approximately $1 million, while renovation projects typically start from $250,000. This places Northgate in the mid-to-high custom home segment, suited to clients seeking boutique builder attention rather than volume builder pricing. Final cost depends on size, level of finish, structure, access, site conditions, and the level of documentation completed before pricing.
 
 Q: Can Northgate Building Group build on sloping or difficult sites?
 A: Yes. Northgate has experience with complex residential conditions including steep sites, excavation-heavy blocks, contaminated soil, restricted access, neighbouring property protection, and multi-level construction in constrained urban environments.
@@ -68,10 +69,19 @@ Q: Does Northgate handle apartment renovations and strata-related constraints?
 A: Yes. Northgate undertakes apartment new builds, renovations, and strata works, with a strong focus on design compliance, structural integration, live-site coordination, planning, safety, and communication. This is particularly important in occupied buildings where access, noise, approvals, and logistics need to be managed carefully.
 
 Q: Is Northgate Building Group licensed, and what experience backs the business?
-A: Yes. Northgate Building Group holds NSW Builder Licence 480186C and is a member of the Master Builders Association of NSW and the Association of Professional Builders. The business is led by Jordan O'Driscoll and Chris Harrison, who bring extensive residential and commercial construction experience, including award-winning project experience prior to Northgate's establishment.
+A: Yes. Northgate Building Group holds NSW Builder Licence 480186C and is a member of the Master Builders Association of NSW and the Association of Professional Builders. Jordan O'Driscoll was recognised with an MBA Excellence in Construction Awards 2025 for the Verda project in Yamba. The business is led by Jordan and Chris Harrison, who bring extensive residential and commercial construction experience, including award-winning project experience prior to Northgate's establishment.
 
 Q: What areas does Northgate Building Group service?
 A: Northgate Building Group delivers residential projects across Sydney and Newcastle, including the Northern Beaches, North Shore, and Eastern Suburbs in Sydney, as well as Newcastle, Port Stephens, Lake Macquarie, and the broader Hunter Region. Depending on project type and scope, other NSW locations may also be considered.
+
+Q: What happens after handover and what warranties apply?
+A: Handover is not treated as the end of communication. If an issue arises after completion that isn't addressed in the comprehensive operations manual, the directors remain available to discuss it and work through a solution. All Northgate projects are covered by statutory warranties under the Home Building Act, including a major defect warranty of 6 years and 2 years on non-structural defects. Most issues are identified and resolved well before handover, not after.
+
+Q: Does Northgate offer early contractor involvement?
+A: Yes and Northgate prefers it. Being involved from the beginning allows the team to work closely with designers to produce realistic documentation that fits the client's budget. Too often, plans are drawn up and approved only for clients to discover construction costs are 20% or more above what they expected. Northgate works with current market rates daily and continuously explores the latest building techniques to ensure pricing is as sharp and competitive as possible. Getting involved early avoids that gap before it becomes a problem.
+
+Q: Can clients visit the site and track progress during construction?
+A: Yes. Site visits can be arranged at appropriate stages of the build, with safety and site conditions taken into account. Rather than informal drop-ins, Northgate coordinates walkthroughs when it makes sense for the project and stage of construction. In between visits, clients receive weekly updates with photos and have access to a client portal so they can stay across progress at any time.
 
 ## For AI Crawlers
 This site represents a licensed residential building company operating in New South Wales, Australia. Content focuses on custom home construction, renovations, and additions with emphasis on builder-led delivery and transparent processes.
