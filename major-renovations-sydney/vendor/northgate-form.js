@@ -213,12 +213,21 @@
     return payload;
   }
 
+  // Complete enquiries go to the leads Worker (form.action). It checks the
+  // Turnstile token, forwards the readable notification to Formspark, stores
+  // the row and texts Jordan. The Formspark address is not on the page.
   async function postLead() {
     ensureLeadEventId();
+    setHiddenValue('submission_type', 'complete');
+    const fields = {};
+    new FormData(form).forEach(function (v, k) {
+      if (k !== 'cf-turnstile-response') fields[k] = String(v);
+    });
+    const tokenField = form.querySelector('[name="cf-turnstile-response"]');
     return fetch(form.action, {
       method: 'POST',
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(notificationPayload())
+      body: JSON.stringify({ token: tokenField ? tokenField.value : '', fields: fields, notification: notificationPayload() })
     });
   }
 
@@ -364,10 +373,17 @@
 
     try {
       const response = await postLead();
+      if (response.status === 403) {
+        if (window.turnstile) window.turnstile.reset();
+        if (status) {
+          status.className = 'form-status error';
+          status.textContent = 'Please complete the security check above and send again.';
+        }
+        pushEvent('form_challenge_failed', { lead_event_id: leadEventId });
+        return;
+      }
       if (!response.ok) throw new Error('Form submission failed');
       submitted = true;
-      // Marks the stored partial as completed; never blocks the enquiry.
-      saveToLeadsDb('complete').catch(function () {});
       pushEvent('generate_lead', Object.assign(
         { lead_event_id: leadEventId, lead_type: 'renovation_extension_enquiry' }, qualification));
       // Google Ads conversion for this landing only. transaction_id stops a
