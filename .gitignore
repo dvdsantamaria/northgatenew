@@ -52,3 +52,16 @@ assets/Projects/penthouse/1_11 Ondine Nelson Bay.mp4
 # Playwright MCP temp files
 .playwright-mcp/
 QUOTE-PAGE.html
+assets/.DS_Store
+assets/Projects/.DS_Store
+.DS_Store
+
+# Internal working material: never publish to the public site
+output/
+scripts/
+original-renovations-local/
+design-audits/
+automations/
+.wrangler/
+SOCIAL_*.md
+jordan-odriscoll-outreach-data-thread.md

@@ -1,0 +1,227 @@
+/* Keep Elementor carousel bullets centred after Swiper applies its full-width rule. */
+.elementor-widget-n-carousel .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: max-content !important;
+  max-width: none !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translate(-50%, -100%) !important;
+}
+
+/* Keep every project card in the same visual system. Lorna had a separate
+   PT Serif rule in the mirrored Elementor stylesheet. */
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 h2.elementor-heading-title {
+  color: #303030 !important;
+  font-family: "Founders Grotesk Regular", Sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 1.3em !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 p.elementor-heading-title {
+  color: #525255 !important;
+  font-family: "Open Sans", Sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.3em !important;
+}
+
+/* Match the original black control treatment and prevent the inherited blue
+   hover state from changing the carousel's visual order on touch devices. */
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next),
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next):hover,
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next):focus,
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next):active {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) svg {
+  fill: currentColor !important;
+  width: 21px !important;
+  height: 21px !important;
+}
+
+/* Keep the desktop review controls at icon size after duplicate markup is removed. */
+.elementor-250 .elementor-element.elementor-element-6425d79 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) {
+  width: 21px !important;
+  max-width: 21px !important;
+  font-size: 21px !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-6425d79 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) svg {
+  width: 21px !important;
+  height: 21px !important;
+}
+
+/* Keep every carousel control in a stable row below its moving slides. */
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .e-n-carousel {
+  position: relative !important;
+  padding-bottom: 60px !important;
+}
+
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .elementor-swiper-button {
+  top: auto !important;
+  bottom: 8px !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transform: none !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .elementor-swiper-button-prev {
+  left: calc(50% - 104px) !important;
+  right: auto !important;
+}
+
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .elementor-swiper-button-next {
+  left: calc(50% + 60px) !important;
+  right: auto !important;
+}
+
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .elementor-swiper-button svg {
+  display: block !important;
+  width: 21px !important;
+  height: 21px !important;
+  max-width: 21px !important;
+  max-height: 21px !important;
+  flex: 0 0 21px !important;
+  fill: currentColor !important;
+}
+
+.elementor-250 .elementor-widget-n-carousel:is([data-id="b1b0ba7"], [data-id="6425d79"], [data-id="9264d4f"]) .swiper-pagination {
+  top: auto !important;
+  bottom: 22px !important;
+  left: 50% !important;
+  right: auto !important;
+  width: max-content !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Keep the project controls fully visible at every breakpoint. */
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 .e-n-carousel {
+  padding-bottom: 60px !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) {
+  top: auto !important;
+  bottom: 8px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-b1b0ba7 .swiper-pagination {
+  top: auto !important;
+  bottom: 22px !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Keep the legal footer continuous with the dark enquiry form below it. */
+.elementor-250 .elementor-element.elementor-element-d89cae9 {
+  background: #222222 !important;
+}
+
+.elementor-250 .elementor-element.elementor-element-d89cae9 .elementor-heading-title {
+  color: #ffffff !important;
+}
+
+/* The page carries separate desktop and mobile process layouts. Keep exactly
+   one variant active at each breakpoint. */
+@media screen and (min-width: 768px) {
+  .elementor-250 .elementor-element.elementor-element-cc0888f {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .elementor-250 .elementor-element.elementor-element-e0b0490 {
+    display: none !important;
+  }
+
+  .elementor-250 .elementor-element.elementor-element-cc0888f {
+    display: flex !important;
+  }
+
+  /* The mobile review carousel is moved out of the desktop carousel by the
+     local page script, so it can keep its intended one-review-per-slide flow. */
+  .elementor-250 > .elementor-element.elementor-element-8dcb40b > .e-con-inner > .elementor-element.elementor-element-0d9bbc3 {
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  /* Keep the mobile review carousel controls inside its clipped viewport. */
+  .elementor-250 > .elementor-element.elementor-element-8dcb40b [data-id="9264d4f"] .e-n-carousel {
+    padding-bottom: 60px !important;
+  }
+
+  .elementor-250 > .elementor-element.elementor-element-8dcb40b [data-id="9264d4f"] :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) {
+    top: auto !important;
+    bottom: 8px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    padding: 0 !important;
+    transform: none !important;
+    color: #000000 !important;
+    fill: #000000 !important;
+  }
+
+  .elementor-250 > .elementor-element.elementor-element-8dcb40b [data-id="9264d4f"] :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) svg {
+    fill: currentColor !important;
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .elementor-250 > .elementor-element.elementor-element-8dcb40b [data-id="9264d4f"] .swiper-pagination {
+    top: auto !important;
+    bottom: 22px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* The mobile carousel should hand off to the testimonials section with a
+     compact, deliberate gap instead of the inherited 80px blank area. */
+  .elementor-250 .elementor-element.elementor-element-cd83dae > .e-con-inner {
+    padding-bottom: 32px !important;
+  }
+
+  /* The mirrored gallery widget keeps a stale fixed height on mobile. Its
+     hidden gallery items leave an extra 28px below the visible image. */
+  .elementor-250 .elementor-element.elementor-element-b1b0ba7 .elementor-widget-gallery {
+    height: auto !important;
+  }
+
+  /* Keep the arrow and dots in one visible control row inside Swiper's
+     clipped viewport. */
+  .elementor-250 .elementor-element.elementor-element-b1b0ba7 .e-n-carousel {
+    padding-bottom: 60px !important;
+  }
+
+  .elementor-250 .elementor-element.elementor-element-b1b0ba7 :is(.elementor-swiper-button-prev, .elementor-swiper-button-next) {
+    top: auto !important;
+    bottom: 8px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .elementor-250 .elementor-element.elementor-element-b1b0ba7 .swiper-pagination {
+    top: auto !important;
+    bottom: 22px !important;
+    transform: translateX(-50%) !important;
+  }
+}

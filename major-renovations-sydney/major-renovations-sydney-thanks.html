@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-MLN4MHFX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Northgate Building Group</title>
+  <meta name="description" content="Your renovation enquiry has been received. Northgate Building Group will come back to you within one business day.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="major-renovations-sydney.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D6BNWWCL93"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-D6BNWWCL93');
+  </script>
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', 'xxhakp75nw');
+  </script>
+</head>
+
+<body data-landing-page="major-renovations-sydney-thanks" data-trial="renovations-extensions-sydney">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLN4MHFX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="site-header" id="top">
+    <a class="brand" href="https://northgatebuilding.com.au/" aria-label="Northgate Building Group home">
+      <img src="assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40">
+    </a>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+61433810935">Call 0433 810 935</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="thanks" aria-labelledby="thanks-title">
+      <div class="shell thanks__inner">
+        <p class="eyebrow">Enquiry received</p>
+        <h1 id="thanks-title">Thank you. Your enquiry is with us.</h1>
+        <p class="thanks__copy">One of the directors will review the details of your project and come back to you within one business day.</p>
+        <ul class="thanks__list">
+          <li>We read every enquiry ourselves. There is no call centre in between.</li>
+          <li>If your project is a fit, the next step is a short call to understand the home, the scope and your timing.</li>
+          <li>If it is not a fit, we will tell you honestly and point you in a better direction.</li>
+        </ul>
+        <div class="thanks__actions">
+          <a class="button button--dark" href="tel:+61433810935">Call 0433 810 935</a>
+          <a class="thanks__secondary" href="https://northgatebuilding.com.au/">Back to northgatebuilding.com.au</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <div><img src="assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40"></div>
+    <div><a href="tel:+61433810935">0433 810 935</a><a href="mailto:enquiries@northgatebuilding.com.au">enquiries@northgatebuilding.com.au</a></div>
+    <div>NSW builder licence 480186C<br>ABN 44686085834</div>
+  </footer>
+
+  <script>
+    (function () {
+      var query = new URLSearchParams(window.location.search);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_confirmed',
+        landing_page: 'major-renovations-sydney',
+        trial: 'renovations-extensions-sydney',
+        lead_type: 'renovation_extension_enquiry',
+        lead_event_id: query.get('lead') || '',
+        project_type: query.get('pt') || '',
+        project_stage: query.get('st') || '',
+        budget_band: query.get('bb') || ''
+      });
+      if (typeof window.clarity === 'function') {
+        window.clarity('set', 'page_role', 'enquiry_confirmation');
+        ['pt', 'st', 'bb'].forEach(function (key) {
+          var map = { pt: 'project_type', st: 'project_stage', bb: 'budget_band' };
+          if (query.get(key)) window.clarity('set', map[key], query.get(key));
+        });
+        window.clarity('upgrade', 'enquiry_submitted');
+      }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'lead_confirmed', {
+          lead_event_id: query.get('lead') || '',
+          project_type: query.get('pt') || '',
+          project_stage: query.get('st') || '',
+          budget_band: query.get('bb') || ''
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>
