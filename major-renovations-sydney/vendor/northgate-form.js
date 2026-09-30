@@ -158,27 +158,28 @@
     return leadEventId;
   }
 
-  // Posts to the lead endpoint (saves to Formspark and alerts Jordan by SMS).
-  // Falls back to posting straight to Formspark when the endpoint is unavailable,
-  // e.g. when the page is served from a host without the Cloudflare function.
-  async function postLead(submissionType, keepalive) {
+  // Complete enquiries go to Formspark (form.action), which notifies Jordan.
+  // Partial ones (email captured on step 2) go only to the leads database
+  // (data-leads-db), so nobody is emailed about an unfinished form.
+  function leadRequest(submissionType, keepalive) {
     ensureLeadEventId();
     setHiddenValue('submission_type', submissionType);
-    const body = new URLSearchParams(new FormData(form)).toString();
-    const options = {
+    return {
       method: 'POST',
       keepalive: !!keepalive,
       headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: body
+      body: new URLSearchParams(new FormData(form)).toString()
     };
-    const endpoint = form.dataset.endpoint;
-    if (endpoint) {
-      try {
-        const response = await fetch(endpoint, options);
-        if (response.ok) return response;
-      } catch (error) { /* fall through to Formspark */ }
-    }
-    return fetch(form.action, options);
+  }
+
+  function saveToLeadsDb(submissionType) {
+    const url = form.dataset.leadsDb;
+    if (!url) return Promise.resolve(null);
+    return fetch(url, leadRequest(submissionType, true));
+  }
+
+  async function postLead(submissionType) {
+    return fetch(form.action, leadRequest(submissionType, false));
   }
 
   // Step 2 asks for email, so a visitor who leaves on step 3 is still reachable.
@@ -188,7 +189,7 @@
     const emailField = form.querySelector('[name="email"]');
     if (!email || (emailField && !emailField.checkValidity()) || partialSentFor === email) return;
     partialSentFor = email;
-    postLead('partial', true).then(function (response) {
+    saveToLeadsDb('partial').then(function (response) {
       pushEvent(response && response.ok ? 'form_partial_capture' : 'form_partial_error', { lead_event_id: leadEventId });
     }).catch(function () {
       pushEvent('form_partial_error', { lead_event_id: leadEventId });
@@ -322,9 +323,11 @@
     }
 
     try {
-      const response = await postLead('complete', false);
+      const response = await postLead('complete');
       if (!response.ok) throw new Error('Form submission failed');
       submitted = true;
+      // Marks the stored partial as completed; never blocks the enquiry.
+      saveToLeadsDb('complete').catch(function () {});
       pushEvent('generate_lead', Object.assign(
         { lead_event_id: leadEventId, lead_type: 'renovation_extension_enquiry' }, qualification));
       // Google Ads conversion for this landing only. transaction_id stops a
