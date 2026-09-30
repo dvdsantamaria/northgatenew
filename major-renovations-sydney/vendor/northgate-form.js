@@ -223,6 +223,7 @@
     new FormData(form).forEach(function (v, k) {
       if (k !== 'cf-turnstile-response') fields[k] = String(v);
     });
+    renderTurnstile();
     const tokenField = form.querySelector('[name="cf-turnstile-response"]');
     return fetch(form.action, {
       method: 'POST',
@@ -268,7 +269,21 @@
     });
   }
 
+  // Turnstile renders only on the last step, so the rare visible check sits
+  // next to "Send enquiry" and the token is fresh when the form is sent.
+  let turnstileWidget = null;
+  function renderTurnstile() {
+    const slot = document.getElementById('turnstile-slot');
+    if (turnstileWidget !== null || !slot || !window.turnstile) return;
+    turnstileWidget = window.turnstile.render(slot, {
+      sitekey: slot.dataset.sitekey,
+      appearance: 'interaction-only',
+      action: 'enquiry'
+    });
+  }
+
   function showStep(stepNumber) {
+    if (stepNumber === 3) renderTurnstile();
     if (stepNumber > deepestStep) deepestStep = stepNumber;
     steps.forEach(function (step) {
       step.hidden = Number(step.dataset.step) !== stepNumber;
