@@ -178,8 +178,48 @@
     return fetch(url, leadRequest(submissionType, true));
   }
 
-  async function postLead(submissionType) {
-    return fetch(form.action, leadRequest(submissionType, false));
+  // Text the visitor actually saw (label or option), not the internal code.
+  function readable(name) {
+    const radio = form.querySelector('[name="' + name + '"]:checked');
+    if (radio) return (radio.closest('label') || radio).textContent.trim();
+    const select = form.querySelector('select[name="' + name + '"]');
+    if (select && select.selectedOptions[0]) return select.selectedOptions[0].text.trim();
+    return value(name);
+  }
+
+  // Formspark only gets what Jordan needs to read, with plain labels. Tracking
+  // fields (gclid, UTMs, lead id) stay in the leads database.
+  function notificationPayload() {
+    const name = [value('first_name'), value('last_name')].filter(Boolean).join(' ');
+    const query = new URLSearchParams(window.location.search);
+    const source = value('gclid') || value('gbraid') || value('wbraid') ? 'Google Ads'
+      : (query.get('utm_source') || 'Website');
+    const payload = {
+      '_email.subject': 'New enquiry: ' + name + ', ' + value('property_suburb'),
+      '_email.from': 'Northgate Website',
+      '_email.template.title': 'New renovation enquiry',
+      '_email.template.footer': 'false',
+      'Name': name,
+      'Phone': value('phone'),
+      'Email': value('email'),
+      'Suburb': value('property_suburb'),
+      'Project': readable('project_type'),
+      'Stage': readable('project_stage'),
+      'Budget': readable('budget_band'),
+      'Timing': readable('target_timing')
+    };
+    if (value('message')) payload['Message'] = value('message');
+    payload['Source'] = source;
+    return payload;
+  }
+
+  async function postLead() {
+    ensureLeadEventId();
+    return fetch(form.action, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(notificationPayload())
+    });
   }
 
   // Step 2 asks for email, so a visitor who leaves on step 3 is still reachable.
@@ -323,7 +363,7 @@
     }
 
     try {
-      const response = await postLead('complete');
+      const response = await postLead();
       if (!response.ok) throw new Error('Form submission failed');
       submitted = true;
       // Marks the stored partial as completed; never blocks the enquiry.
