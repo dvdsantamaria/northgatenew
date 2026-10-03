@@ -404,9 +404,14 @@
       // Google Ads conversion for this landing only. transaction_id stops a
       // double count if the same enquiry is sent twice.
       if (typeof window.gtag === 'function') {
+        // Relative lead value by stated budget, so later bidding can favour
+        // bigger projects. Points, not revenue.
+        const leadValue = { '250k_to_500k': 300, '500k_to_750k': 500, '750k_to_1m': 750, '1m_plus': 1000 }[value('budget_band')] || 100;
         window.gtag('event', 'conversion', {
           send_to: 'AW-17545826472/2QRKCKiml4sdEKihwK5B',
-          transaction_id: leadEventId
+          transaction_id: leadEventId,
+          value: leadValue,
+          currency: 'AUD'
         });
       }
       if (status) status.textContent = 'Thank you. We will come back within one business day.';
