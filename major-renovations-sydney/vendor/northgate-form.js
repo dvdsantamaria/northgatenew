@@ -438,3 +438,52 @@
     }
   });
 })();
+
+// Reviews: the text sits in a fixed-height box, so visitors could not tell
+// there was more to read (dead clicks). Mark the boxes that overflow, add a
+// "Read full review" cue, and open the whole review in a small dialog.
+(function () {
+  const sections = document.querySelectorAll('#reviews');
+  if (!sections.length) return;
+  const modal = document.createElement('div');
+  modal.className = 'ng-review-modal';
+  modal.hidden = true;
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.innerHTML = '<div class="ng-review-modal__box"><button class="ng-review-modal__close" type="button" aria-label="Close">&times;</button>' +
+    '<div class="ng-review-modal__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
+    '<p class="ng-review-modal__text"></p><div class="ng-review-modal__name"></div></div>';
+  document.body.appendChild(modal);
+  const close = function () { modal.hidden = true; };
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.ng-review-modal__close')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+  function open(box) {
+    const card = box.closest('.e-con') || box.parentElement;
+    const name = card ? [...card.querySelectorAll('h2,h3,h4,h5,h6,.elementor-heading-title')].map(function (x) { return x.textContent.trim(); }).find(Boolean) : '';
+    const copy = box.cloneNode(true);
+    copy.querySelectorAll('.ng-review-more').forEach(function (x) { x.remove(); });
+    modal.querySelector('.ng-review-modal__text').textContent = copy.textContent.trim();
+    modal.querySelector('.ng-review-modal__name').textContent = name || '';
+    modal.hidden = false;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'review_expanded', review_author: name || '' });
+    if (typeof window.gtag === 'function') window.gtag('event', 'review_expanded', { send_to: 'G-D6BNWWCL93', review_author: name || '' });
+  }
+
+  function mark() {
+    document.querySelectorAll('#reviews .elementor-widget-text-editor').forEach(function (box) {
+      if (box.classList.contains('ng-review-text') || box.scrollHeight <= box.clientHeight + 4) return;
+      box.classList.add('ng-review-text');
+      const more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'ng-review-more';
+      more.textContent = 'Read full review';
+      box.appendChild(more);
+      box.addEventListener('click', function () { open(box); });
+    });
+  }
+  mark();
+  setTimeout(mark, 800);
+  window.addEventListener('resize', mark);
+})();

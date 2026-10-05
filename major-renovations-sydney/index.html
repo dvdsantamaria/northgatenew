@@ -810,6 +810,17 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .elementor-element-52cf0ba img {
 	transform: translateY(2.3%);
 }
+/* Reviews: show that the text continues and open the full review on tap. */
+.ng-review-text { position:relative; overflow:hidden !important; cursor:pointer; }
+.ng-review-text::after { content:""; position:absolute; left:0; right:0; bottom:0; height:44px; background:linear-gradient(rgba(255,255,255,0), #fff 85%); pointer-events:none; }
+.ng-review-more { position:absolute; right:0; bottom:0; z-index:1; background:#fff; border:0; padding:2px 0 2px 10px; font-family:inherit; font-size:11px; font-weight:600; line-height:1.4; letter-spacing:.08em; text-transform:uppercase; color:#527B72; cursor:pointer; }
+.ng-review-modal { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(20,20,20,.62); }
+.ng-review-modal[hidden] { display:none; }
+.ng-review-modal__box { position:relative; width:100%; max-width:560px; max-height:85vh; overflow:auto; background:#fff; color:#1f1f1f; border-radius:6px; padding:32px 28px 26px; box-shadow:0 20px 60px rgba(0,0,0,.25); }
+.ng-review-modal__stars { color:#D2B48C; letter-spacing:3px; margin-bottom:14px; }
+.ng-review-modal__text { font-size:16px; line-height:1.65; margin:0 0 18px; }
+.ng-review-modal__name { font-weight:600; }
+.ng-review-modal__close { position:absolute; top:8px; right:12px; border:0; background:none; font-size:28px; line-height:1; cursor:pointer; color:#555; }
 /* Hero on wide screens (1600px+): bigger heading, centred vertically between header and footer row. */
 @media (min-width:1600px) {
   .elementor-element-ac6338b .elementor-element-678bc6e { flex:1 1 auto !important; align-items:center !important; }
@@ -919,7 +930,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 					</div>
 				</div>
-		<div class="elementor-element elementor-element-e0b0490 elementor-hidden-mobile e-flex e-con-boxed e-con e-parent" data-id="e0b0490" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<span id="process" aria-hidden="true"></span><div class="elementor-element elementor-element-e0b0490 elementor-hidden-mobile e-flex e-con-boxed e-con e-parent" data-id="e0b0490" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-5829e0c e-con-full e-flex e-con e-child" data-id="5829e0c" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-808428a elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="808428a" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
@@ -1239,7 +1250,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 					</div>
 				</div>
-		<div class="elementor-element elementor-element-cd83dae e-flex e-con-boxed e-con e-parent" data-id="cd83dae" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div id="projects" class="elementor-element elementor-element-cd83dae e-flex e-con-boxed e-con e-parent" data-id="cd83dae" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-c0ffd5c elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="c0ffd5c" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h2 class="elementor-heading-title elementor-size-default">View Our Latest Renovation Projects</h2>				</div>
@@ -1463,7 +1474,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 						</div>
 					</div>
 				</div>
-		<div class="elementor-element elementor-element-8dcb40b client-saying e-flex e-con-boxed e-con e-parent" data-id="8dcb40b" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div id="reviews" class="elementor-element elementor-element-8dcb40b client-saying e-flex e-con-boxed e-con e-parent" data-id="8dcb40b" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-e2eed5b elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="e2eed5b" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h2 class="elementor-heading-title elementor-size-default">What our Clients are Saying</h2>				</div>
