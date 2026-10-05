@@ -492,7 +492,16 @@
       more.type = 'button';
       more.className = 'ng-review-more';
       more.textContent = 'Read full review \u2192';
-      box.appendChild(more);
+      more.addEventListener('click', function (e) { e.stopPropagation(); open(box); });
+      const card = box.closest('.e-con');
+      const nameRow = card && [...card.querySelectorAll('.elementor-widget-heading')].find(function (x) {
+        return !box.contains(x) && (box.compareDocumentPosition(x) & Node.DOCUMENT_POSITION_FOLLOWING);
+      });
+      if (nameRow) { nameRow.classList.add('ng-review-name-row'); nameRow.appendChild(more); } else { box.after(more); }
+      // Fade hints at more text; drop it once the visitor has scrolled to the end.
+      box.addEventListener('scroll', function () {
+        box.classList.toggle('is-end', box.scrollTop + box.clientHeight >= box.scrollHeight - 4);
+      }, { passive: true });
       box.addEventListener('click', function () { open(box); });
     });
   }
