@@ -810,6 +810,14 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .elementor-element-52cf0ba img {
 	transform: translateY(2.3%);
 }
+/* Hero on wide screens (1600px+): bigger heading, centred vertically between header and footer row. */
+@media (min-width:1600px) {
+  .elementor-element-ac6338b .elementor-element-678bc6e { flex:1 1 auto !important; align-items:center !important; }
+  .elementor-element-ac6338b .elementor-element-9578bde { width:clamp(680px, 44vw, 1150px) !important; max-width:none !important; }
+  .elementor-element-ac6338b .elementor-element-9578bde { margin-bottom:210px !important; }
+  .elementor-element-07b1948 { width:100% !important; max-width:none !important; }
+  .elementor-element-07b1948 .elementor-heading-title { font-size:clamp(58px, 3.4vw, 92px) !important; line-height:1.08 !important; }
+}
 /* Hero: still first frame paints immediately; video plays on desktop only (performance). */
 .elementor-background-video-container { background:url(vendor/northgate-assets/hero/hero-poster-1920.webp) center/cover no-repeat; }
 @media (max-width:767px) { .elementor-background-video-container { background-image:url(vendor/northgate-assets/hero/hero-poster-1100.webp); } .elementor-background-video-hosted { display:none !important; } }
