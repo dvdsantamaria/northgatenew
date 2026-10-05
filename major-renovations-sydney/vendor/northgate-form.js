@@ -445,6 +445,13 @@
 (function () {
   const sections = document.querySelectorAll('#reviews');
   if (!sections.length) return;
+  // Only reviews that exist on Google, linked to that exact review (never the
+  // general list). Keyed by the first words of the review text.
+  const GOOGLE_REVIEW_LINKS = {
+      "Just finished working with J": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xWTFpqQnNTVWxTVURoMlVFUlRTRWRTYUhwUVFVRRAB!2m1!1s0x6b12aff9d74d3975:0xa4720e0c10b4001a",
+      "I was pleased to work with N": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2tKWE9HZHFkbEJSZG1NNGFWTnBOSEkzWVVGWk5HYxAB!2m1!1s0x6b12aff9d74d3975:0xa4720e0c10b4001a",
+      "We\u2019re currently working with": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VPaWpsNWpCajhXR1p3EAE!2m1!1s0x6b12aff9d74d3975:0xa4720e0c10b4001a"
+  };
   const modal = document.createElement('div');
   modal.className = 'ng-review-modal';
   modal.hidden = true;
@@ -452,7 +459,8 @@
   modal.setAttribute('aria-modal', 'true');
   modal.innerHTML = '<div class="ng-review-modal__box"><button class="ng-review-modal__close" type="button" aria-label="Close">&times;</button>' +
     '<div class="ng-review-modal__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
-    '<p class="ng-review-modal__text"></p><div class="ng-review-modal__name"></div></div>';
+    '<p class="ng-review-modal__text"></p><div class="ng-review-modal__name"></div>' +
+    '<a class="ng-review-modal__google" target="_blank" rel="noopener" hidden>Read on Google &#8599;</a></div>';
   document.body.appendChild(modal);
   const close = function () { modal.hidden = true; };
   modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.ng-review-modal__close')) close(); });
@@ -465,6 +473,11 @@
     copy.querySelectorAll('.ng-review-more').forEach(function (x) { x.remove(); });
     modal.querySelector('.ng-review-modal__text').textContent = copy.textContent.trim();
     modal.querySelector('.ng-review-modal__name').textContent = name || '';
+    const text = copy.textContent.trim();
+    const key = Object.keys(GOOGLE_REVIEW_LINKS).find(function (k) { return text.indexOf(k) === 0; });
+    const link = modal.querySelector('.ng-review-modal__google');
+    link.hidden = !key;
+    if (key) link.href = GOOGLE_REVIEW_LINKS[key];
     modal.hidden = false;
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'review_expanded', review_author: name || '' });
