@@ -491,7 +491,7 @@
       const more = document.createElement('button');
       more.type = 'button';
       more.className = 'ng-review-more';
-      more.textContent = 'Read full review';
+      more.textContent = 'Read full review \u2192';
       box.appendChild(more);
       box.addEventListener('click', function () { open(box); });
     });
