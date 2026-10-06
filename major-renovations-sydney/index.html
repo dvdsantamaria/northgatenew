@@ -813,6 +813,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /* Hero CTA, quick enquiry form and mobile sticky bar (conversion changes, Oct 2026). */
 .ng-hero-cta { position:relative; z-index:2; margin-top:28px; }
 .ng-quick .honeypot { display:none !important; }
+/* Long form hidden: the short form under the hero is the single enquiry path. */
+#contactForm { display:none !important; }
+.ng-contact-cta { margin-top:28px; }
 .ng-hero-cta__btn { display:inline-flex; align-items:center; gap:10px; background:#D2B48C; color:#1f1f1f; border-radius:999px; padding:14px 26px; font-family:inherit; font-size:16px; font-weight:600; text-decoration:none; transition:background .2s; }
 .ng-hero-cta__btn:hover { background:#e2c9a5; color:#1f1f1f; }
 .ng-quick { background:#F3EFEB; color:#1f1f1f; padding:64px 20px; }
@@ -1790,6 +1793,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             <a href="tel:+61433810935" data-track="form_phone">0433 810 935</a>
             <a href="mailto:enquiries@northgatebuilding.com.au" data-track="form_email">enquiries@northgatebuilding.com.au</a>
           </div>
+          <div class="ng-contact-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="bottom_cta">Leave your details <span aria-hidden="true">&rarr;</span></a></div>
         </div>
 
         <form class="lead-form" id="contactForm" action="https://northgate-leads.doopux.workers.dev/lead" data-leads-db="https://northgate-leads.doopux.workers.dev/partial" method="POST">
@@ -1941,7 +1945,7 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
       img.setAttribute('src', 'vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1.png');
     });
   </script>
-  <script id="northgate-enquiry-form-js" src="vendor/northgate-form.js?v=202610061217"></script>
+  <script id="northgate-enquiry-form-js" src="vendor/northgate-form.js?v=202610061224"></script>
 	<div class="ng-sticky" id="ng-sticky" aria-hidden="true"><a class="ng-sticky__call" href="tel:+61433810935" data-track="sticky_call">Call 0433 810 935</a><a class="ng-sticky__enquire" href="#enquire" data-track="sticky_enquire">Enquire</a></div>
 </body>
 </html>
