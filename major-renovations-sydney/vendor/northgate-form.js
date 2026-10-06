@@ -368,8 +368,7 @@
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const button = form.querySelector('button[type="submit"]');
-    const honeypot = form.querySelector('[name="_gotcha"]');
-    if (honeypot && honeypot.value.trim()) return;
+    // Honeypot not checked: autofill can fill it; Turnstile filters bots.
     ensureLeadEventId();
     const qualification = {
       project_type: value('project_type'),
@@ -547,7 +546,8 @@
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
-    if (val('_gotcha')) return;
+    // No honeypot check here: browser autofill can fill hidden fields, and the
+    // Turnstile check already filters bots.
     const required = ['first_name', 'phone', 'email'];
     for (let i = 0; i < required.length; i++) {
       const f = form.querySelector('[name="' + required[i] + '"]');
