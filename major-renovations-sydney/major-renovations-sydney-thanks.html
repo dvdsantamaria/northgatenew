@@ -30,6 +30,17 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, 'clarity', 'script', 'xxhakp75nw');
   </script>
+  <style>
+    .ng-details { margin:28px 0 30px; padding:24px; border:1px solid #e3ddd5; border-radius:6px; background:#faf9f7; max-width:720px; }
+    .ng-details h2 { margin:0 0 6px; font-size:20px; font-weight:500; }
+    .ng-details h2 span { font-size:14px; color:#777; font-weight:400; }
+    .ng-details > p { margin:0 0 16px; color:#555; font-size:15px; }
+    .ng-details__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-bottom:18px; }
+    .ng-details label { display:grid; gap:6px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#333; }
+    .ng-details select, .ng-details input { min-height:46px; border:1px solid #cfc7bd; border-radius:4px; background:#fff; padding:0 12px; font-size:15px; color:#1f1f1f; text-transform:none; letter-spacing:0; font-weight:400; }
+    .ng-details__status { margin:12px 0 0; font-size:14px; }
+    @media (max-width:640px) { .ng-details__grid { grid-template-columns:1fr; } .ng-details { padding:18px; } }
+  </style>
 </head>
 
 <body data-landing-page="major-renovations-sydney-thanks" data-trial="renovations-extensions-sydney">
@@ -57,6 +68,19 @@
           <li>If your project is a fit, the next step is a short call to understand the home, the scope and your timing.</li>
           <li>If it is not a fit, we will tell you honestly and point you in a better direction.</li>
         </ul>
+        <form class="ng-details" id="detailsForm" hidden>
+          <h2>Help us prepare for the call <span>(optional)</span></h2>
+          <p>A few details mean the first conversation can be more useful.</p>
+          <div class="ng-details__grid">
+            <label>Project type<select name="project_type"><option value="">Choose one</option><option value="whole_home_renovation">Whole-home renovation</option><option value="renovation_extension">Renovation and extension</option><option value="structural_changes">Structural changes</option><option value="extension_addition">Extension or addition</option><option value="other_or_not_sure">Other or not sure yet</option></select></label>
+            <label>Property suburb<input type="text" name="property_suburb" autocomplete="address-level2" placeholder="For example, Manly"></label>
+            <label>Project stage<select name="project_stage"><option value="">Choose one</option><option value="just_exploring">Just exploring</option><option value="have_concept">Have a concept or sketch</option><option value="with_architect">Working with an architect or designer</option><option value="plans_ready">Plans drawn and ready to price</option><option value="approved_ready">Approved and ready to build</option></select></label>
+            <label>Indicative investment<select name="budget_band"><option value="">Not sure or prefer not to say</option><option value="250k_to_500k">$250k to $500k</option><option value="500k_to_750k">$500k to $750k</option><option value="750k_to_1m">$750k to $1m</option><option value="1m_plus">$1m plus</option></select></label>
+            <label>Target timing<select name="target_timing"><option value="">Prefer not to say</option><option value="planning_now">Ready to start planning</option><option value="within_3_months">Within 3 months</option><option value="3_to_12_months">3 to 12 months</option><option value="researching">Just researching</option></select></label>
+          </div>
+          <button class="button button--dark" type="submit">Send details</button>
+          <p class="ng-details__status" id="details-status" role="status" aria-live="polite"></p>
+        </form>
         <div class="thanks__actions">
           <a class="button button--dark" href="tel:+61433810935">Call 0433 810 935</a>
           <a class="thanks__secondary" href="https://northgatebuilding.com.au/">Back to northgatebuilding.com.au</a>
@@ -101,6 +125,34 @@
           budget_band: query.get('bb') || ''
         });
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(window.location.search);
+      var form = document.getElementById('detailsForm');
+      var saved = null;
+      try { saved = JSON.parse(sessionStorage.getItem('ngLead') || 'null'); } catch (e) {}
+      if (!form || q.get('quick') !== '1' || !saved || saved.lead !== q.get('lead')) return;
+      var title = document.getElementById('thanks-title');
+      if (title) title.textContent = 'Thank you. We will call you back shortly.';
+      var copy = document.querySelector('.thanks__copy');
+      if (copy) copy.textContent = 'One of the directors will call you within one business day to talk about your project.';
+      form.hidden = false;
+      var labels = function (name) { var el = form.querySelector('[name="' + name + '"]'); if (!el || !el.value) return ''; return el.tagName === 'SELECT' ? el.options[el.selectedIndex].text : el.value.trim(); };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fields = { lead_event_id: saved.lead, email: saved.email };
+        ['project_type', 'property_suburb', 'project_stage', 'budget_band', 'target_timing'].forEach(function (k) { var el = form.querySelector('[name="' + k + '"]'); if (el && el.value.trim()) fields[k] = el.value.trim(); });
+        var note = { '_email.subject': 'Enquiry details: ' + (saved.name || '') + (fields.property_suburb ? ', ' + fields.property_suburb : ''), '_email.from': 'Northgate Website', '_email.template.title': 'Project details added', '_email.template.footer': 'false', 'Name': saved.name || '', 'Suburb': labels('property_suburb'), 'Project': labels('project_type'), 'Stage': labels('project_stage'), 'Budget': labels('budget_band'), 'Timing': labels('target_timing') };
+        var status = document.getElementById('details-status');
+        var btn = form.querySelector('button'); btn.disabled = true; status.textContent = 'Sending...';
+        fetch('https://northgate-leads.doopux.workers.dev/details', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ fields: fields, notification: note }) })
+          .then(function (r) { if (!r.ok) throw new Error(); status.textContent = 'Thanks, that helps us prepare.'; form.querySelectorAll('select,input,button').forEach(function (x) { x.disabled = true; });
+            window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'quick_details_sent', lead_event_id: saved.lead });
+            if (typeof window.gtag === 'function') window.gtag('event', 'quick_details_sent', { send_to: 'G-D6BNWWCL93', budget_band: fields.budget_band || '' }); })
+          .catch(function () { status.textContent = 'Could not send the details. We will ask on the call.'; btn.disabled = false; });
+      });
     })();
   </script>
 </body>

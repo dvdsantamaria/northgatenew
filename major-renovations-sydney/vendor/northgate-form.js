@@ -509,3 +509,130 @@
   setTimeout(mark, 800);
   window.addEventListener('resize', mark);
 })();
+
+// Quick enquiry under the hero: name, phone and email only. Contact first;
+// project details are asked (optionally) on the thank-you page.
+(function () {
+  const form = document.getElementById('quickForm');
+  if (!form) return;
+  const status = document.getElementById('quick-status');
+  const slot = document.getElementById('turnstile-quick');
+  const query = new URLSearchParams(window.location.search);
+  let widget = null;
+  let started = false;
+
+  function track(name, data) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: name, form_variant: 'quick' }, data || {}));
+    if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ send_to: 'G-D6BNWWCL93', form_variant: 'quick' }, data || {}));
+    if (typeof window.clarity === 'function') window.clarity('event', name);
+  }
+  function renderTurnstile() {
+    if (widget !== null || !slot || !window.turnstile) return;
+    widget = window.turnstile.render(slot, { sitekey: slot.dataset.sitekey, appearance: 'interaction-only', action: 'quick_enquiry' });
+  }
+  function val(name) {
+    const f = form.querySelector('[name="' + name + '"]');
+    return f ? f.value.trim() : '';
+  }
+  function newId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  form.addEventListener('focusin', function () {
+    renderTurnstile();
+    if (!started) { started = true; track('quick_form_start'); }
+  });
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (val('_gotcha')) return;
+    const required = ['first_name', 'phone', 'email'];
+    for (let i = 0; i < required.length; i++) {
+      const f = form.querySelector('[name="' + required[i] + '"]');
+      if (!f.value.trim() || !f.checkValidity()) { f.reportValidity(); return; }
+    }
+    renderTurnstile();
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    status.className = 'ng-quick__status';
+    status.textContent = 'Sending...';
+    // Give the invisible check a moment to finish if the visitor was very fast.
+    let token = '';
+    for (let i = 0; i < 20 && !token; i++) {
+      const t = form.querySelector('[name="cf-turnstile-response"]');
+      token = t ? t.value : '';
+      if (!token) await new Promise(function (r) { setTimeout(r, 250); });
+    }
+    const lead = newId();
+    const fields = {
+      lead_event_id: lead, submission_type: 'complete', form_variant: 'quick',
+      first_name: val('first_name'), phone: val('phone'), email: val('email'),
+      landing_page: 'major-renovations-sydney', trial: 'renovations-extensions-sydney', source: 'google-ads'
+    };
+    ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
+      if (query.get(k)) fields[k] = query.get(k);
+    });
+    const fromAds = !!(fields.gclid || fields.gbraid || fields.wbraid);
+    const notification = {
+      '_email.subject': 'New enquiry: ' + fields.first_name + ' (call back)',
+      '_email.from': 'Northgate Website',
+      '_email.template.title': 'New renovation enquiry',
+      '_email.template.footer': 'false',
+      'Name': fields.first_name, 'Phone': fields.phone, 'Email': fields.email,
+      'Form': 'Quick call back (project details may follow)',
+      'Source': fromAds ? 'Google Ads' : (query.get('utm_source') || 'Website')
+    };
+    track('quick_form_submit_attempt', { lead_event_id: lead });
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: token, fields: fields, notification: notification })
+      });
+      if (response.status === 403) {
+        if (window.turnstile && widget !== null) window.turnstile.reset(widget);
+        status.className = 'ng-quick__status error';
+        status.textContent = 'Please complete the security check above and send again.';
+        track('quick_form_challenge_failed', { lead_event_id: lead });
+        return;
+      }
+      if (!response.ok) throw new Error('send failed');
+      track('generate_lead', { lead_event_id: lead, lead_type: 'renovation_extension_enquiry' });
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: 'AW-17545826472/2QRKCKiml4sdEKihwK5B', transaction_id: lead, value: 100, currency: 'AUD' });
+      }
+      try { sessionStorage.setItem('ngLead', JSON.stringify({ lead: lead, email: fields.email, name: fields.first_name })); } catch (e) {}
+      status.textContent = 'Thank you. We will call you back within one business day.';
+      setTimeout(function () { window.location.href = 'major-renovations-sydney-thanks.html?lead=' + encodeURIComponent(lead) + '&quick=1'; }, 500);
+    } catch (e) {
+      track('quick_form_error', { lead_event_id: lead });
+      status.className = 'ng-quick__status error';
+      status.textContent = 'Something went wrong. Please call 0433 810 935 or try again.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+
+// Mobile sticky bar: appears after the hero, hides while a form is on screen.
+// The bar sits at the end of the page, so wait for the DOM before wiring it.
+document.addEventListener('DOMContentLoaded', function () {
+  const bar = document.getElementById('ng-sticky');
+  const hero = document.querySelector('.elementor-element-ac6338b');
+  if (!bar || !hero || !('IntersectionObserver' in window)) return;
+  const state = { hero: true, forms: 0 };
+  const update = function () {
+    const show = !state.hero && state.forms === 0;
+    bar.classList.toggle('is-visible', show);
+    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+  };
+  new IntersectionObserver(function (es) { es.forEach(function (e) { state.hero = e.isIntersecting; }); update(); }, { threshold: 0.15 }).observe(hero);
+  const seen = new Set();
+  const io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+    state.forms = seen.size; update();
+  }, { threshold: 0.2 });
+  ['enquire', 'contact'].forEach(function (id) { const el = document.getElementById(id); if (el) io.observe(el); });
+});

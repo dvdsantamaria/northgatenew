@@ -810,6 +810,40 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .elementor-element-52cf0ba img {
 	transform: translateY(2.3%);
 }
+/* Hero CTA, quick enquiry form and mobile sticky bar (conversion changes, Oct 2026). */
+.ng-hero-cta { position:relative; z-index:2; margin-top:28px; }
+.ng-quick .honeypot { position:absolute !important; left:-9999px !important; width:1px; height:1px; opacity:0; }
+.ng-hero-cta__btn { display:inline-flex; align-items:center; gap:10px; background:#D2B48C; color:#1f1f1f; border-radius:999px; padding:14px 26px; font-family:inherit; font-size:16px; font-weight:600; text-decoration:none; transition:background .2s; }
+.ng-hero-cta__btn:hover { background:#e2c9a5; color:#1f1f1f; }
+.ng-quick { background:#F3EFEB; color:#1f1f1f; padding:64px 20px; }
+.ng-quick__inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:48px; align-items:center; }
+.ng-quick__eyebrow { margin:0 0 12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#527B72; }
+.ng-quick h2 { margin:0 0 12px; font-size:clamp(26px,2.4vw,38px); line-height:1.15; font-weight:500; color:#1f1f1f; }
+.ng-quick__lead { margin:0; font-size:16px; line-height:1.55; color:#444; }
+.ng-quick__form { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 14px; align-items:end; }
+.ng-quick__field { display:grid; gap:6px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#333; }
+.ng-quick__field input { width:100%; min-height:50px; border:1px solid #cfc7bd; border-radius:4px; background:#fff; padding:0 14px; font-size:16px; color:#1f1f1f; }
+.ng-quick__field input:focus { outline:2px solid #527B72; outline-offset:1px; }
+.ng-quick .turnstile-slot { grid-column:1 / -1; margin:0; }
+.ng-quick__submit { grid-column:1 / -1; min-height:52px; border:0; border-radius:999px; background:#1f1f1f; color:#fff; font-family:inherit; font-size:16px; font-weight:600; cursor:pointer; }
+.ng-quick__submit:hover, .ng-quick__submit:focus { background:#527B72; color:#fff; }
+.ng-quick__submit[disabled] { opacity:.6; cursor:wait; }
+.ng-quick__note { grid-column:1 / -1; margin:2px 0 0; font-size:13px; line-height:1.5; color:#555; }
+.ng-quick__note a { color:#1f1f1f; }
+.ng-quick__status { grid-column:1 / -1; margin:0; font-size:14px; color:#1f1f1f; }
+.ng-quick__status.error { color:#a33; }
+.ng-sticky { display:none; }
+@media (max-width:767px) {
+  .ng-quick { padding:44px 20px; }
+  .ng-quick__inner { grid-template-columns:1fr; gap:22px; }
+  .ng-quick__form { grid-template-columns:1fr; }
+  .ng-hero-cta__btn { width:100%; justify-content:center; }
+  .ng-sticky { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:9000; gap:8px; padding:10px 12px calc(10px + env(safe-area-inset-bottom)); background:rgba(31,31,31,.96); transform:translateY(110%); transition:transform .25s ease; }
+  .ng-sticky.is-visible { transform:none; }
+  .ng-sticky a { flex:1; display:flex; align-items:center; justify-content:center; min-height:46px; border-radius:999px; font-size:15px; font-weight:600; text-decoration:none; }
+  .ng-sticky__call { border:1px solid rgba(255,255,255,.7); color:#fff; }
+  .ng-sticky__enquire { background:#D2B48C; color:#1f1f1f; }
+}
 /* Reviews: show that the text continues and open the full review on tap. */
 .ng-review-text { overflow:auto !important; cursor:pointer; -webkit-mask-image:linear-gradient(#000 62%, transparent); mask-image:linear-gradient(#000 62%, transparent); }
 .ng-review-text.is-end { -webkit-mask-image:none; mask-image:none; }
@@ -832,6 +866,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   .elementor-element-ac6338b .elementor-element-9578bde { margin-bottom:210px !important; }
   .elementor-element-07b1948 { width:100% !important; max-width:none !important; }
   .elementor-element-07b1948 .elementor-heading-title { font-size:clamp(58px, 3.4vw, 92px) !important; line-height:1.08 !important; }
+  .ng-hero-cta { margin-top:clamp(28px, 2vw, 44px); }
+  .ng-hero-cta__btn { font-size:clamp(16px, 0.9vw, 22px); padding:clamp(14px, 0.85vw, 20px) clamp(26px, 1.6vw, 40px); }
 }
 /* Hero: still first frame paints immediately; video plays on desktop only (performance). */
 .elementor-background-video-container { background:url(vendor/northgate-assets/hero/hero-poster-1920.webp) center/cover no-repeat; }
@@ -853,9 +889,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 		<div class="elementor-element elementor-element-0b08289 e-con-full e-flex e-con e-child" data-id="0b08289" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-a319dea elementor-align-right elementor-mobile-align-justify elementor-widget elementor-widget-button" data-id="a319dea" data-element_type="widget" data-e-type="widget" data-widget_type="button.default">
-										<a class="elementor-button elementor-button-link elementor-size-sm" href="#contact" contact="">
+										<a class="elementor-button elementor-button-link elementor-size-sm" href="#enquire" data-track="header_cta">
 						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Book a Discovery Call</span>
+									<span class="elementor-button-text">Let&rsquo;s Talk</span>
 					</span>
 					</a>
 								</div>
@@ -865,6 +901,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="elementor-element elementor-element-9578bde e-con-full e-flex e-con e-child" data-id="9578bde" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-07b1948 elementor-widget__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="07b1948" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h1 class="elementor-heading-title elementor-size-default">Stress-Free Home Renovations for Busy Families &amp; Professionals across <span id="hero-area">Sydney</span>.</h1><script>(function(){var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var a=new URLSearchParams(location.search).get('area');if(a&&m[a])document.getElementById('hero-area').textContent=m[a];})();</script>				</div>
+				<div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
 				<div class="elementor-element elementor-element-c938595 elementor-widget elementor-widget-heading" data-id="c938595" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h2 class="elementor-heading-title elementor-size-default">Because renovations shouldn't end in tears</h2>				</div>
 				</div>
@@ -877,7 +914,26 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 					</div>
 				</div>
-		<div class="elementor-element elementor-element-6fec6b2 e-flex e-con-boxed e-con e-parent" data-id="6fec6b2" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<section class="ng-quick" id="enquire" aria-labelledby="ng-quick-title">
+  <div class="ng-quick__inner">
+    <div class="ng-quick__copy">
+      <p class="ng-quick__eyebrow">Start with a conversation</p>
+      <h2 id="ng-quick-title">Leave your details and we&rsquo;ll talk about your project.</h2>
+      <p class="ng-quick__lead">No obligation. We call you back within one business day.</p>
+    </div>
+    <form class="ng-quick__form" id="quickForm" action="https://northgate-leads.doopux.workers.dev/lead" method="POST" novalidate>
+      <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="ng-quick__field">Name<input type="text" name="first_name" autocomplete="name" data-clarity-mask="true" required></label>
+      <label class="ng-quick__field">Phone<input type="tel" name="phone" autocomplete="tel" data-clarity-mask="true" required></label>
+      <label class="ng-quick__field">Email<input type="email" name="email" autocomplete="email" data-clarity-mask="true" required></label>
+      <div class="turnstile-slot" id="turnstile-quick" data-sitekey="0x4AAAAAAFJsp_6nCLWJAO54"></div>
+      <button class="ng-quick__submit" type="submit">Call me back <span aria-hidden="true">&rarr;</span></button>
+      <p class="ng-quick__note">Prefer to talk? Call <a href="tel:+61433810935" data-track="quick_inline_phone">0433 810 935</a>. We use your details to respond to this enquiry. See our <a href="https://northgatebuilding.com.au/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+      <p class="ng-quick__status" id="quick-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<div class="elementor-element elementor-element-6fec6b2 e-flex e-con-boxed e-con e-parent" data-id="6fec6b2" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-4d358ea e-con-full e-flex e-con e-child" data-id="4d358ea" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 		<div class="elementor-element elementor-element-5dad62f e-con-full e-flex e-con e-child" data-id="5dad62f" data-element_type="container" data-e-type="container">
@@ -1886,5 +1942,6 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
     });
   </script>
   <script id="northgate-enquiry-form-js" src="vendor/northgate-form.js"></script>
-	</body>
+	<div class="ng-sticky" id="ng-sticky" aria-hidden="true"><a class="ng-sticky__call" href="tel:+61433810935" data-track="sticky_call">Call 0433 810 935</a><a class="ng-sticky__enquire" href="#enquire" data-track="sticky_enquire">Enquire</a></div>
+</body>
 </html>
