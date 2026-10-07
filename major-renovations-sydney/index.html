@@ -818,6 +818,24 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .ng-contact-cta { margin-top:28px; }
 .ng-hero-cta__btn { display:inline-flex; align-items:center; gap:10px; background:#D2B48C; color:#1f1f1f; border-radius:999px; padding:14px 26px; font-family:inherit; font-size:16px; font-weight:600; text-decoration:none; transition:background .2s; }
 .ng-hero-cta__btn:hover { background:#e2c9a5; color:#1f1f1f; }
+.ng-faq { background:#fff; color:#1f1f1f; padding:72px 20px; }
+.ng-faq__inner { max-width:860px; margin:0 auto; }
+.ng-faq h2 { margin:0 0 24px; font-size:clamp(26px,2.4vw,38px); line-height:1.15; font-weight:500; color:#1f1f1f; }
+.ng-faq__item { border-top:1px solid #e3ddd6; }
+.ng-faq__item:last-of-type { border-bottom:1px solid #e3ddd6; }
+.ng-faq__item summary { cursor:pointer; list-style:none; padding:18px 36px 18px 0; position:relative; font-size:18px; font-weight:500; line-height:1.35; }
+.ng-faq__item summary::-webkit-details-marker { display:none; }
+.ng-faq__item summary::after { content:"+"; position:absolute; right:4px; top:14px; font-size:24px; color:#527B72; }
+.ng-faq__item[open] summary::after { content:"\2212"; }
+.ng-faq__item p { margin:0 0 20px; font-size:16px; line-height:1.6; color:#444; }
+.ng-faq__cta { margin:28px 0 0; font-size:16px; color:#444; }
+.ng-faq__cta a { color:#1f1f1f; text-decoration:underline; text-underline-offset:3px; }
+.ng-faq__cta a:hover { color:#D2B48C; }
+.ng-quick__points { margin:16px 0 0; padding:0; list-style:none; font-size:15px; line-height:1.5; color:#1f1f1f; }
+.ng-quick__points li { padding-left:22px; position:relative; margin:6px 0; }
+.ng-quick__points li::before { content:"\2713"; position:absolute; left:0; color:#527B72; font-weight:600; }
+.ng-local-work { margin:14px 0 0; font-size:15px; letter-spacing:.02em; color:rgba(255,255,255,.85); text-align:inherit; }
+@media (max-width:767px){ .ng-faq { padding:48px 20px; } .ng-faq__item summary { font-size:16px; } }
 .ng-quick { background:#F3EFEB; color:#1f1f1f; padding:64px 20px; }
 .ng-quick__inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:48px; align-items:center; }
 .ng-quick__eyebrow { margin:0 0 12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#527B72; }
@@ -903,10 +921,11 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="elementor-element elementor-element-678bc6e e-con-full e-flex e-con e-child" data-id="678bc6e" data-element_type="container" data-e-type="container">
 		<div class="elementor-element elementor-element-9578bde e-con-full e-flex e-con e-child" data-id="9578bde" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-07b1948 elementor-widget__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="07b1948" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-					<h1 class="elementor-heading-title elementor-size-default">Stress-Free Home Renovations for Busy Families &amp; Professionals across <span id="hero-area">Sydney</span>.</h1><script>(function(){var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var a=new URLSearchParams(location.search).get('area');if(a&&m[a])document.getElementById('hero-area').textContent=m[a];})();</script>				</div>
+					<h1 class="elementor-heading-title elementor-size-default">Stress-Free Home Renovations for Busy Families &amp; Professionals across <span id="hero-area">Sydney</span>.</h1><script>(function(){var q=new URLSearchParams(location.search),a=q.get('area'),t=(q.get('utm_term')||'').toLowerCase();var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var n={'northern-beaches':'Northern Beaches','north-shore':'North Shore','northern-beaches-north-shore':'Northern Beaches &amp; North Shore'};var h=document.getElementById('hero-area');if(!h)return;var h1=h.closest('h1'),ar=(a&&m[a])?m[a]:'Sydney',an=(a&&n[a])?n[a]:'Sydney';if(a&&m[a])h.textContent=m[a];if(/storey|story|first floor|upper floor/.test(t)){h1.innerHTML='Second Storey Additions across <span id="hero-area"></span>.';}else if(/extension|addition|extend/.test(t)){h1.innerHTML='Home Extension Builders across <span id="hero-area"></span>.';}else if(/builder|building compan|construction/.test(t)){h1.innerHTML=an+' Builders for Renovations and Extensions.';}var s=document.getElementById('hero-area');if(s&&!s.textContent)s.textContent=ar;if(a&&m[a]){document.addEventListener('DOMContentLoaded',function(){var l=document.getElementById('ng-local-work');if(l)l.hidden=false;});}})();</script>				</div>
 				<div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
 				<div class="elementor-element elementor-element-c938595 elementor-widget elementor-widget-heading" data-id="c938595" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h2 class="elementor-heading-title elementor-size-default">Because renovations shouldn't end in tears</h2>				</div>
+				<p id="ng-local-work" class="ng-local-work" hidden>Projects in Fairlight, Balgowlah Heights and Frenchs Forest.</p>
 				</div>
 		<div class="elementor-element elementor-element-62cda0b e-con-full e-flex e-con e-child" data-id="62cda0b" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-593aae3 elementor-widget-mobile__width-initial elementor-widget elementor-widget-image" data-id="593aae3" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
@@ -923,6 +942,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
       <p class="ng-quick__eyebrow">Start with a conversation</p>
       <h2 id="ng-quick-title">Leave your details and we&rsquo;ll get back to you.</h2>
       <p class="ng-quick__lead">No obligation. We call you back within one business day.</p>
+      <ul class="ng-quick__points"><li>Fixed price agreed before construction starts</li><li>Deal directly with Jordan and Chris, the directors</li><li>Licensed builder, Licence 480186C</li></ul>
     </div>
     <form class="ng-quick__form" id="quickForm" action="https://northgate-leads.doopux.workers.dev/lead" method="POST" novalidate>
       <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -1132,7 +1152,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     <div class="process-steps__item">
       <div class="process-steps__step">STEP 05</div>
       <h3 class="process-steps__title">Fixed Price Contract</h3>
-      <p class="process-steps__desc">Transparent pricing, no surprises.</p>
+      <p class="process-steps__desc">Price fixed before construction starts, with all inclusions and exclusions listed. No hidden surprises.</p>
     </div>
 
     <div class="process-steps__item">
@@ -1282,7 +1302,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     <div class="process-steps__item">
       <div class="process-steps__step">STEP 05</div>
       <h3 class="process-steps__title">Fixed Price Contract</h3>
-      <p class="process-steps__desc">Transparent pricing, no surprises.</p>
+      <p class="process-steps__desc">Price fixed before construction starts, with all inclusions and exclusions listed. No hidden surprises.</p>
     </div>
 
     <div class="process-steps__item">
@@ -1322,7 +1342,67 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <div class="elementor-element elementor-element-b1b0ba7 elementor-pagination-type-bullets elementor-arrows-position-inside elementor-pagination-position-outside elementor-widget elementor-widget-n-carousel" data-id="b1b0ba7" data-element_type="widget" data-e-type="widget" data-settings="{&quot;carousel_items&quot;:[{&quot;slide_title&quot;:&quot;Rowley&quot;,&quot;_id&quot;:&quot;e10d1eb&quot;},{&quot;slide_title&quot;:&quot;Lorna&quot;,&quot;_id&quot;:&quot;51e4e3b&quot;},{&quot;slide_title&quot;:&quot;Ondine&quot;,&quot;_id&quot;:&quot;ondine01&quot;},{&quot;slide_title&quot;:&quot;Arthur&quot;,&quot;_id&quot;:&quot;arthur01&quot;},{&quot;slide_title&quot;:&quot;Verda&quot;,&quot;_id&quot;:&quot;4baaeec&quot;},{&quot;slide_title&quot;:&quot;Malie&quot;,&quot;_id&quot;:&quot;f316a3b&quot;}],&quot;image_spacing_custom&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:20,&quot;sizes&quot;:[]},&quot;slides_to_show_tablet&quot;:&quot;2&quot;,&quot;slides_to_show_mobile&quot;:&quot;1&quot;,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500,&quot;offset_sides&quot;:&quot;none&quot;,&quot;arrows&quot;:&quot;yes&quot;,&quot;pagination&quot;:&quot;bullets&quot;,&quot;image_spacing_custom_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="nested-carousel.default">
 							<div class="e-n-carousel swiper" role="region" aria-roledescription="carousel" aria-label="Carousel" dir="ltr">
 			<div class="swiper-wrapper" aria-live="polite">
-							<div class="swiper-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="1 of 6">
+							<div class="swiper-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="1 of 8">
+							<div class="elementor-element elementor-element-2d7e503 e-flex e-con-boxed e-con e-child" data-id="2d7e503" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-4c1c329 elementor-widget elementor-widget-gallery" data-id="4c1c329" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
+							<div class="elementor-gallery__container">
+							<a class="e-gallery-item elementor-gallery-item elementor-animated-content" href="vendor/northgate-assets/projects/arthur/kitchen.webp" data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="4c1c329" data-elementor-lightbox-title="Arthur - Townhouse renovation">
+						<div class="e-gallery-image elementor-gallery-item__image" data-thumbnail="vendor/northgate-assets/projects/arthur/kitchen.webp" data-width="2000" data-height="1333" aria-label="Arthur - Townhouse renovation" role="img"></div>
+											<div class="elementor-gallery-item__overlay"></div>
+										</a>
+							</div>
+							</div>
+				<div class="elementor-element elementor-element-2d7e503-title elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<h2 class="elementor-heading-title elementor-size-default">'Arthur' - Fairlight</h2>
+				</div>
+				<div class="elementor-element elementor-element-2d7e503-desc elementor-widget__width-inherit elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<p class="elementor-heading-title elementor-size-default">Townhouse addition, renovation and interior design</p>
+				</div>
+					</div>
+				</div>
+							</div>
+<div class="swiper-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="2 of 8">
+							<div class="elementor-element elementor-element-nbmax01 e-flex e-con-boxed e-con e-child" data-id="nbmax01" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-nbmax01g elementor-widget elementor-widget-gallery" data-id="nbmax01g" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
+							<div class="elementor-gallery__container">
+							<a class="e-gallery-item elementor-gallery-item elementor-animated-content" href="/assets/Projects/maxwell/main.webp" data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="nbmax01g" data-elementor-lightbox-title="Maxwell - Frenchs Forest">
+						<div class="e-gallery-image elementor-gallery-item__image" data-thumbnail="/assets/Projects/maxwell/main.webp" data-width="2000" data-height="1333" aria-label="Maxwell - Frenchs Forest" role="img"></div>
+											<div class="elementor-gallery-item__overlay"></div>
+										</a>
+							</div>
+							</div>
+				<div class="elementor-element elementor-element-nbmax01-title elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<h2 class="elementor-heading-title elementor-size-default">'Maxwell' - Frenchs Forest</h2>
+				</div>
+				<div class="elementor-element elementor-element-nbmax01-desc elementor-widget__width-inherit elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<p class="elementor-heading-title elementor-size-default">Addition and renovation keeping the original character</p>
+				</div>
+					</div>
+				</div>
+							</div>
+<div class="swiper-slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="3 of 8">
+							<div class="elementor-element elementor-element-nbtab01 e-flex e-con-boxed e-con e-child" data-id="nbtab01" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-nbtab01g elementor-widget elementor-widget-gallery" data-id="nbtab01g" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
+							<div class="elementor-gallery__container">
+							<a class="e-gallery-item elementor-gallery-item elementor-animated-content" href="/assets/Projects/tabalun/main.webp" data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="nbtab01g" data-elementor-lightbox-title="Tabalun - Balgowlah Heights">
+						<div class="e-gallery-image elementor-gallery-item__image" data-thumbnail="/assets/Projects/tabalun/main.webp" data-width="2000" data-height="1333" aria-label="Tabalun - Balgowlah Heights" role="img"></div>
+											<div class="elementor-gallery-item__overlay"></div>
+										</a>
+							</div>
+							</div>
+				<div class="elementor-element elementor-element-nbtab01-title elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<h2 class="elementor-heading-title elementor-size-default">'Tabalun' - Balgowlah Heights</h2>
+				</div>
+				<div class="elementor-element elementor-element-nbtab01-desc elementor-widget__width-inherit elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<p class="elementor-heading-title elementor-size-default">Structural renovation to open plan living, kitchen, bathrooms and pool</p>
+				</div>
+					</div>
+				</div>
+							</div>
+<div class="swiper-slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="4 of 8">
 							<div class="elementor-element elementor-element-4b55902 e-flex e-con-boxed e-con e-child" data-id="4b55902" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-f5ac47c elementor-widget elementor-widget-gallery" data-id="f5ac47c" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
@@ -1385,7 +1465,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 								</div>
 											
-<div class="swiper-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="2 of 6">
+<div class="swiper-slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="5 of 8">
 							<div class="elementor-element elementor-element-55ecfd9 e-flex e-con-boxed e-con e-child" data-id="55ecfd9" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-07df6c5 elementor-widget elementor-widget-gallery" data-id="07df6c5" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
@@ -1404,7 +1484,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 								</div>
 											
-<div class="swiper-slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="3 of 6">
+<div class="swiper-slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="6 of 8">
 							<div class="elementor-element elementor-element-f4abeb5 e-flex e-con-boxed e-con e-child" data-id="f4abeb5" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-f43cad0 elementor-widget elementor-widget-gallery" data-id="f43cad0" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
@@ -1425,27 +1505,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 							</div>
 							
-<div class="swiper-slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="4 of 6">
-							<div class="elementor-element elementor-element-2d7e503 e-flex e-con-boxed e-con e-child" data-id="2d7e503" data-element_type="container" data-e-type="container">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-4c1c329 elementor-widget elementor-widget-gallery" data-id="4c1c329" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
-							<div class="elementor-gallery__container">
-							<a class="e-gallery-item elementor-gallery-item elementor-animated-content" href="vendor/northgate-assets/projects/arthur/kitchen.webp" data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="4c1c329" data-elementor-lightbox-title="Arthur - Townhouse renovation">
-						<div class="e-gallery-image elementor-gallery-item__image" data-thumbnail="vendor/northgate-assets/projects/arthur/kitchen.webp" data-width="2000" data-height="1333" aria-label="Arthur - Townhouse renovation" role="img"></div>
-											<div class="elementor-gallery-item__overlay"></div>
-										</a>
-							</div>
-							</div>
-				<div class="elementor-element elementor-element-2d7e503-title elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default">'Arthur' - Townhouse renovation</h2>
-				</div>
-				<div class="elementor-element elementor-element-2d7e503-desc elementor-widget__width-inherit elementor-widget elementor-widget-heading" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-					<p class="elementor-heading-title elementor-size-default">Townhouse addition, renovation and interior design</p>
-				</div>
-					</div>
-				</div>
-							</div>
-<div class="swiper-slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="5 of 6">
+<div class="swiper-slide" data-slide="7" role="group" aria-roledescription="slide" aria-label="7 of 8">
 							<div class="elementor-element elementor-element-f4abeb5 e-flex e-con-boxed e-con e-child" data-id="f4abeb5" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-f43cad0 elementor-widget elementor-widget-gallery" data-id="f43cad0" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
@@ -1489,7 +1549,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 								</div>
 											
 
-<div class="swiper-slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="6 of 6">
+<div class="swiper-slide" data-slide="8" role="group" aria-roledescription="slide" aria-label="8 of 8">
 							<div class="elementor-element elementor-element-2d7e503 e-flex e-con-boxed e-con e-child" data-id="2d7e503" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-4c1c329 elementor-widget elementor-widget-gallery" data-id="4c1c329" data-element_type="widget" data-e-type="widget" data-settings="{&quot;columns&quot;:1,&quot;gallery_layout&quot;:&quot;grid&quot;,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;aspect_ratio&quot;:&quot;3:2&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}" data-widget_type="gallery.default">
@@ -1783,7 +1843,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 					<div class="swiper-pagination"></div>
 						</div>
 				</div>
-		<section class="enquiry" id="contact" aria-labelledby="enquiry-title">
+		<section class="ng-faq" id="faq" aria-labelledby="ng-faq-title"><div class="ng-faq__inner"><p class="ng-quick__eyebrow">Before you build</p><h2 id="ng-faq-title">Common questions</h2><details class="ng-faq__item"><summary>What areas do you cover?</summary><p>We build across the Northern Beaches, the North Shore and the Lower North Shore, with projects in Fairlight, Balgowlah Heights and Frenchs Forest. We also work in the Eastern Suburbs, Newcastle and the Hunter Region.</p></details><details class="ng-faq__item"><summary>What size of renovation do you take on?</summary><p>Our renovations and extensions typically start from $250,000. We focus on major renovations, extensions, second storey additions and knockdown rebuilds, rather than single rooms such as a kitchen or bathroom on their own.</p></details><details class="ng-faq__item"><summary>How does your fixed price contract work?</summary><p>Drawings, reports, engineering and approvals are completed first under a Preliminary Agreement. We then prepare a fixed price contract with all inclusions and exclusions clearly listed, so you know the investment before construction starts. If anything changes during the build, we explain the cost and time impact before going ahead.</p></details><details class="ng-faq__item"><summary>Can you handle design and approvals, or work with my architect?</summary><p>Both. We offer design and construct with in-house interior design, managing the drawings, reports and approvals needed to build. If you already have an architect or designer, we are happy to come in early and help keep the design buildable and on budget.</p></details><details class="ng-faq__item"><summary>How long does a major renovation or extension take?</summary><p>It depends on the design, approvals, site and structural work. A major renovation with structural work usually takes several months once construction begins. You receive a project specific programme before construction, so the timing is clear from the start.</p></details><details class="ng-faq__item"><summary>Who will I deal with during the project?</summary><p>You deal directly with Jordan and Chris, the directors, from the first conversation through to handover. You will not be passed from a sales team to a separate site team, and you receive regular updates with photos throughout the build.</p></details><details class="ng-faq__item"><summary>Are you licensed, and what warranties apply?</summary><p>Yes. Northgate Building Group holds NSW Builder Licence 480186C and is a member of Master Builders NSW. Every project is covered by the statutory warranties under the Home Building Act: 6 years for major defects and 2 years for other defects.</p></details><details class="ng-faq__item"><summary>What happens after I enquire?</summary><p>We call you back within one business day for a short conversation about your project, budget and timing. If it is a good fit, the next step is an on-site or Zoom discovery meeting. There is no obligation.</p></details><p class="ng-faq__cta"><a href="#enquire" data-track="faq_enquire">Leave your details</a> or call <a href="tel:+61433810935" data-track="faq_phone">0433 810 935</a></p></div></section>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What areas do you cover?", "acceptedAnswer": {"@type": "Answer", "text": "We build across the Northern Beaches, the North Shore and the Lower North Shore, with projects in Fairlight, Balgowlah Heights and Frenchs Forest. We also work in the Eastern Suburbs, Newcastle and the Hunter Region."}}, {"@type": "Question", "name": "What size of renovation do you take on?", "acceptedAnswer": {"@type": "Answer", "text": "Our renovations and extensions typically start from $250,000. We focus on major renovations, extensions, second storey additions and knockdown rebuilds, rather than single rooms such as a kitchen or bathroom on their own."}}, {"@type": "Question", "name": "How does your fixed price contract work?", "acceptedAnswer": {"@type": "Answer", "text": "Drawings, reports, engineering and approvals are completed first under a Preliminary Agreement. We then prepare a fixed price contract with all inclusions and exclusions clearly listed, so you know the investment before construction starts. If anything changes during the build, we explain the cost and time impact before going ahead."}}, {"@type": "Question", "name": "Can you handle design and approvals, or work with my architect?", "acceptedAnswer": {"@type": "Answer", "text": "Both. We offer design and construct with in-house interior design, managing the drawings, reports and approvals needed to build. If you already have an architect or designer, we are happy to come in early and help keep the design buildable and on budget."}}, {"@type": "Question", "name": "How long does a major renovation or extension take?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the design, approvals, site and structural work. A major renovation with structural work usually takes several months once construction begins. You receive a project specific programme before construction, so the timing is clear from the start."}}, {"@type": "Question", "name": "Who will I deal with during the project?", "acceptedAnswer": {"@type": "Answer", "text": "You deal directly with Jordan and Chris, the directors, from the first conversation through to handover. You will not be passed from a sales team to a separate site team, and you receive regular updates with photos throughout the build."}}, {"@type": "Question", "name": "Are you licensed, and what warranties apply?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Northgate Building Group holds NSW Builder Licence 480186C and is a member of Master Builders NSW. Every project is covered by the statutory warranties under the Home Building Act: 6 years for major defects and 2 years for other defects."}}, {"@type": "Question", "name": "What happens after I enquire?", "acceptedAnswer": {"@type": "Answer", "text": "We call you back within one business day for a short conversation about your project, budget and timing. If it is a good fit, the next step is an on-site or Zoom discovery meeting. There is no obligation."}}]}</script>
+<section class="enquiry" id="contact" aria-labelledby="enquiry-title">
       <div class="shell enquiry-grid">
         <div class="enquiry-copy">
           <p class="eyebrow eyebrow--light">Start with a clear conversation</p>
