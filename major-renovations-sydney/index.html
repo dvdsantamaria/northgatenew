@@ -815,6 +815,24 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .ng-quick .honeypot { display:none !important; }
 /* Long form hidden: the short form under the hero is the single enquiry path. */
 #contactForm { display:none !important; }
+.ng-hero-talk { position:relative; z-index:2; margin-top:24px; max-width:600px; }
+.ng-hero-talk__lead { margin:0; font-size:18px; line-height:1.55; color:rgba(255,255,255,.88); }
+.ng-hero-talk__lead a { color:#fff; font-weight:600; text-decoration:underline; text-decoration-color:#D2B48C; text-underline-offset:4px; white-space:nowrap; }
+.ng-hero-talk__meta { margin:8px 0 0; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.62); }
+.ng-local-work { position:relative; z-index:2; margin:26px 0 0 !important; padding-top:16px; border-top:1px solid rgba(255,255,255,.18); max-width:600px; font-size:14px !important; color:rgba(255,255,255,.7) !important; }
+@media (min-width:1600px){ .ng-hero-talk, .ng-local-work { max-width:720px; } .ng-hero-talk__lead { font-size:20px; } }
+.ng-head-call { display:inline-grid; justify-items:end; gap:2px; color:#fff; text-decoration:none; text-align:right; line-height:1.2; font-family:"Open Sans",Arial,sans-serif; }
+.ng-head-call__label { font-size:15px; letter-spacing:.06em; color:rgba(255,255,255,.82); }
+.ng-head-call__num { font-size:clamp(28px,2.2vw,40px); font-weight:600; color:#D2B48C; letter-spacing:.01em; }
+.ng-head-call:hover .ng-head-call__num { color:#e2c9a5; }
+@media (max-width:767px){ .ng-hero-talk__lead { font-size:16px; } .ng-head-call { justify-items:center; background:#D2B48C; border-radius:999px; padding:8px 16px; } .ng-head-call__label { display:none; } .ng-head-call__num { font-size:17px; color:#1f1f1f; } .ng-head-call:hover .ng-head-call__num { color:#1f1f1f; } }
+#contact.enquiry .ng-next { align-self:center; border-left:1px solid rgba(255,255,255,.16); padding-left:clamp(2rem,5vw,5rem); }
+#contact.enquiry .ng-next__list { list-style:none; margin:1.4rem 0 0; padding:0; display:grid; gap:2rem; }
+#contact.enquiry .ng-next__list li { display:grid; grid-template-columns:3.2rem 1fr; gap:1rem; align-items:start; }
+#contact.enquiry .ng-next__num { color:#D2B48C; font-size:1.05rem; letter-spacing:.12em; padding-top:.2rem; }
+#contact.enquiry .ng-next h3 { margin:0; color:var(--ng-light); font-family:"Open Sans",Arial,sans-serif; font-size:1.35rem; font-weight:500; line-height:1.25; }
+#contact.enquiry .ng-next p { margin:.45rem 0 0; color:var(--ng-muted); font-size:1rem; line-height:1.6; max-width:34rem; }
+@media (max-width:1000px) { #contact.enquiry .ng-next { display:none; } }
 .ng-contact-cta { margin-top:28px; }
 .ng-hero-cta__btn { display:inline-flex; align-items:center; gap:10px; background:#D2B48C; color:#1f1f1f; border-radius:999px; padding:14px 26px; font-family:inherit; font-size:16px; font-weight:600; text-decoration:none; transition:background .2s; }
 .ng-hero-cta__btn:hover { background:#e2c9a5; color:#1f1f1f; }
@@ -910,10 +928,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 		<div class="elementor-element elementor-element-0b08289 e-con-full e-flex e-con e-child" data-id="0b08289" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-a319dea elementor-align-right elementor-mobile-align-justify elementor-widget elementor-widget-button" data-id="a319dea" data-element_type="widget" data-e-type="widget" data-widget_type="button.default">
-										<a class="elementor-button elementor-button-link elementor-size-sm" href="#enquire" data-track="header_cta">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Let&rsquo;s Talk</span>
-					</span>
+										<a class="ng-head-call" href="tel:+61433810935" data-track="header_phone" aria-label="Call Jordan on 0433 810 935">
+						<span class="ng-head-call__label">Call Jordan</span>
+						<span class="ng-head-call__num">0433 810 935</span>
 					</a>
 								</div>
 				</div>
@@ -922,16 +939,20 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="elementor-element elementor-element-9578bde e-con-full e-flex e-con e-child" data-id="9578bde" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-07b1948 elementor-widget__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="07b1948" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h1 class="elementor-heading-title elementor-size-default">Stress-Free Home Renovations for Busy Families &amp; Professionals across <span id="hero-area">Sydney</span>.</h1><script>(function(){var q=new URLSearchParams(location.search),a=q.get('area'),t=(q.get('utm_term')||'').toLowerCase();var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var n={'northern-beaches':'Northern Beaches','north-shore':'North Shore','northern-beaches-north-shore':'Northern Beaches &amp; North Shore'};var h=document.getElementById('hero-area');if(!h)return;var h1=h.closest('h1'),ar=(a&&m[a])?m[a]:'Sydney',an=(a&&n[a])?n[a]:'Sydney';if(a&&m[a])h.textContent=m[a];if(/storey|story|first floor|upper floor/.test(t)){h1.innerHTML='Second Storey Additions across <span id="hero-area"></span>.';}else if(/extension|addition|extend/.test(t)){h1.innerHTML='Home Extension Builders across <span id="hero-area"></span>.';}else if(/builder|building compan|construction/.test(t)){h1.innerHTML=an+' Builders for Renovations and Extensions.';}var s=document.getElementById('hero-area');if(s&&!s.textContent)s.textContent=ar;if(a&&m[a]){document.addEventListener('DOMContentLoaded',function(){var l=document.getElementById('ng-local-work');if(l)l.hidden=false;});}})();</script>				</div>
-				<div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
 				<div class="elementor-element elementor-element-c938595 elementor-widget elementor-widget-heading" data-id="c938595" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h2 class="elementor-heading-title elementor-size-default">Because renovations shouldn't end in tears</h2>				</div>
+				<div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
+				<div class="ng-hero-talk">
+					<p class="ng-hero-talk__lead">Prefer to talk first? Call Jordan on <a href="tel:+61433810935" data-track="hero_phone">0433 810 935</a>. He will take the time to answer your questions himself, with no obligation.</p>
+					<p class="ng-hero-talk__meta">Monday to Friday, 9am to 6pm</p>
+				</div>
 				<p id="ng-local-work" class="ng-local-work" hidden>Projects in Fairlight, Balgowlah Heights and Frenchs Forest.</p>
 				</div>
 		<div class="elementor-element elementor-element-62cda0b e-con-full e-flex e-con e-child" data-id="62cda0b" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-593aae3 elementor-widget-mobile__width-initial elementor-widget elementor-widget-image" data-id="593aae3" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
 															<img decoding="async" width="1024" height="683" src="vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1.png" class="attachment-full size-full wp-image-182" alt="" srcset="vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1.png 1024w, vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1-300x200.png 300w, vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1-768x512.png 768w, vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1-600x400.png 600w" sizes="(max-width: 1024px) 100vw, 1024px" />															</div>
 				<div class="elementor-element elementor-element-52cf0ba elementor-widget-mobile__width-initial elementor-widget elementor-widget-image" data-id="52cf0ba" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
-															<img decoding="async" width="158" height="71" src="vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/aaweroh47-removebg-preview-1.png" class="attachment-full size-full wp-image-183" alt="" />															</div>
+															<img decoding="async" width="1484" height="542" src="vendor/northgate-assets/badges/mba-nsw-white.svg" class="attachment-full size-full wp-image-183" alt="Master Builders Association of New South Wales member" />															</div>
 				</div>
 				</div>
 					</div>
@@ -1856,6 +1877,14 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             <a href="mailto:enquiries@northgatebuilding.com.au" data-track="form_email">enquiries@northgatebuilding.com.au</a>
           </div>
           <div class="ng-contact-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="bottom_cta">Leave your details <span aria-hidden="true">&rarr;</span></a></div>
+        </div>
+        <div class="ng-next" aria-label="What happens next">
+          <p class="eyebrow eyebrow--light">What happens next</p>
+          <ol class="ng-next__list">
+            <li><span class="ng-next__num">01</span><div><h3>We call you back</h3><p>Within one business day, for a short chat about your project, budget and timing.</p></div></li>
+            <li><span class="ng-next__num">02</span><div><h3>Discovery meeting</h3><p>On site or on Zoom with Jordan or Chris, to understand your home and what you want from it.</p></div></li>
+            <li><span class="ng-next__num">03</span><div><h3>Clear plan and fixed price</h3><p>Drawings, approvals and a fixed price contract, so you know the investment before construction starts.</p></div></li>
+          </ol>
         </div>
 
         <form class="lead-form" id="contactForm" action="https://northgate-leads.doopux.workers.dev/lead" data-leads-db="https://northgate-leads.doopux.workers.dev/partial" method="POST">
