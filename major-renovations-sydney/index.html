@@ -815,9 +815,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 .ng-quick .honeypot { display:none !important; }
 /* Long form hidden: the short form under the hero is the single enquiry path. */
 #contactForm { display:none !important; }
-/* Hero tagline sits in the text column flow (it was absolutely positioned at the bottom and could overlap). */
-.elementor-element-ac6338b .elementor-element-c938595 { position:relative !important; top:auto !important; bottom:auto !important; left:auto !important; right:auto !important; width:100% !important; margin:16px 0 0 !important; z-index:2; }
-@media (min-width:1600px){ .elementor-element-ac6338b .elementor-element-c938595 { margin-top:22px !important; } }
+/* Hero tagline sits at the end of the text column, after a thin divider (was absolutely positioned and could overlap). */
+.elementor-element-ac6338b .elementor-element-c938595 { position:relative !important; top:auto !important; bottom:auto !important; left:auto !important; right:auto !important; width:100% !important; max-width:600px; margin:26px 0 0 !important; padding-top:16px !important; border-top:1px solid rgba(255,255,255,.18); z-index:2; }
+@media (min-width:1600px){ .elementor-element-ac6338b .elementor-element-c938595 { max-width:720px; } }
 .ng-hero-talk { position:relative; z-index:2; margin-top:24px; max-width:600px; }
 .ng-hero-talk__lead { margin:0; font-size:18px; line-height:1.55; color:rgba(255,255,255,.88); }
 .ng-hero-talk__lead a { color:#fff; font-weight:600; text-decoration:underline; text-decoration-color:#D2B48C; text-underline-offset:4px; white-space:nowrap; }
@@ -942,14 +942,13 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="elementor-element elementor-element-9578bde e-con-full e-flex e-con e-child" data-id="9578bde" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-07b1948 elementor-widget__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="07b1948" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h1 class="elementor-heading-title elementor-size-default">Stress-Free Home Renovations for Busy Families &amp; Professionals across <span id="hero-area">Sydney</span>.</h1><script>(function(){var q=new URLSearchParams(location.search),a=q.get('area'),t=(q.get('utm_term')||'').toLowerCase();var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var n={'northern-beaches':'Northern Beaches','north-shore':'North Shore','northern-beaches-north-shore':'Northern Beaches &amp; North Shore'};var h=document.getElementById('hero-area');if(!h)return;var h1=h.closest('h1'),ar=(a&&m[a])?m[a]:'Sydney',an=(a&&n[a])?n[a]:'Sydney';if(a&&m[a])h.textContent=m[a];if(/storey|story|first floor|upper floor/.test(t)){h1.innerHTML='Second Storey Additions across <span id="hero-area"></span>.';}else if(/extension|addition|extend/.test(t)){h1.innerHTML='Home Extension Builders across <span id="hero-area"></span>.';}else if(/builder|building compan|construction/.test(t)){h1.innerHTML=an+' Builders for Renovations and Extensions.';}var s=document.getElementById('hero-area');if(s&&!s.textContent)s.textContent=ar;if(a&&m[a]){document.addEventListener('DOMContentLoaded',function(){var l=document.getElementById('ng-local-work');if(l)l.hidden=false;});}})();</script>				</div>
-				<div class="elementor-element elementor-element-c938595 elementor-widget elementor-widget-heading" data-id="c938595" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-					<h2 class="elementor-heading-title elementor-size-default">Because renovations shouldn't end in tears</h2>				</div>
 				<div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
 				<div class="ng-hero-talk">
 					<p class="ng-hero-talk__lead">Prefer to talk first? Call Jordan on <a href="tel:+61433810935" data-track="hero_phone">0433 810 935</a>. He will take the time to answer your questions himself, with no obligation.</p>
 					<p class="ng-hero-talk__meta">Monday to Saturday, 7am to 6pm</p>
 				</div>
-				<p id="ng-local-work" class="ng-local-work" hidden>Projects in Fairlight, Balgowlah Heights and Frenchs Forest.</p>
+				<div class="elementor-element elementor-element-c938595 elementor-widget elementor-widget-heading" data-id="c938595" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<h2 class="elementor-heading-title elementor-size-default">Because renovations shouldn't end in tears</h2>				</div>
 				</div>
 		<div class="elementor-element elementor-element-62cda0b e-con-full e-flex e-con e-child" data-id="62cda0b" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-593aae3 elementor-widget-mobile__width-initial elementor-widget elementor-widget-image" data-id="593aae3" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
