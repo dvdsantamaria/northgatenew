@@ -8,13 +8,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You | Northgate Building Group</title>
-  <meta name="description" content="Your renovation enquiry has been received. Northgate Building Group will come back to you within one business day.">
+  <meta name="description" content="Your renovations enquiry has been received. Northgate Building Group will come back to you within one business day.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/major-renovations-sydney/assets/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="major-renovations-sydney.css">
+  <link rel="stylesheet" href="/major-renovations-sydney/major-renovations-sydney.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D6BNWWCL93"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -50,7 +50,7 @@
 
   <header class="site-header" id="top">
     <a class="brand" href="https://northgatebuilding.com.au/" aria-label="Northgate Building Group home">
-      <img src="assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40">
+      <img src="/major-renovations-sydney/assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40">
     </a>
     <div class="header-actions">
       <a class="header-phone" href="tel:+61433810935">Call 0433 810 935</a>
@@ -62,7 +62,7 @@
       <div class="shell thanks__inner">
         <p class="eyebrow">Enquiry received</p>
         <h1 id="thanks-title">Thank you. Your enquiry is with us.</h1>
-        <p class="thanks__copy">One of the directors will review the details of your project and come back to you within one business day.</p>
+        <p class="thanks__copy">Jordan will review the details of your project and come back to you within one business day.</p>
         <ul class="thanks__list">
           <li>We read every enquiry ourselves. There is no call centre in between.</li>
           <li>If your project is a fit, the next step is a short call to understand the home, the scope and your timing.</li>
@@ -75,7 +75,7 @@
             <label>Project type<select name="project_type"><option value="">Choose one</option><option value="whole_home_renovation">Whole-home renovation</option><option value="renovation_extension">Renovation and extension</option><option value="structural_changes">Structural changes</option><option value="extension_addition">Extension or addition</option><option value="other_or_not_sure">Other or not sure yet</option></select></label>
             <label>Property suburb<input type="text" name="property_suburb" autocomplete="address-level2" placeholder="For example, Manly"></label>
             <label>Project stage<select name="project_stage"><option value="">Choose one</option><option value="just_exploring">Just exploring</option><option value="have_concept">Have a concept or sketch</option><option value="with_architect">Working with an architect or designer</option><option value="plans_ready">Plans drawn and ready to price</option><option value="approved_ready">Approved and ready to build</option></select></label>
-            <label>Indicative investment<select name="budget_band"><option value="">Not sure or prefer not to say</option><option value="250k_to_500k">$250k to $500k</option><option value="500k_to_750k">$500k to $750k</option><option value="750k_to_1m">$750k to $1m</option><option value="1m_plus">$1m plus</option></select></label>
+            <label>Indicative investment<select name="budget_band"><option value="">Not sure or prefer not to say</option><option value="750k_to_1m">$750k to $1m</option><option value="1m_plus">$1m plus</option></select></label>
             <label>Target timing<select name="target_timing"><option value="">Prefer not to say</option><option value="planning_now">Ready to start planning</option><option value="within_3_months">Within 3 months</option><option value="3_to_12_months">3 to 12 months</option><option value="researching">Just researching</option></select></label>
           </div>
           <button class="button button--dark" type="submit">Send details</button>
@@ -90,7 +90,7 @@
   </main>
 
   <footer class="landing-footer">
-    <div><img src="assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40"></div>
+    <div><img src="/major-renovations-sydney/assets/newlogo.webp" alt="Northgate Building Group" width="240" height="40"></div>
     <div><a href="tel:+61433810935">0433 810 935</a><a href="mailto:enquiries@northgatebuilding.com.au">enquiries@northgatebuilding.com.au</a></div>
     <div>NSW builder licence 480186C<br>ABN 44686085834</div>
   </footer>
@@ -137,7 +137,7 @@
       var title = document.getElementById('thanks-title');
       if (title) title.textContent = 'Thank you. We will call you back shortly.';
       var copy = document.querySelector('.thanks__copy');
-      if (copy) copy.textContent = 'One of the directors will call you within one business day to talk about your project.';
+      if (copy) copy.textContent = 'Jordan will call you within one business day to talk about your project.';
       form.hidden = false;
       var labels = function (name) { var el = form.querySelector('[name="' + name + '"]'); if (!el || !el.value) return ''; return el.tagName === 'SELECT' ? el.options[el.selectedIndex].text : el.value.trim(); };
       form.addEventListener('submit', function (e) {

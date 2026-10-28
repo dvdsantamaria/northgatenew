@@ -173,6 +173,7 @@
   }
 
   function saveToLeadsDb(submissionType) {
+    if (window.NG_STAGING) return Promise.resolve(null);
     const url = form.dataset.leadsDb;
     if (!url) return Promise.resolve(null);
     return fetch(url, leadRequest(submissionType, true));
@@ -516,6 +517,8 @@
   if (!form) return;
   const status = document.getElementById('quick-status');
   const slot = document.getElementById('turnstile-quick');
+  const landingPage = document.body.dataset.landingPage;
+  const trial = document.body.dataset.trial;
   const query = new URLSearchParams(window.location.search);
   let widget = null;
   let started = false;
@@ -557,6 +560,7 @@
     const button = form.querySelector('button[type="submit"]');
     button.disabled = true;
     status.className = 'ng-quick__status';
+    if (window.NG_STAGING) { status.className = 'ng-quick__status'; status.textContent = 'Preview only: this enquiry was not sent.'; button.disabled = false; return; }
     status.textContent = 'Sending...';
     // Give the invisible check a moment to finish if the visitor was very fast.
     let token = '';
@@ -569,7 +573,7 @@
     const fields = {
       lead_event_id: lead, submission_type: 'complete', form_variant: 'quick',
       first_name: val('first_name'), phone: val('phone'), email: val('email'),
-      landing_page: 'major-renovations-sydney', trial: 'renovations-extensions-sydney', source: 'google-ads'
+      landing_page: landingPage, trial: trial, source: 'google-ads'
     };
     ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
       if (query.get(k)) fields[k] = query.get(k);
