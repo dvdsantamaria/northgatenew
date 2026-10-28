@@ -935,13 +935,10 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 }
 </style><link rel="preload" as="image" href="/major-renovations-sydney/vendor/northgate-assets/hero/hero-poster-1100.webp" media="(max-width: 767px)" fetchpriority="high"><link rel="preload" as="image" href="/major-renovations-sydney/vendor/northgate-assets/hero/hero-poster-1920.webp" media="(min-width: 768px)" fetchpriority="high"><script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <style id="ng-service-offer-css">
-.ng-service-offer { display:grid; gap:.75rem; margin:1.25rem 0 0; max-inline-size:42rem; color:#fff; }
-.ng-service-offer > div { padding-inline-start:.875rem; border-inline-start:2px solid #D2B48C; }
-.ng-service-offer dt { font-size:.8125rem; line-height:1.4; color:#fff; opacity:.85; margin:0 0 .25rem; }
-.ng-service-offer dd { font-size:1rem; line-height:1.5; margin:0; }
-@media (min-width:768px) { .ng-service-offer { grid-template-columns:1fr 1fr; gap:1rem; } .ng-service-offer > div:last-child { grid-column:1 / -1; } }
-/* Pilot: mobile visitors saw ~16% of the page, so the hero stays short there; timing is answered in the FAQ and on the call. */
-@media (max-width:767px) { .ng-service-offer { gap:.5rem; margin-top:1rem; } .ng-service-offer dd { font-size:.9375rem; line-height:1.4; } .ng-service-offer > div:last-child { display:none; } }
+.ng-hero-offer { position:relative; z-index:2; margin:clamp(14px,2.2vh,22px) 0 0; font-size:clamp(15px,1.1vw,18px); line-height:1.45; color:#fff; letter-spacing:.01em; }
+.ng-hero-offer__sep { color:#D2B48C; margin:0 .5em; }
+@media (max-width:767px) { .ng-hero-offer__item { display:block; } .ng-hero-offer__sep { display:none; } }
+@media (min-width:1600px) { .ng-hero-offer { font-size:20px; } }
 </style>
 </head>
 <body data-landing-page="home-extensions-sydney" data-trial="service-landings-phase2" class="wp-singular page-template page-template-elementor_canvas page page-id-250 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-canvas elementor-kit-6 elementor-page elementor-page-250">
@@ -971,7 +968,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="elementor-element elementor-element-9578bde e-con-full e-flex e-con e-child" data-id="9578bde" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-07b1948 elementor-widget__width-inherit elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="07b1948" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 					<h1 class="elementor-heading-title elementor-size-default">Home Extension Builders across <span id="hero-area"></span>.</h1><script>(function(){var q=new URLSearchParams(location.search),a=q.get('area'),t=(q.get('utm_term')||'').toLowerCase();var m={'northern-beaches':'the Northern Beaches','north-shore':'the North Shore','northern-beaches-north-shore':'the Northern Beaches and North Shore'};var n={'northern-beaches':'Northern Beaches','north-shore':'North Shore','northern-beaches-north-shore':'Northern Beaches &amp; North Shore'};var h=document.getElementById('hero-area');if(!h)return;var h1=h.closest('h1'),ar=(a&&m[a])?m[a]:'Sydney',an=(a&&n[a])?n[a]:'Sydney';if(/storey|story|first floor|upper floor/.test(t)){h1.innerHTML="Second Storey Additions across <span id=\"hero-area\"></span>.";}else if(/builder|building compan|construction/.test(t)){h1.innerHTML="{AREA} Builders for Home Extensions.".replace('{AREA}',an);}var s=document.getElementById('hero-area');if(s&&!s.textContent)s.textContent=ar;})();</script>				</div>
-				<dl class="ng-service-offer" aria-label="Planning your project"><div><dt>Typical project investment</dt><dd>From A$750,000. Best suited to substantial projects around A$1M to A$2M+.</dd></div><div><dt>Your first step</dt><dd>Let’s start with a free site visit. You’ll meet Jordan, our director, who will hear your plans and guide you through the next steps.</dd></div><div><dt>When could construction begin?</dt><dd>We can discuss your preferred timing at the first meeting. Jordan will confirm a realistic start window after reviewing your scope, approvals and build schedule.</dd></div></dl><div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
+				<p class="ng-hero-offer"><span class="ng-hero-offer__item">Projects from A$750,000</span><span class="ng-hero-offer__sep" aria-hidden="true">&middot;</span><span class="ng-hero-offer__item">Free first site visit with Jordan</span></p><div class="ng-hero-cta"><a class="ng-hero-cta__btn" href="#enquire" data-track="hero_cta">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
 				<div class="ng-hero-talk">
 					<p class="ng-hero-talk__lead">Prefer to talk first? Call Jordan on <a href="tel:+61433810935" data-track="hero_phone">0433 810 935</a>. He will take the time to answer your questions himself, with no obligation.</p>
 					<p class="ng-hero-talk__meta">Monday to Saturday, 7am to 6pm</p>
@@ -995,7 +992,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
       <p class="ng-quick__eyebrow">Start with a conversation</p>
       <h2 id="ng-quick-title">Planning an extension? Leave your details and Jordan will call you back.</h2>
       <p class="ng-quick__lead">No obligation. We call you back within one business day.</p>
-      <ul class="ng-quick__points"><li>Free first site visit, no obligation</li><li>Fixed price agreed before construction starts</li><li>Deal directly with Jordan, the director</li><li>Licensed builder, Licence 480186C</li></ul>
+      <ul class="ng-quick__points"><li>Typical projects from A$750,000, often A$1M to A$2M+</li><li>Free first site visit with Jordan, no obligation</li><li>Fixed price agreed before construction starts</li><li>Deal directly with Jordan, the director</li><li>Licensed builder, Licence 480186C</li></ul>
     </div>
     <form class="ng-quick__form" id="quickForm" action="https://northgate-leads.doopux.workers.dev/lead" method="POST" novalidate>
       <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -2008,7 +2005,7 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
       img.setAttribute('src', '/major-renovations-sydney/vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1.png');
     });
   </script>
-  <script id="northgate-enquiry-form-js" src="/major-renovations-sydney/vendor/northgate-form.js?v=202610280359"></script>
+  <script id="northgate-enquiry-form-js" src="/major-renovations-sydney/vendor/northgate-form.js?v=202610280410"></script>
 	<div class="ng-sticky" id="ng-sticky" aria-hidden="true"><a class="ng-sticky__call" href="tel:+61433810935" data-track="sticky_call">Call 0433 810 935</a><a class="ng-sticky__enquire" href="#enquire" data-track="sticky_enquire">Enquire</a></div>
 </body>
 </html>
