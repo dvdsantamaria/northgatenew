@@ -943,6 +943,30 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 @media (max-width:767px) { .ng-hero-cta { flex-direction:column; align-items:stretch; } .ng-hero-offer__item { display:block; } .ng-hero-offer__sep { display:none; } }
 @media (min-width:1600px) { .ng-hero-offer { font-size:20px; } }
 </style>
+
+<style id="ng-dock-css">
+.ng-dock { display:none; }
+@media (min-width:1024px) {
+  .ng-dock { display:block; position:fixed; left:0; right:0; bottom:0; z-index:9000; background:rgba(31,31,31,.97); color:#fff;
+    padding:14px clamp(20px,4vw,64px) calc(14px + env(safe-area-inset-bottom)); transform:translateY(110%); transition:transform .25s ease;
+    box-shadow:0 -8px 24px rgba(0,0,0,.18); }
+  .ng-dock.is-visible { transform:none; }
+  .ng-dock__form { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(0,1fr)) auto; gap:12px; align-items:center; }
+  .ng-dock__title { margin:0; font-size:15px; line-height:1.35; color:#fff; }
+  .ng-dock__form input { width:100%; min-height:46px; border:1px solid rgba(255,255,255,.35); border-radius:4px; background:#fff; padding:0 14px; font-size:15px; color:#1f1f1f; }
+  .ng-dock__form input:focus { outline:2px solid #D2B48C; outline-offset:1px; }
+  .ng-dock__btn { min-height:46px; padding:0 22px; border:0; border-radius:999px; background:#D2B48C; color:#1f1f1f; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap; }
+  .ng-dock__btn:hover { background:#e2c9a5; }
+  .ng-dock__status { grid-column:2 / -1; margin:0; font-size:13px; color:rgba(255,255,255,.85); }
+  .ng-dock__status:empty { display:none; }
+  .ng-sticky { display:none !important; }
+}
+@media (max-width:1023px) {
+  .ng-sticky { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:9000; padding:10px 12px calc(10px + env(safe-area-inset-bottom)); background:rgba(31,31,31,.96); transform:translateY(110%); transition:transform .25s ease; }
+  .ng-sticky.is-visible { transform:none; }
+  .ng-sticky .ng-sticky__enquire { flex:1; gap:10px; }
+}
+</style>
 </head>
 <body data-landing-page="home-extensions-sydney" data-trial="service-landings-phase2" class="wp-singular page-template page-template-elementor_canvas page page-id-250 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-canvas elementor-kit-6 elementor-page elementor-page-250">
 <!-- Google Tag Manager (noscript) -->
@@ -2002,7 +2026,27 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
       img.setAttribute('src', '/major-renovations-sydney/vendor/build.northgatebuilding.com.au/wp-content/uploads/2026/01/APB_Member_MonoReverse-1024x683-1.png');
     });
   </script>
-  <script id="northgate-enquiry-form-js" src="/major-renovations-sydney/vendor/northgate-form.js?v=202610280613"></script>
-	<div class="ng-sticky" id="ng-sticky" aria-hidden="true"><a class="ng-sticky__call" href="tel:+61433810935" data-track="sticky_call">Call 0433 810 935</a><a class="ng-sticky__enquire" href="#enquire" data-track="sticky_enquire">Enquire</a></div>
+  <script id="northgate-enquiry-form-js" src="/major-renovations-sydney/vendor/northgate-form.js?v=202610300134"></script>
+	<div class="ng-dock" id="ng-dock" aria-hidden="true"><form class="ng-dock__form" novalidate aria-label="Request a call back"><p class="ng-dock__title">Planning an extension? Leave your details and Jordan will call you back.</p><input type="text" name="first_name" placeholder="Name" aria-label="Name" autocomplete="name" data-clarity-mask="true" required><input type="tel" name="phone" placeholder="Phone" aria-label="Phone" autocomplete="tel" data-clarity-mask="true" required><input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" data-clarity-mask="true" required><button class="ng-dock__btn" type="submit" data-track="dock_submit">Call me back <span aria-hidden="true">&rarr;</span></button><p class="ng-dock__status" role="status" aria-live="polite"></p></form></div><div class="ng-sticky" id="ng-sticky" aria-hidden="true"><a class="ng-sticky__enquire" href="#enquire" data-track="sticky_enquire">Talk About Your Project <span aria-hidden="true">&rarr;</span></a></div>
+
+<script>
+(function(){
+  var dock=document.getElementById('ng-dock'), quick=document.getElementById('quickForm'), sec=document.getElementById('enquire');
+  if(!dock||!quick||!sec)return;
+  var df=dock.querySelector('form'), st=dock.querySelector('.ng-dock__status'), qs=document.getElementById('quick-status');
+  var formsOnScreen=function(){return ['enquire','contact'].some(function(id){var el=document.getElementById(id);if(!el)return false;var r=el.getBoundingClientRect();return r.top<innerHeight*0.85&&r.bottom>innerHeight*0.15;});};
+  var update=function(){var past=sec.getBoundingClientRect().bottom<0; var show=past&&!formsOnScreen(); dock.classList.toggle('is-visible',show); dock.setAttribute('aria-hidden',show?'false':'true');};
+  addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
+  df.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!df.checkValidity()){df.reportValidity();return;}
+    ['first_name','phone','email'].forEach(function(n){var t=quick.querySelector('[name='+n+']');if(t)t.value=df.querySelector('[name='+n+']').value;});
+    if(window.dataLayer)dataLayer.push({event:'dock_form_submit'});
+    st.textContent='Sending...';
+    if(quick.requestSubmit)quick.requestSubmit();else quick.dispatchEvent(new Event('submit',{cancelable:true,bubbles:true}));
+  });
+  if(qs&&'MutationObserver' in window)new MutationObserver(function(){st.textContent=qs.textContent;}).observe(qs,{childList:true,characterData:true,subtree:true});
+})();
+</script>
 </body>
 </html>
