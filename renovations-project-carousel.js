@@ -4,14 +4,19 @@
   const track = root.querySelector('.project-carousel__track');
   const cards = [...track.children];
   const dots = [...root.querySelectorAll('[data-project-dot]')];
+  const controls = root.querySelector('.project-carousel__controls');
+  const staticWhenAllVisible = root.hasAttribute('data-static-when-all-visible');
   let current = 0;
   const count = () => innerWidth <= 600 ? 1 : innerWidth <= 1000 ? 2 : 3;
   function render(announce = false) {
+    const visibleCount = count();
+    if (staticWhenAllVisible && cards.length <= visibleCount) current = 0;
     cards.forEach((_, offset) => {
       const card = cards[(current + offset) % cards.length];
-      card.hidden = offset >= count();
+      card.hidden = offset >= visibleCount;
       track.append(card);
     });
+    if (controls && staticWhenAllVisible) controls.hidden = cards.length <= visibleCount;
     dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
     if (announce) root.querySelector('.carousel-status').textContent = `Project ${current + 1} of ${cards.length}: ${cards[current].querySelector('h3').textContent}`;
   }

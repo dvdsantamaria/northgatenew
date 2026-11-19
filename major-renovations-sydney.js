@@ -2,6 +2,8 @@
   const body = document.body;
   const landingPage = body && body.dataset.landingPage ? body.dataset.landingPage : 'major-renovations-sydney';
   const trial = body && body.dataset.trial ? body.dataset.trial : 'renovations-extensions-sydney';
+  const leadType = body && body.dataset.leadType ? body.dataset.leadType : 'renovation_extension_enquiry';
+  const inlineConfirmation = body && body.dataset.formConfirmation === 'inline';
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
 
@@ -33,6 +35,7 @@
     const query = new URLSearchParams(window.location.search);
     setHiddenValue('landing_page', landingPage);
     setHiddenValue('trial', trial);
+    if (body && body.dataset.leadType) setHiddenValue('conversion_type', leadType);
     ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (key) {
       const field = form && form.querySelector('[name="' + key + '"]');
       if (field && query.has(key)) field.value = query.get(key);
@@ -113,7 +116,7 @@
     }
   }
 
-  form.querySelectorAll('input[name="project_type"], input[name="project_stage"], select[name="target_timing"], select[name="budget_band"]').forEach(function (field) {
+  form.querySelectorAll('input[name="project_type"], select[name="project_type"], input[name="project_stage"], select[name="project_stage"], select[name="target_timing"], select[name="budget_band"]').forEach(function (field) {
     field.addEventListener('change', function () {
       trackFormResponse(field.name, field.value);
     });
@@ -212,6 +215,12 @@
     const button = form.querySelector('button[type="submit"]');
     const honeypot = form.querySelector('[name="_gotcha"]');
     if (honeypot && honeypot.value.trim()) return;
+    const fullName = form.querySelector('[name="full_name"]');
+    if (fullName) {
+      const nameParts = fullName.value.trim().split(/\s+/);
+      setHiddenValue('first_name', nameParts.shift() || '');
+      setHiddenValue('last_name', nameParts.join(' '));
+    }
     const leadEventId = createEventId();
     setHiddenValue('lead_event_id', leadEventId);
     const qualification = {
@@ -222,7 +231,7 @@
       budget_band: value('budget_band')
     };
     pushEvent('form_submit_attempt', Object.assign(
-      { lead_event_id: leadEventId, lead_type: 'renovation_extension_enquiry' }, qualification));
+      { lead_event_id: leadEventId, lead_type: leadType }, qualification));
     if (button) button.disabled = true;
     if (status) {
       status.className = 'form-status';
@@ -238,28 +247,36 @@
       if (!response.ok) throw new Error('Form submission failed');
       submitted = true;
       pushEvent('generate_lead', Object.assign(
-        { lead_event_id: leadEventId, lead_type: 'renovation_extension_enquiry' }, qualification));
-      if (status) status.textContent = 'Thank you. We will come back within one business day.';
-      // Redirect to a dedicated confirmation URL so the enquiry also has a page-based
-      // conversion signal that does not depend on a single dataLayer event firing.
-      // No personal data is placed in the query string.
-      const confirmation = new URLSearchParams({
-        lead: leadEventId,
-        pt: qualification.project_type || '',
-        st: qualification.project_stage || '',
-        bb: qualification.budget_band || ''
-      });
-      window.setTimeout(function () {
-        window.location.href = 'major-renovations-sydney-thanks.html?' + confirmation.toString();
-      }, 600);
+        { lead_event_id: leadEventId, lead_type: leadType }, qualification));
+      if (inlineConfirmation) {
+        if (status) {
+          status.textContent = 'Thanks. Your enquiry has been sent. Northgate will be in touch to discuss your project.';
+          status.focus();
+        }
+        form.classList.add('is-submitted');
+      } else {
+        if (status) status.textContent = 'Thank you. We will come back within one business day.';
+        // Redirect to a dedicated confirmation URL so the enquiry also has a page-based
+        // conversion signal that does not depend on a single dataLayer event firing.
+        // No personal data is placed in the query string.
+        const confirmation = new URLSearchParams({
+          lead: leadEventId,
+          pt: qualification.project_type || '',
+          st: qualification.project_stage || '',
+          bb: qualification.budget_band || ''
+        });
+        window.setTimeout(function () {
+          window.location.href = 'major-renovations-sydney-thanks.html?' + confirmation.toString();
+        }, 600);
+      }
     } catch (error) {
-      pushEvent('form_submit_error', { lead_event_id: leadEventId, lead_type: 'renovation_extension_enquiry' });
+      pushEvent('form_submit_error', { lead_event_id: leadEventId, lead_type: leadType });
       if (status) {
         status.className = 'form-status error';
         status.textContent = 'Something went wrong. Please call 0433 810 935 or try again.';
       }
     } finally {
-      if (button) button.disabled = false;
+      if (button && !submitted) button.disabled = false;
     }
   });
 })();

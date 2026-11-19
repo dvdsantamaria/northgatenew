@@ -1,0 +1,190 @@
+body[data-landing-page="site-signs-sydney"] #work,
+body[data-landing-page="site-signs-sydney"] .planning-section {
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
+
+body[data-landing-page="site-signs-sydney"] #work {
+  padding-bottom: clamp(1.25rem, 2vw, 2rem);
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-section {
+  padding-top: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+body[data-landing-page="site-signs-sydney"] .hero__copy {
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+body[data-landing-page="site-signs-sydney"] #work .project-carousel__track {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
+  align-items: start;
+}
+
+body[data-landing-page="site-signs-sydney"] #work .project-carousel__controls[hidden] {
+  display: none;
+}
+
+body[data-landing-page="site-signs-sydney"] #work .carousel-project p {
+  max-width: 36ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-layout {
+  align-items: center;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  body[data-landing-page="site-signs-sydney"] .testimonial-card {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
+  }
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-review {
+  max-width: 760px;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-review blockquote {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-review figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+body[data-landing-page="site-signs-sydney"] .planning-review a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+body[data-landing-page="site-signs-sydney"] #enquire .enquiry-grid {
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(3.5rem, 5.5vw, 5.5rem);
+}
+
+body[data-landing-page="site-signs-sydney"] .lead-form__primary,
+body[data-landing-page="site-signs-sydney"] .optional-details__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+body[data-landing-page="site-signs-sydney"] .lead-form__primary .field,
+body[data-landing-page="site-signs-sydney"] .optional-details__fields .field {
+  min-width: 0;
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm .field input,
+body[data-landing-page="site-signs-sydney"] #contactForm .field select {
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+body[data-landing-page="site-signs-sydney"] {
+  --select-caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3 6 5 5 5-5' fill='none' stroke='%23fff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm .field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.75rem;
+  background-image: var(--select-caret);
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem 1rem;
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm .field select:focus {
+  background-color: #0d0d0d;
+  background-image: var(--select-caret);
+}
+
+body[data-landing-page="site-signs-sydney"] .optional-details {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+body[data-landing-page="site-signs-sydney"] .optional-details summary {
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 0.55rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body[data-landing-page="site-signs-sydney"] .optional-details summary:focus-visible,
+body[data-landing-page="site-signs-sydney"] .planning-review a:focus-visible {
+  outline: 2px solid var(--light);
+  outline-offset: 3px;
+}
+
+body[data-landing-page="site-signs-sydney"] .optional-details__fields {
+  margin-top: 1rem;
+}
+
+body[data-landing-page="site-signs-sydney"] .optional-details__message {
+  grid-column: 1 / -1;
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm .form-submit {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 1.25rem;
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm.is-submitted > :not(.form-status) {
+  display: none;
+}
+
+body[data-landing-page="site-signs-sydney"] #contactForm .form-status:focus {
+  outline: 2px solid var(--light);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1000px) {
+  body[data-landing-page="site-signs-sydney"] #work .project-carousel__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body[data-landing-page="site-signs-sydney"] #work .project-carousel__track,
+  body[data-landing-page="site-signs-sydney"] .lead-form__primary,
+  body[data-landing-page="site-signs-sydney"] .optional-details__fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-landing-page="site-signs-sydney"] .planning-layout {
+    gap: 1.75rem;
+  }
+
+  body[data-landing-page="site-signs-sydney"] .planning-review {
+    margin-top: 1.75rem;
+  }
+
+  body[data-landing-page="site-signs-sydney"] .optional-details__message {
+    grid-column: auto;
+  }
+}
