@@ -188,3 +188,17 @@ body[data-landing-page="site-signs-sydney"] #contactForm .form-status:focus {
     grid-column: auto;
   }
 }
+
+body[data-landing-page="site-signs-sydney"] .testimonial-card {
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-landing-page="site-signs-sydney"] .testimonial-card figcaption {
+  margin-top: auto;
+  padding-top: 1.15rem;
+}
+
+body[data-landing-page="site-signs-sydney"] span.testimonial-source {
+  text-decoration: none;
+}
